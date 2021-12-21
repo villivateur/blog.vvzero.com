@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        使用虚拟机绕过 Windows Samba 客户端端口限制 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-text">后续</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        使用虚拟机绕过 Windows Samba 客户端端口限制
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-04-28 13:39:48</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Windows" title="Windows">Windows</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Samba" title="Samba">Samba</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>迫于不能浪费宿舍联通宽带的公网 IP，我用树莓派搭建了一个 NAS，使用 Samba 提供访问。但是，由于运营商限制，入站和出站的 139、445 端口都被封禁（对！你不能访问其他机器的 445 端口！），这样做只能让同一个局域网的服务访问。我尝试修改了端口号，把本地的 445 端口映射到公网的其它端口，算是可以给大部分 Samba 客户端使用了（比如安卓手机）。但是，Windows 的 Samba 客户端，并不支持设置端口号（如果在文件管理器地址栏输入 <code>\\a.b.c.d:xxx</code> 将会被认为是 WebDAV 协议）。</p>
+<p>网上某些教程说，在 Windows 本地设置端口转发，把访问本机 445 端口的流量转发至你的 Samba 服务器端口。但是，这样做需要关闭 Windows 自己的 Samba 服务器，会导致网络共享、网络打印机等很多功能无法使用，导致莫名其妙的问题，所以不推荐。</p>
+<p>但是可以换个思路。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>既然不能使用本机（127.0.0.1）做转发，那么为什么不使用本地网络中其他的机器进行数据转发呢？一开始我想在本地网络中加一个树莓派之类的小主机，但觉得这样太累赘了。虚拟机也是独立的机器，我觉得一样有效。</p>
+<p>所以，只要在虚拟机里面装一个反向代理应用（Nginx），把发往虚拟机 445 端口的流量转发到 Samba 服务器，然后使用 Windows Samba 客户端访问这个虚拟机，就等于访问 Samba 服务器。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>这里，我使用了 Windows Hyper V，创建了 Ubuntu 20.04 Server 虚拟机（直接下载官方 ISO），然后使用默认交换机作为虚拟机的网络。</p>
+<img src="https://img.vvzero.com/blog/ih/2020/04/28/2416a9e0b66ec.png" alt="Snipaste_2020-04-28_14-07-57.png" style="zoom:33%;" />
+
+<p>启动后，安装系统，然后除了更新镜像源、安装 Nginx，什么都不用做。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+<p>装好 Nginx 后，修改配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+<p>添加一个 stream 模块，大致像下面：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">stream</span> &#123;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">445</span>;</span><br><span class="line">        </span><br><span class="line">        // 你的 NAS 地址</span><br><span class="line">        <span class="attribute">proxy_pass</span> mynas.example.com:<span class="number">12345</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后重启 Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>转发的模块就做好了。</p>
+<p>然后，再在 Windows 中打开 <code>\\&lt;虚拟机的ip&gt;\&lt;samba 路径（可选）&gt;</code> 就完成了。虚拟机 ip 可以在虚拟机里面用 ifconfig 命令查看。</p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>也许可以用 docker 实现，但我还没想好怎么搞。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

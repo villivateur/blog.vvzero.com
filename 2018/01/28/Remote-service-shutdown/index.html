@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        远程一键关闭服务器web服务 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E8%A6%81%E6%B1%82"><span class="toc-text">目标要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E6%80%9D%E8%B7%AF"><span class="toc-text">制作思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">软件配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE%E9%85%8D%E7%BD%AE"><span class="toc-text">树莓派配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%B5%8B%E8%AF%95"><span class="toc-text">实际测试</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        远程一键关闭服务器web服务
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-28 20:14:04</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#RaspberryPi" title="RaspberryPi">RaspberryPi</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#4G" title="4G">4G</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#有人物联网" title="有人物联网">有人物联网</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>昨天完成了手机客户端远程控制树莓派上LED亮灭的实验（<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/01/27/Control-RaspberryPi-via-4G/">点击回顾</a>，今天来做一些拓展，从客户端远程一键控制与树莓派处于同一内网的服务器的服务开关。</p>
+<h2 id="目标要求"><a href="#目标要求" class="headerlink" title="目标要求"></a>目标要求</h2><p>在任意联网的客户端点击“关闭”链接，指定服务器的nginx服务关闭。</p>
+<h2 id="制作思路"><a href="#制作思路" class="headerlink" title="制作思路"></a>制作思路</h2><p>只要把“开关LED”这一操作，转换成“执行开关服务”即可。而“开关服务”可以直接使用ssh命令。</p>
+<h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><p>云端的配置与原来相同，只需要修改树莓派的配置。</p>
+<h3 id="树莓派配置"><a href="#树莓派配置" class="headerlink" title="树莓派配置"></a>树莓派配置</h3><p>接收串口数据并执行shell脚本</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//to-shutdown.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;wiringPi.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;wiringSerial.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LED 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> MySerial;</span><br><span class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	pinMode(LED, OUTPUT);</span><br><span class="line">	<span class="keyword">if</span> (wiringPiSetup()&lt;<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Setup Failed!\n&quot;</span>;</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((MySerial=serialOpen(<span class="string">&quot;/dev/ttyS0&quot;</span>, <span class="number">115200</span>))&lt;<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Serial Failed!\n&quot;</span>;</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (serialDataAvail(MySerial)&gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">char</span> ch=serialGetchar(MySerial);</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ch &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">int</span> val=ch<span class="number">-48</span>;</span><br><span class="line">			<span class="keyword">if</span> (flag != val)</span><br><span class="line">			&#123;</span><br><span class="line">				flag=val;</span><br><span class="line">				<span class="keyword">if</span> (val==<span class="number">0</span>)</span><br><span class="line">					system(<span class="string">&quot;sh turn-off.sh&quot;</span>);</span><br><span class="line">				<span class="keyword">if</span> (val==<span class="number">1</span>)</span><br><span class="line">					system(<span class="string">&quot;sh turn-on.sh&quot;</span>);</span><br><span class="line">				digitalWrite(LED, val);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	serialClose(MySerial);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，如果接收到0，则关闭服务，如果接收到1，则开启服务。为了避免多次重复开关，设置了一个<code>flag</code>变量用于判断。</p>
+<p>至于ssh控制服务器的脚本，本人查阅资料后决定采用<code>sshpass</code>，这个插件可以在ssh命令中携带密码。当然，如果有密钥对的话，就更加简单了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#turn-off.sh</span></span><br><span class="line"></span><br><span class="line">sshpass -p <span class="string">&#x27;&lt;password&gt;&#x27;</span> ssh -p 22 root@192.168.27.20 service nginx stop</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#turn-on.sh</span></span><br><span class="line"></span><br><span class="line">sshpass -p <span class="string">&#x27;&lt;password&gt;&#x27;</span> ssh -p 22 root@192.168.27.20 service nginx start</span><br></pre></td></tr></table></figure>
+<h2 id="实际测试"><a href="#实际测试" class="headerlink" title="实际测试"></a>实际测试</h2><p>将编译后的<code>to-shutdown.cpp</code>和<code>turn-off.sh</code>、<code>turn-on.sh</code>放在同一目录内，运行。</p>
+<p>实际效果如图，这里为了便于演示，用PC端模拟手机操作。<br><img src="https://img.vvzero.com/blog/Remote-service-shutdown/1.gif" alt="效果动画"></p>
+<p>可以看到，关闭命令发送后几秒内，web服务即停止。开启命令发送后，web服务也迅速恢复。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

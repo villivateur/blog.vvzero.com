@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        Ubuntu下为postfix配置DKIM - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%87%86%E5%A4%87"><span class="toc-text">资源准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="toc-text">配置步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85opendkim"><span class="toc-text">安装opendkim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9opendkim%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">修改opendkim配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90DKIM%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="toc-text">生成DKIM密钥对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEpostfix"><span class="toc-text">配置postfix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1"><span class="toc-text">重启服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0DKIM%E8%AE%B0%E5%BD%95"><span class="toc-text">添加DKIM记录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">测试有效性</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Ubuntu下为postfix配置DKIM
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-03-14 19:08:58</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#postfix" title="postfix">postfix</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#email" title="email">email</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#dkim" title="dkim">dkim</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>受困于outlook把我的邮箱地址认为是垃圾邮件，我在经过查阅资料后，发现我现在最大的问题是没有反向DNS解析以及缺少DKIM验证。反向DNS解析，由于主机商不给力，所以不可能完成配置。这里先记录下配置DKIM的过程。</p>
+<h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><ul>
+<li>已经按照<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/03/10/build-an-email-server-tutorial/">上一篇文章</a>配置完一台ubuntu服务器</li>
+</ul>
+<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><h3 id="安装opendkim"><a href="#安装opendkim" class="headerlink" title="安装opendkim"></a>安装opendkim</h3><p><code>sudo apt install opendkim opendkim-tools</code></p>
+<h3 id="修改opendkim配置文件"><a href="#修改opendkim配置文件" class="headerlink" title="修改opendkim配置文件"></a>修改opendkim配置文件</h3><p>修改<code>/etc/opendkim.conf</code><br>添加以下代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Domain                  example.com                                                       </span><br><span class="line">KeyFile         /etc/dkimkeys/dkim.key                                                   </span><br><span class="line">Selector                dkim                                                             </span><br><span class="line">SOCKET                  inet:8891@localhost</span><br></pre></td></tr></table></figure>
+<p>这里配置的意义是，告诉opendkim你的邮箱域名，设置私钥地址，以及配置dkim服务端口，可以根据自己的需求修改成其他值。</p>
+<p>然后修改<code>/etc/default/opendkim</code><br>添加这一条语句：<br><code>SOCKET=&quot;inet:8891@localhost&quot;</code><br>该句意为配置opendkim的服务地址，应与上一个配置文件一致。</p>
+<h3 id="生成DKIM密钥对"><a href="#生成DKIM密钥对" class="headerlink" title="生成DKIM密钥对"></a>生成DKIM密钥对</h3><p>在某个目录内执行下面的语句：<br>ˋsudo opendkim-genkey -t -s dkim -d example.com<code> 生成你的域名的密钥对，然后会有两个文件 ˋdkim.key</code>以及<code>dkim.txt</code><br>移动<code>dkim.key</code><br><code>sudo mv dkim.key /etc/dkimkeys/</code><br>配置所有者权限<br><code>sudo chown opendkim:opendkim dkim.key</code></p>
+<h3 id="配置postfix"><a href="#配置postfix" class="headerlink" title="配置postfix"></a>配置postfix</h3><p>编辑<code>/etc/postfix/main.cf</code><br>添加或修改以下配置项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#DKIM                                                                                   </span></span><br><span class="line">smtpd_milters = inet:localhost:8891                                                      </span><br><span class="line">non_smtpd_milters = inet:localhost:8891                                                  </span><br><span class="line">milter_protocol = 2                                                                      </span><br><span class="line">milter_default_action = accept</span><br></pre></td></tr></table></figure>
+<p>与opendkim一致即可。</p>
+<p>编辑<code>/etc/postfix/master.cf</code><br>添加配置项<br><code>-o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters</code></p>
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><p><code>sudo service opendkim restart</code><br><code>sudo service postfix restart</code></p>
+<h3 id="添加DKIM记录"><a href="#添加DKIM记录" class="headerlink" title="添加DKIM记录"></a>添加DKIM记录</h3><p>首先找到生成DKIM密钥对那一步，同时生成的一个<code>dkim.txt</code>文件，格式为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dkim._domainkey IN      TXT     ( <span class="string">&quot;v=DKIM1; k=rsa; t=y; &quot;</span></span><br><span class="line">          <span class="string">&quot;p=MIGfMA0GCSqGSIb3DQEBAQUAXXXXXXBiQKBgQC/eeMNBhzr+guknXXXXciiY/Wc7HJYNKdxVi+/qlA+6TgleaJY7CC/clWvRAtuXlAzjccsI1V/ICaHSzn9fhZZMKURmy2gsXXXXXXXYw7VZhFNBpTCqRALwsxOryW2BcX8eiwu1oY9krxbUQXXXXXXXXXXI4CLiXXXXXXXXeMK0wIDAQAB&quot;</span> )  ; ----- DKIM key dkim <span class="keyword">for</span> example.com</span><br></pre></td></tr></table></figure>
+<p>在DNS解析里添加如下记录</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>记录值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dkim._domainkey</td>
+<td>TXT</td>
+<td><code>&quot;v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAXXXXXXBiQKBgQC/eeMNBhzr+guknXXXXciiY/Wc7HJYNKdxVi+/qlA+6TgleaJY7CC/clWvRAtuXlAzjccsI1V/ICaHSzn9fhZZMKURmy2gsXXXXXXXYw7VZhFNBpTCqRALwsxOryW2BcX8eiwu1oY9krxbUQXXXXXXXXXXI4CLiXXXXXXXXeMK0wIDAQAB&quot;</code></td>
+</tr>
+<tr>
+<td>根据自己的实际数据填写。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="测试有效性"><a href="#测试有效性" class="headerlink" title="测试有效性"></a>测试有效性</h2><p>贴出两个测试网站：<br><a target="_blank" rel="noopener" href="http://dkimvalidator.com/">dkimvalidator</a><br><a target="_blank" rel="noopener" href="http://www.mail-tester.com/">Spamtest</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

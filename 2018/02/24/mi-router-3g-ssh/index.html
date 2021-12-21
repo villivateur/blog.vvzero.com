@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        小米路由器3G开启SSH - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7"><span class="toc-text">可行性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7%E5%BC%80%E5%8F%91%E7%89%88%E5%9B%BA%E4%BB%B6"><span class="toc-text">升级开发版固件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%B0%8F%E7%B1%B3%E8%B4%A6%E6%88%B7"><span class="toc-text">绑定小米账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text">获取开发者工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH%E7%99%BB%E5%BD%95%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-text">SSH登录路由器</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        小米路由器3G开启SSH
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-02-24 18:10:15</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#小米" title="小米">小米</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Router" title="Router">Router</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于前一个小米路由器寿终正寝，考虑换一个高性能的路由器，于是，我选择了小米路由器3G。着手使用后，感觉调试速度和稳定性有了很大的提升。但我的要求远不止此，我觉得它256M的内存能干更多的事。而开启SSH是“瞎搞”的必由之路。</p>
+<h2 id="可行性"><a href="#可行性" class="headerlink" title="可行性"></a>可行性</h2><ul>
+<li>小米路由器固件是根据OpenWrt深度定制的系统</li>
+<li>小米官方支持大众开发小米路由器</li>
+</ul>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="升级开发版固件"><a href="#升级开发版固件" class="headerlink" title="升级开发版固件"></a>升级开发版固件</h3><p>小米路由器3G出厂是稳定版固件，我们需要刷成开发版才能进行下面的操作。<br>打开<a target="_blank" rel="noopener" href="http://www1.miwifi.com/miwifi_download.html">小米路由器官方固件下载地址</a>，下载小米路由器开发版固件。保存到本地备用。<br><img src="https://img.vvzero.com/blog/mi-router-3g-ssh/1.JPG" alt="download"><br>登录管理后台，右上角选择“系统升级”，并在下一个界面选择“手动升级”，上传刚刚下载的固件。<br><img src="https://img.vvzero.com/blog/mi-router-3g-ssh/2.JPG" alt="update"><br><img src="https://img.vvzero.com/blog/mi-router-3g-ssh/3.JPG" alt="update"><br>按提示等待升级完成即可。</p>
+<h3 id="绑定小米账户"><a href="#绑定小米账户" class="headerlink" title="绑定小米账户"></a>绑定小米账户</h3><p>手机下载小米WiFi客户端，用你的小米帐号登录，绑定路由器。<br>如果无法绑定，可以尝试把小米路由器恢复出厂设置一下（用卡针长按reset键至黄灯亮），重新绑定。</p>
+<h3 id="获取开发者工具"><a href="#获取开发者工具" class="headerlink" title="获取开发者工具"></a>获取开发者工具</h3><p><a target="_blank" rel="noopener" href="https://d.miwifi.com/rom/ssh">点击此处</a>打开开发工具下载地址，记下root密码，并下载工具包，保存到一个U盘根目录下，插到路由器后面的USB接口上。<br><img src="https://img.vvzero.com/blog/mi-router-3g-ssh/4.JPG" alt="getssh"><br>按照官方提示的1、2、4条做。<br>但是！<br><strong>记住！不要理会官网提示的第3条！当你断开电源、按住reset键、插上电源后，一定不要松开reset键，一定要等待黄灯闪烁的时候（大概十几秒），才能松开reset键！</strong></p>
+<h3 id="SSH登录路由器"><a href="#SSH登录路由器" class="headerlink" title="SSH登录路由器"></a>SSH登录路由器</h3><p>然后，在命令行里面<code>ssh root@&lt;路由器地址&gt;</code>输入root密码就大功告成了！<br><strong>ARE YOU OK?</strong><br><img src="https://img.vvzero.com/blog/mi-router-3g-ssh/5.JPG" alt="ok"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

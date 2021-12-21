@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        notes-of-learning-raspberrypi-GPIO-1 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-text">硬件准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="toc-text">安装依赖库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E4%BA%86%E8%A7%A3WiringPi"><span class="toc-text">初步了解WiringPi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8shell%E8%84%9A%E6%9C%AC%E8%AE%A9%E4%B8%80%E4%B8%AALED%E9%97%AA%E7%83%81"><span class="toc-text">使用shell脚本让一个LED闪烁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-text">代码部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E8%BF%9E%E6%8E%A5"><span class="toc-text">硬件连接</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        notes-of-learning-raspberrypi-GPIO-1
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-25 20:21:06</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#RaspberryPi" title="RaspberryPi">RaspberryPi</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#WiringPi" title="WiringPi">WiringPi</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近的项目需要使用树莓派的硬件开发。在多方面考虑后，决定使用树莓派自带串口与有人USR-LTE-7S4进行通讯。首先得学习树莓派GPIO操作。</p>
+<h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
+<li>树莓派3</li>
+<li>LED*1</li>
+<li>220Ω电阻</li>
+<li>杜邦线若干</li>
+</ul>
+<h2 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h2><p>理论上直接操纵树莓派的相关文件就可以直接控制GPIO引脚电平（Linux系统中所有硬件都被虚拟成文件），但是我们没有必要去造这个轮子。<br>本人熟悉C++，所以决定使用wiringPi这一开源库。<br><a target="_blank" rel="noopener" href="http://wiringpi.com/">WiringPi官方网站</a><br><a target="_blank" rel="noopener" href="http://wiringpi.com/reference/">WiringPi官方手册</a><br>首先输入shell指令<code>$ gpio -v</code>确定树莓派没有安装WiringPi（如果安装了会显示版本号）。<br>然后安装Git<code>$ sudo apt-get install git-core</code><br>更新系统<code>$ sudo apt-get update</code> <code>$ sudo apt-get upgrade</code><br>新建一个目录用于存放WiringPi临时文件，然后在此目录内<code>$ git clone git://git.drogon.net/wiringPi .</code><br>然后<code>./build</code><br>无需root权限就可以进行安装。</p>
+<h2 id="初步了解WiringPi"><a href="#初步了解WiringPi" class="headerlink" title="初步了解WiringPi"></a>初步了解WiringPi</h2><p>安装好后，使用命令<code>$ gpio readall</code>查看引脚信息。<br><img src="https://img.vvzero.com/blog/notes-of-learning-raspberrypi-GPIO-1/2.PNG" alt="引脚信息"><br><img src="https://img.vvzero.com/blog/notes-of-learning-raspberrypi-GPIO-1/1.jpg" alt="引脚图"><br>很形象地展示了树莓派的引脚状况。<code>BCM</code>这一列暂时不去考虑，<code>V</code>代表电平，<code>Mode</code>表示工作模式，<code>Name</code>就不解释了，<code>wPi</code>是WiringPi的接口编号，GPIO编程就使用此编号。<br>如果使用过单片机，就很容易理解了。<br>暂时先学两个命令<code>gpio write </code>，<code>gpio mode </code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpio write &lt;pin&gt; &lt;value&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gpio mode &lt;pin&gt; &lt;mode&gt;</span></span><br></pre></td></tr></table></figure>
+<p>例如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpio write 1 1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gpio mode 1 OUT</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用shell脚本让一个LED闪烁"><a href="#使用shell脚本让一个LED闪烁" class="headerlink" title="使用shell脚本让一个LED闪烁"></a>使用shell脚本让一个LED闪烁</h2><h3 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h3><p>直接上代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gpio mode 1 OUT</span><br><span class="line">while /bin/true</span><br><span class="line">do</span><br><span class="line">	gpio write 1 1</span><br><span class="line">	sleep 0.5</span><br><span class="line">	gpio write 1 0</span><br><span class="line">	sleep 0.5</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h3 id="硬件连接"><a href="#硬件连接" class="headerlink" title="硬件连接"></a>硬件连接</h3><p><img src="https://img.vvzero.com/blog/notes-of-learning-raspberrypi-GPIO-1/3.jpg" alt="硬件连接"></p>
+<p>然后终端使用命令<code>$ sh blink.sh</code>，LED便可以闪烁。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

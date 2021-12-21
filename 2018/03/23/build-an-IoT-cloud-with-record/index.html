@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        搭建具有记录功能的物联云（原型） - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E4%B8%8B%E6%96%B9%E6%9F%A5%E7%9C%8B%E6%95%88%E6%9E%9C"><span class="toc-text">点击下方查看效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%87%86%E5%A4%87"><span class="toc-text">资源准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E7%AB%AF"><span class="toc-text">本地端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%91%E7%AB%AF"><span class="toc-text">云端</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        搭建具有记录功能的物联云（原型）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-03-23 20:39:44</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Arduino" title="Arduino">Arduino</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Web" title="Web">Web</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#IoT" title="IoT">IoT</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="点击下方查看效果"><a href="#点击下方查看效果" class="headerlink" title="点击下方查看效果"></a>点击下方查看效果</h2><p><a target="_blank" rel="noopener" href="https://iot.vvzero.com/">Click Here</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>不满足于在页面上显示单独的温湿度数据，我决定添加光线感应以及——每15分钟添加一次实时数据并更新页面。</p>
+<h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><ul>
+<li><p>我的<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/03/21/build-a-simple-IoT-cloud/">上一篇文章</a>所阐述的所有软硬件</p>
+</li>
+<li><p>光敏模块</p>
+<p><img src="https://img.vvzero.com/blog/build-an-IoT-cloud-with-record/1.JPG" alt="img"></p>
+</li>
+</ul>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>服务端某进程每隔一段时间获取一次本地数据，并将数据添加到<code>index.html</code>。</p>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="本地端"><a href="#本地端" class="headerlink" title="本地端"></a>本地端</h3><p>首先，修改Arduino的部分代码，这个时候，我们就不需要返回一个html页面了，只需要一串表明物理量的数字即可。另外，顺便加上光敏数据，光敏模块使用3号数字引脚。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SPI.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Ethernet.h&gt; //网络模块头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dht11.h&gt; //温湿度模块库文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SENSORPIN 2 <span class="comment">//定义传感器引脚</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIGHTSENSORPIN 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义本机MAC地址和IP，IP子网必须与局域网一致</span></span><br><span class="line">byte mac[] = &#123; <span class="number">0xDE</span>, <span class="number">0xAD</span>, <span class="number">0xBE</span>, <span class="number">0xE8</span>, <span class="number">0xDE</span>, <span class="number">0xED</span> &#125;;</span><br><span class="line"><span class="function">IPAddress <span class="title">ip</span><span class="params">(<span class="number">192</span>, <span class="number">168</span>, <span class="number">1</span>, <span class="number">30</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">dht11 sensor;</span><br><span class="line"></span><br><span class="line"><span class="function">EthernetServer <span class="title">server</span><span class="params">(<span class="number">80</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">115200</span>); <span class="comment">//串口用于监控</span></span><br><span class="line">  Ethernet.begin(mac, ip);</span><br><span class="line">  server.begin();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  EthernetClient client = server.available();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//当有连接传入，即开始传递数据</span></span><br><span class="line">  <span class="keyword">if</span> (client) &#123;</span><br><span class="line">    Serial.println(<span class="string">&quot;Incoming...\n&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (client.connected()) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//等待传入数据</span></span><br><span class="line">      <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span> (!client.available()) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        delay(<span class="number">100</span>);</span><br><span class="line">        <span class="keyword">if</span> (count &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">          count = <span class="number">0</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//等待客户端请求结束</span></span><br><span class="line">      <span class="keyword">while</span> (client.available()) &#123;</span><br><span class="line">        <span class="keyword">char</span> charget = client.read();</span><br><span class="line">        Serial.write(charget);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      sensor.read(SENSORPIN); <span class="comment">//读取温湿度数据</span></span><br><span class="line">      <span class="comment">//这里就直接返回数值即可</span></span><br><span class="line">      client.println((<span class="keyword">float</span>)sensor.humidity, <span class="number">2</span>);</span><br><span class="line">      client.println(sensor.temperature);</span><br><span class="line">      client.println(digitalRead(LIGHTSENSORPIN));</span><br><span class="line">    &#125;</span><br><span class="line">    delay(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (client.connected()) &#123;</span><br><span class="line">      client.stop();</span><br><span class="line">      Serial.println(<span class="string">&quot;client disonnected&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>frp客户端几乎不用动。</p>
+<h3 id="云端"><a href="#云端" class="headerlink" title="云端"></a>云端</h3><p>我使用C++和shell，利用curl命令获取数据，然后把数据加到<code>index.html</code>头部。</p>
+<p>比较懒，没注释。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//get_data.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">nowtime</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getdata</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deploy</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                work();</span><br><span class="line">                sleep(<span class="number">900</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getdata</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        system(<span class="string">&quot;curl frp.vvzero.com:21321 &gt; newdata.dat&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">nowtime</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">string</span> <span class="title">value</span><span class="params">(<span class="string">&quot;&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">time_t</span> now = time(<span class="number">0</span>);</span><br><span class="line">        tm *ltm = localtime(&amp;now);</span><br><span class="line"></span><br><span class="line">        value = to_string(ltm-&gt;tm_hour) + <span class="string">&#x27;:&#x27;</span> + to_string(ltm-&gt;tm_min);</span><br><span class="line">        <span class="keyword">if</span> (value.length()==<span class="number">4</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="keyword">if</span> (value[<span class="number">1</span>] == <span class="string">&#x27;:&#x27;</span>) value.insert(<span class="number">0</span>,<span class="number">1</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (value[<span class="number">2</span>] == <span class="string">&#x27;:&#x27;</span>) value.insert(<span class="number">3</span>,<span class="number">1</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (value.length()==<span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                value.insert(<span class="number">0</span>,<span class="number">1</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                value.insert(<span class="number">3</span>,<span class="number">1</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        ofstream output;</span><br><span class="line">        ifstream index, data;</span><br><span class="line"></span><br><span class="line">        getdata();</span><br><span class="line"></span><br><span class="line">        output.open(<span class="string">&quot;tmp_data.dat&quot;</span>,ios::out);</span><br><span class="line">        index.open(<span class="string">&quot;index.html&quot;</span>,ios::in);</span><br><span class="line">        data.open(<span class="string">&quot;newdata.dat&quot;</span>,ios::in);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">string</span> row;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">                getline(index, row);</span><br><span class="line">                output &lt;&lt; row &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">float</span> humidity=<span class="number">0.0</span>;</span><br><span class="line">        <span class="keyword">int</span> temperature=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> light=<span class="number">0</span>;</span><br><span class="line">        data &gt;&gt; humidity;</span><br><span class="line">        data &gt;&gt; temperature;</span><br><span class="line">        data &gt;&gt; light;</span><br><span class="line"></span><br><span class="line">        output &lt;&lt; nowtime() &lt;&lt; <span class="string">&quot;   &quot;</span> &lt;&lt; (<span class="keyword">int</span>)humidity &lt;&lt; <span class="string">&quot;             &quot;</span> &lt;&lt; temperature &lt;&lt; <span class="string">&quot;                &quot;</span> &lt;&lt; (light == <span class="number">0</span> ? <span class="string">&quot;Yes&quot;</span> : <span class="string">&quot;No&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">        getline(index, row);</span><br><span class="line">        <span class="keyword">while</span> (row[<span class="number">0</span>]!=<span class="string">&#x27;&lt;&#x27;</span> &amp;&amp; count&lt;<span class="number">99</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                output &lt;&lt; row &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">                getline(index, row);</span><br><span class="line">                count++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (row[<span class="number">0</span>]!=<span class="string">&#x27;&lt;&#x27;</span>) getline(index, row);</span><br><span class="line">        output &lt;&lt; row &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">while</span> (!index.eof())</span><br><span class="line">        &#123;</span><br><span class="line">                getline(index, row);</span><br><span class="line">                <span class="keyword">if</span> (row.length() &gt;= <span class="number">5</span>) output &lt;&lt; row &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        output.close();</span><br><span class="line">        index.close();</span><br><span class="line">        data.close();</span><br><span class="line"></span><br><span class="line">        deploy();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deploy</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        system(<span class="string">&quot;rm index.html&quot;</span>);</span><br><span class="line">        system(<span class="string">&quot;rm newdata.dat&quot;</span>);</span><br><span class="line">        system(<span class="string">&quot;mv tmp_data.dat index.html&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里实现了每隔15分钟获取一次数据。</p>
+<p>然后<code>$g++ -o GET get_data.cpp -std=c++11</code></p>
+<p>注意这里使用的是C++11标准，所以需要加上<code>-std=c++11</code>。</p>
+<p> 在Nginx的根目录下，先新建一个如下格式的<code>index.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>VVIOT<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">Here is Villivateur Von&#x27;s laboratory!<span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.vvzero.com&quot;</span>&gt;</span>Click to enter my blog<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">Time    Humidity(%)    Temperature(C)    Light_Detected</span><br><span class="line">------------------------------------------------------------</span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后配置好合适的权限，在该目录下运行<code>$sudo nohup ./GET &amp;</code>。</p>
+<p>大功告成！</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

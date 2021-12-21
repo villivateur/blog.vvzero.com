@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        近日浅尝网络开发的一点心得 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">我做了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E7%82%B9%E5%BF%83%E5%BE%97"><span class="toc-text">几点心得</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%A6%E4%BC%9A%E6%9F%A5%E6%89%BE%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E8%B5%84%E6%96%99"><span class="toc-text">1. 学会查找你想要的资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%8B%B1%E6%96%87%E6%B0%B4%E5%B9%B3%E5%BE%88%E9%87%8D%E8%A6%81"><span class="toc-text">2. 英文水平很重要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%87%E7%89%A9%E7%9A%86I-O"><span class="toc-text">3. 万物皆I&#x2F;O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A4%A7%E4%BD%AC%E5%B8%A6%E7%9D%80%E8%83%BD%E8%AE%A9%E4%BD%A0%E9%81%BF%E5%BC%80%E5%BE%88%E5%A4%9A%E5%9D%91"><span class="toc-text">4. 有一个大佬带着能让你避开很多坑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        近日浅尝网络开发的一点心得
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-07-26 19:55:16</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#rvfu98" title="rvfu98">rvfu98</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#php" title="php">php</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#心得" title="心得">心得</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<blockquote>
+<p>我不是CS科班的学生，此次也并没有接触完整的、系统的网络编程开发。在题目中用“网络开发”显得有点大，但是我也很难用一个词概括我做了什么，就用这个词代替吧。</p>
+</blockquote>
+<h2 id="我做了什么"><a href="#我做了什么" class="headerlink" title="我做了什么"></a>我做了什么</h2><ol>
+<li>写了一个抠网页的脚本。我用python模拟访问电费查询网站，把电费数据抠了出来。</li>
+<li>做了一个微信公众号的后端。在<a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅大佬</a>的指导下，使用php完成了一个微信公众号后端的开发，可实现调用python脚本以及自动转发微信回复至个人邮箱。</li>
+</ol>
+<h2 id="几点心得"><a href="#几点心得" class="headerlink" title="几点心得"></a>几点心得</h2><p><em>CS大佬们就不要看了，我是讲给网络编程初学者以及非科班爱好者的[/滑稽]</em></p>
+<h3 id="1-学会查找你想要的资料"><a href="#1-学会查找你想要的资料" class="headerlink" title="1. 学会查找你想要的资料"></a>1. 学会查找你想要的资料</h3><p>这是我觉得最重要的能力，没有之一。一个人所能记住的知识是有限的，哪怕只去学一种语言，也不可能放肆地说自己“精通”。但是，网络是无限的。比如，某个不常用函数的定义，我们完全没有必要记住。只要能用好各类搜索引擎，快速准确地找到它，就够了。另外，我觉得，能够自己获取的信息，就尽量不要问别人，这是礼仪。</p>
+<p>我从来没有接触过php，但是我经历了以下的步骤：</p>
+<ol>
+<li>搜索“php快速入门”，花15分钟了解基本语法，例如，变量名前要加’$’</li>
+<li>大佬给了我一个类库（此处向苏瑞辅致♂敬），我大体看了下语言结构</li>
+<li>跟据自己的需求，在php官网查找相应函数调用方式</li>
+<li>Debug的时候遇到错误提示，Google一下，一般在StackOverflow上就能找到对应解决方案</li>
+</ol>
+<p>所以，我可能根本没有入门php，但是我已经可以完成一些简单的后端操作了。</p>
+<h3 id="2-英文水平很重要"><a href="#2-英文水平很重要" class="headerlink" title="2. 英文水平很重要"></a>2. 英文水平很重要</h3><p>这是接着第1点的。</p>
+<p>毕竟，国内的计算机水平距离国际先进水平还有相当大的差距，汉化的资料总有不足。要想获取一手的开发资料，英文水平当然很重要。</p>
+<h3 id="3-万物皆I-O"><a href="#3-万物皆I-O" class="headerlink" title="3. 万物皆I/O"></a>3. 万物皆I/O</h3><p>（此处再次向苏瑞辅致♂敬，就用原话了。）</p>
+<p>这是一种思维方式，只可意会不可言传。</p>
+<p>举些例子：</p>
+<ol>
+<li>调用函数，都是按类型传参（Input），然后获取一个返回值（Output）</li>
+<li>我们浏览网页，都是先使用HTTP GET或POST一个请求（Input），然后就可以看到服务器传回的网页（Output）</li>
+<li>硬件开发中，假如我要使用一个频率-电压转换集成块，一定是输入一个频率（Input），然后获得一个电压值（Output）</li>
+</ol>
+<h3 id="4-有一个大佬带着能让你避开很多坑"><a href="#4-有一个大佬带着能让你避开很多坑" class="headerlink" title="4. 有一个大佬带着能让你避开很多坑"></a>4. 有一个大佬带着能让你避开很多坑</h3><p>大佬一定是比你聪明的，或者比你起步早的，他能看到的，你不一定能看到。大佬也许会不停地嘲讽你，但是听着就好了，毕竟能学到东西，特别是能学到学习方法，这就够了。</p>
+<p>当然，有一个能互相学习的大佬，那更是万幸。</p>
+<p>此处又一次向苏瑞辅致♂敬。[/手动滑稽]</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好啦，没什么好总结的，这几天挺开心。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        我终于知道了补码的意义 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81%E8%83%8C%E6%99%AF"><span class="toc-text">补码背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">补码的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81%E5%86%8D%E6%8E%A2"><span class="toc-text">补码再探</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81%E5%B0%8F%E7%BB%93"><span class="toc-text">补码小结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        我终于知道了补码的意义
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-11-18 19:49:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#补码" title="补码">补码</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#计算机原理" title="计算机原理">计算机原理</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<blockquote>
+<p>本文供初学者学习，供大佬批判。</p>
+</blockquote>
+<h2 id="补码背景"><a href="#补码背景" class="headerlink" title="补码背景"></a>补码背景</h2><p>很久很久以前，当我参加 NOIP（信息学奥林匹克竞赛）的时候，老师是这么讲补码的：</p>
+<blockquote>
+<p>int 型数据的最高位是符号位，符号位为 0 就代表这是正数，为 1 就是负数。但是，+0 和 -0 理应是同一个数，但在二进制中却表示成了两个不同的数（以 8 位为例，二进制表示）： 00000000 和 10000000。所以，我们引入了补码，补码就是，对负数而言，符号位不变，其他位取反，然后再加 1。于是， -0 的补码就是 10000000 -&gt; 11111111 -&gt; 00000000 与 +0 一致了。</p>
+</blockquote>
+<h2 id="补码的意义"><a href="#补码的意义" class="headerlink" title="补码的意义"></a>补码的意义</h2><p>其实当时我就该意识到，仅仅为了 0 这一个数便创建了“补码”这个概念，未免太浪费了。我最近看了 <em>CS: APP</em> 这本书，才进一步理解了补码。</p>
+<p>补码，就是为有符号整数而创建的概念。对于无符号整数，是不存在“补码”的概念的。我们先看一个无符号数 00100101，它是怎么转换成十进制的？加权求和，<code>0×2^7+0×2^6+1×2^5+0×2^4+0×2^3+1×2^2+0×2^1+1×2^0=37</code>；无符号数 10000011，<code>1×2^7+0×2^6+0×2^5+0×2^4+0×2^3+0×2^2+1×2^1+1×2^0=131</code>。</p>
+<p>对于有符号数呢？假如我们不用补码，那么有符号数 10000011，就是 <code>-(0×2^6+0×2^5+0×2^4+0×2^3+0×2^2+1×2^1+1×2^0)=-3</code>。人这么算起来是挺舒服，但是计算机会很难受，凭什么我最高位的权值没了？只能做符号？</p>
+<p>然后我们试试补码。10000011 的补码是 11111101，如何用补码求它的十进制呢？其实这跟无符号数是一样的，只不过，最高位的权值，不是 2^7，而是 -2^7。求值：<code>1×(-2^7)+1×2^6+1×2^5+1×2^4+1×2^3+1×2^2+0×2^1+1×2^0=-3</code>，是不是很神奇？</p>
+<p>对于正数而言，就更简单了，与无符号数一致。</p>
+<h2 id="补码再探"><a href="#补码再探" class="headerlink" title="补码再探"></a>补码再探</h2><p>计算机只能做加法（不是），所以，我们看看用补码做加法，有什么好处。</p>
+<p>先计算 -13+10 吧，很简单的二进制竖式加法：</p>
+<table>
+<thead>
+<tr>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>11111101 即为 -3 的补码。</p>
+<p>再算一个，-8+9：</p>
+<table>
+<thead>
+<tr>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>神奇吗？最高位的 0 不见了，变成正数 1 了。</p>
+<h2 id="补码小结"><a href="#补码小结" class="headerlink" title="补码小结"></a>补码小结</h2><p>补码，就是计算机内部有符号数的存储方式，我们不要认为补码是由原码“转换”而来的，补码本来就代表了实际的数字，11111101 == -3，就这样。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        免费使用 nuaa.portal 上网 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E6%A6%82%E8%A6%81"><span class="toc-text">前提概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%AD%A5%E6%AD%A5%E7%9A%84%E5%B0%9D%E8%AF%95"><span class="toc-text">一步步的尝试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%94%A8-ipv6-%E4%B8%8A%E6%8F%90%E4%BE%9B-ipv6-%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BD%91%E7%AB%99"><span class="toc-text">直接用 ipv6 上提供 ipv6 服务的网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-ipv6-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%97%A0%E9%99%90%E5%88%B6%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E8%AE%BF%E9%97%AE"><span class="toc-text">使用 ipv6 代理服务器进行无限制的互联网访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%88%E6%9E%81%EF%BC%88%E7%A1%AC%E6%A0%B8%EF%BC%89%E8%B9%AD%E7%BD%91%E6%96%B9%E6%A1%88"><span class="toc-text">终极（硬核）蹭网方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-text">最后</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        免费使用 nuaa.portal 上网
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-01-13 21:49:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#NUAA" title="NUAA">NUAA</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#ipv6" title="ipv6">ipv6</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/6-dis-nuaaportal">https://bbs.blog.vvzero.com/d/6-dis-nuaaportal</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>学校赐予我的 nuaa.portal 账号在一个月之前就到期了，这一个月内，虽然对我的生活没有太大的影响，但是还是感受到了某些不便（总觉得某些东西有了更好，没有却不能拉倒）。前些天跟创新区内的同学讨论了本校的ipv6部署情况，突然就有兴致来折腾一下。</p>
+<p>没错，免费上网还是有可能的。</p>
+<h2 id="前提概要"><a href="#前提概要" class="headerlink" title="前提概要"></a>前提概要</h2><ul>
+<li>学校的 nuaa.portal 公共无线网，Windows 电脑只要连接上，就能获取一个 ipv4 内网地址和一个 ipv6 地址。如果没有在指定 Web 页面上认证，则无法使用 ipv4 连接互联网。但是可以通过 ipv6 联网。</li>
+<li>学校默认不分配 ipv6 的 DNS 服务器。</li>
+<li>学校教学办公区有线宽带，经直接拨号，同样可以获得一个 ipv4 内网地址和一个 ipv6 地址，均可以访问互联网。</li>
+</ul>
+<h2 id="一步步的尝试"><a href="#一步步的尝试" class="headerlink" title="一步步的尝试"></a>一步步的尝试</h2><h3 id="直接用-ipv6-上提供-ipv6-服务的网站"><a href="#直接用-ipv6-上提供-ipv6-服务的网站" class="headerlink" title="直接用 ipv6 上提供 ipv6 服务的网站"></a>直接用 ipv6 上提供 ipv6 服务的网站</h3><p>既然可以从 nuaa.portal 获取可以访问互联网的 ipv6 地址，那么最简单的思路，就是直接使用这条通道。但是，由于学校没有 ipv6 的 DNS（认证后，如果访问 ipv6 站点，其实仍然是使用 ipv4 的 DNS 服务器），故必须配置 ipv6 的 DNS。这一点很简单，直接修改 DNS 服务器即可：</p>
+<p><img src="https://img.vvzero.com/blog/Use-the-Internet-via-nuaa-portal-for-free/2.png"></p>
+<p>这里推荐两个 ipv6 的 DNS 服务器，一个是 Google 家的，一个是清华大学 TUNA 协会的：</p>
+<ul>
+<li><code>2001:4860:4860::8888</code></li>
+<li><code>2001:da8::666</code></li>
+</ul>
+<p>然后，实测就可以访问提供 ipv6 服务的网站啦！</p>
+<p>比如：</p>
+<ul>
+<li>google.com.hk</li>
+<li><a target="_blank" rel="noopener" href="http://www.youtube.com/">www.youtube.com</a></li>
+<li>ipv6.baidu.com</li>
+<li>ipv6.mirrors.ustc.edu.cn</li>
+</ul>
+<h3 id="使用-ipv6-代理服务器进行无限制的互联网访问"><a href="#使用-ipv6-代理服务器进行无限制的互联网访问" class="headerlink" title="使用 ipv6 代理服务器进行无限制的互联网访问"></a>使用 ipv6 代理服务器进行无限制的互联网访问</h3><p>上一条方法虽然简单，但是只能访问提供 ipv6 的网站，然而现在国内乃至国际上大多数网站并没有提供 ipv6 服务，至少，你目前还不能登微信。</p>
+<p>但是，如果有一个同时具有有 ipv6 和 ipv4 的代理服务器，不就一切都解决了吗？把本地的所有流量都通过 ipv6 转发至代理服务器，然后就可以访问任意站点了！</p>
+<p>这里，我借用了 Shadowsocks，配置了一台有 ipv6 和 ipv4 的服务器，然后本地开启全局代理，实际就可以访问任意站点了。</p>
+<p>使用这个方法，本地 DNS 甚至都不需要配置。</p>
+<h3 id="终极（硬核）蹭网方案"><a href="#终极（硬核）蹭网方案" class="headerlink" title="终极（硬核）蹭网方案"></a>终极（硬核）蹭网方案</h3><p>还记得一开始我说过，教学办公区也能获得 ipv6 地址吗？</p>
+<p>对，我就是想用远程桌面！</p>
+<p><img src="https://img.vvzero.com/blog/Use-the-Internet-via-nuaa-portal-for-free/1.jpg"></p>
+<p>我在学校创新区日常开着一台机器，拨号联网，（性能还不错）。</p>
+<p>emmm，其实这个方法真的很硬核很有效，而且，由于 nuaa.portal 和教学办公区实际属于同一个大的内网环境，学校的路由器还不错，实测 ping 延迟只有 2ms，完全满足了日常电脑使用（除了不能使用显卡玩游戏什么的）。微软家的远程桌面还是很强大的！</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我其实还是想再来一年的免费 nuaa.portal 账号的。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

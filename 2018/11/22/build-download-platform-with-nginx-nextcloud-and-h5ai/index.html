@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        使用Nginx、nextcloud以及h5ai搭建下载平台 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%80%9D%E8%B7%AF"><span class="toc-text">关键思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="toc-text">初次尝试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%AD%E5%BB%BAnextcloud"><span class="toc-text">搭建nextcloud</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEh5ai"><span class="toc-text">配置h5ai</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AENginx"><span class="toc-text">配置Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AECDN"><span class="toc-text">配置CDN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        使用Nginx、nextcloud以及h5ai搭建下载平台
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-22 08:46:18</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#nextcloud" title="nextcloud">nextcloud</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#h5ai" title="h5ai">h5ai</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/4-dis-nginxnextcloudh5ai">https://bbs.blog.vvzero.com/d/4-dis-nginxnextcloudh5ai</a></p>
+</blockquote>
+<blockquote>
+<p><strong>读懂这篇文章，你需要：</strong></p>
+<ol>
+<li>有过一定的Nginx或类似产品的维护经验。</li>
+<li>使用过nextcloud或类似的私有网盘系统。如果没有，可以通过阅读下方的文档了解。</li>
+<li>了解并使用过至少一个云服务供应商的CDN服务。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>相关文档：</strong></p>
+<p><a target="_blank" rel="noopener" href="http://nginx.org/">Nginx</a></p>
+<p><a target="_blank" rel="noopener" href="https://nextcloud.com/">nextcloud</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.alibabacloud.com/zh/product/cdn">阿里云CDN</a></p>
+<p><a target="_blank" rel="noopener" href="https://larsjung.de/h5ai/">h5ai</a></p>
+<p><strong>部署后的站点展示：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://downloads.vvzero.com/">VVDownloads</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>原先的下载站真的硬核到难以直视。由于我原先直接通过在Hexo上面添加链接以提供下载。这样不仅看起来丑陋，而且维护很不方便。</p>
+<p>前一段时间接触到了h5ai这个好东西，之前也一直在维护自己的nextcloud，于是乎，想要改造下载站的欲望一发不可收拾。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ol>
+<li>可以使用已有的CDN服务对所提供的下载内容进行加速；</li>
+<li>下载内容的维护应当很方便，并且可以在不同的终端进行；</li>
+<li>下载页面应当保持美观。</li>
+</ol>
+<h2 id="关键思路"><a href="#关键思路" class="headerlink" title="关键思路"></a>关键思路</h2><p>把nextcloud的数据存储路径设置为h5ai的根目录。</p>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="初次尝试"><a href="#初次尝试" class="headerlink" title="初次尝试"></a>初次尝试</h3><p>我一开始尝试使用CDN对nextcloud直接加速，但是之后发现，这是一件极其愚蠢的事。因为nextcloud使用的是动态页面，对这样的页面进行加速可谓是难上加难。即使我只对公开分享的页面进行加速也不行。实测：使用CDN，哪怕全站都设置成立即回源，也会出现无法上传文件的情况。</p>
+<h3 id="搭建nextcloud"><a href="#搭建nextcloud" class="headerlink" title="搭建nextcloud"></a>搭建nextcloud</h3><p>这一点我不再赘述，因为资料很多，或者直接点击我上面的链接看官方文档。</p>
+<h3 id="配置h5ai"><a href="#配置h5ai" class="headerlink" title="配置h5ai"></a>配置h5ai</h3><p>h5ai这一web index展示系统的部署相当简单，只要将下载的_h5ai目录放在所需要展示的目录下即可，这个目录可以是你的nextcloud个人文件存储根目录（一般为<code>&lt;path to nextcloud&gt;/data/&lt;your user name&gt;/files</code>），也可以是其一个子目录：</p>
+<img src="https://img.vvzero.com/blog/build-download-platform-with-nginx-nextcloud-and-h5ai/1.JPG" style="zoom:50%;" />
+
+<h3 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h3><p>按照以下的套路来即可，注意index后面要加上<code>/_h5ai/public/index.php</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">server_name</span> downloads.vvzero.com;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line">        <span class="attribute">ssl_certificate</span> ???; <span class="comment">#填写证书地址</span></span><br><span class="line">        <span class="attribute">ssl_certificate_key</span> ???; <span class="comment">#填写证书地址</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">root</span> ???;</span><br><span class="line">        <span class="attribute">index</span> index.html index.php /_h5ai/public/index.php; <span class="comment"># 关键</span></span><br><span class="line"></span><br><span class="line">        <span class="attribute">add_header</span> Strict-Transport-Security <span class="string">&#x27;max-age=31536000; includeSubDomains; preload&#x27;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">                <span class="attribute">try_files</span> $uri $uri/ =<span class="number">404</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    	<span class="comment"># 由于h5ai需要php，所以请安装php-fpm</span></span><br><span class="line">        <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">                <span class="attribute">include</span> snippets/fastcgi-php.conf;</span><br><span class="line">                <span class="attribute">fastcgi_pass</span> unix:/run/php/php7.1-fpm.sock;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">server_name</span> downloads.vvzero.com;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^(.*)</span> https://downloads.vvzero.com<span class="variable">$1</span> <span class="literal">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="配置CDN"><a href="#配置CDN" class="headerlink" title="配置CDN"></a>配置CDN</h3><p>这里以阿里云为例</p>
+<ul>
+<li><p>业务类型暂时先选“图片小文件”，因为自己分享的图片比较多。</p>
+</li>
+<li><p>缓存过期时间：默认所有直接回源（emmm我实在没想知道哪些跟动态页面有关），权值为1；然后<code>jpg, png, bmp, zip, rar, 7z, exe, msi, doc, docx, ppt, pptx, xls, xlsx, pdf, apk, rmvb, rm, avi, mov, mp3, mp4, flac, wav, tar, gz, iso, bin, js, css, txt, svg, ico, psd, md</code>这些，是我整理的一部分常用文件扩展名，设置成30天缓存，权值为10。</p>
+</li>
+<li><p>开启https并强制跳转</p>
+</li>
+<li><p>开启HTTP2</p>
+</li>
+<li><p>配置一下cname</p>
+</li>
+<li><p>ok</p>
+</li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>现在看着舒服多了。</p>
+<p><a target="_blank" rel="noopener" href="https://downloads.vvzero.com/">VVDownloads</a></p>
+<p><img src="https://img.vvzero.com/blog/build-download-platform-with-nginx-nextcloud-and-h5ai/2.JPG"></p>
+<p>然后还发现了，其实，这样的话，我可以在我对nextcloud上开一个公共账户，这样就可以让我的小伙伴们，使用我这套系统，假装有一个CDN啦！毕竟备案还是一件麻烦的事情呢。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

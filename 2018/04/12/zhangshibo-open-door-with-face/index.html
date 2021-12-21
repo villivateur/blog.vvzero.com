@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        震惊！用脸蹭开宿舍大门！树莓派人脸解锁打开宿舍门！ - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB"><span class="toc-text">树莓派人脸识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arduino%E8%88%B5%E6%9C%BA%E5%BC%80%E9%97%A8"><span class="toc-text">Arduino舵机开门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D%E6%89%93%E5%8D%B0%E9%83%A8%E5%88%86"><span class="toc-text">3D打印部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%A7%86%E9%A2%91"><span class="toc-text">使用视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-text">代码部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BEPython"><span class="toc-text">树莓派Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arduino"><span class="toc-text">Arduino</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        震惊！用脸蹭开宿舍大门！树莓派人脸解锁打开宿舍门！
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-04-12 20:01:51</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Arduino" title="Arduino">Arduino</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#RaspberryPi" title="RaspberryPi">RaspberryPi</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#IoT" title="IoT">IoT</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<blockquote>
+<p>本文作者张世博。</p>
+<p>本文最先发表在微信公众号“奔波儿灞的水帘洞”。</p>
+<p>本站转载已获得授权。</p>
+</blockquote>
+<p><strong>震惊！用脸蹭开宿舍大门！树莓派人脸解锁打开宿舍门！</strong></p>
+<p>在上一篇文章中（我竟然给南航全体大二学生的颜值做了一个大排名？点进来查看结果！（附<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/tQTK619MZsenlnTf13KhOw">源码</a>），我发现了百度开发者提供的API还有人脸对比的功能，只需在使用之前，将要添加的人脸照片上传到人脸库之中即可。加上之前在知乎看到了一篇使用手机蓝牙解锁宿舍门的文章，这次便萌生了人脸解锁打开门的想法。</p>
+<p>这次本项目由两个部分构成</p>
+<ol>
+<li>树莓派人脸识别</li>
+<li>arduino舵机开门</li>
+</ol>
+<p>这两个部分之间的通讯使用树莓派自带的蓝牙，arduino加上hc06蓝牙模块。设备外壳使用3D打印构造。</p>
+<h2 id="树莓派人脸识别"><a href="#树莓派人脸识别" class="headerlink" title="树莓派人脸识别"></a>树莓派人脸识别</h2><p>在这个部分，将写好的Python文件设置为开机启动，同时在Python文件内设置定时重启以防内存溢出。</p>
+<p> 代码逻辑为：</p>
+<ul>
+<li>系统初始化</li>
+<li>循环</li>
+</ul>
+<ul>
+<li>拍摄一张照片并通过base64编码</li>
+</ul>
+<ul>
+<li>上传到百度API，获得返回数据</li>
+</ul>
+<ul>
+<li>比较人脸对比相似度（百分比）</li>
+</ul>
+<ul>
+<li>若相似度大于预期，则通过蓝牙发送相应指令给Arduino</li>
+<li>循环</li>
+</ul>
+<p>大约就是这个样子，代码逻辑并不是很难理解，代码内容在后面会附上。</p>
+<h2 id="Arduino舵机开门"><a href="#Arduino舵机开门" class="headerlink" title="Arduino舵机开门"></a>Arduino舵机开门</h2><p>这边代码也不是很难理解。</p>
+<p>代码逻辑为：</p>
+<ul>
+<li>循环</li>
+</ul>
+<ul>
+<li>检查蓝牙串口是否有值，如果有则下一步，没有则循环</li>
+<li>有输入值，监测是否为对应值，如果是，打开继电器和舵机5s</li>
+</ul>
+<ul>
+<li>5s后关闭舵机</li>
+<li>循环</li>
+</ul>
+<p>Arduino部分主要困难的是硬件部分。为了达到节省电源电量，同时保持系统长时间运行的目的，在没有信号输入的时候，通过继电器来关闭舵机的电源输入；在有输入的时候才打开继电器，连接舵机电源进行操作。</p>
+<p>舵机开门部分的电路逻辑为：</p>
+<p>​            18650两节（7.4v）→稳压变压（5v）→Arduino→继电器信号</p>
+<p>​                                                        ↓                        ↑</p>
+<p>​                                                        →→→→→蓝牙模块</p>
+<p>​                                                        ↓</p>
+<p>​                                                        →→→→→继电器供电→→→→→舵机</p>
+<p>​            其中舵机受到Arduino信号控制，图中没有标明。</p>
+<h2 id="3D打印部分"><a href="#3D打印部分" class="headerlink" title="3D打印部分"></a>3D打印部分</h2><p>主要是打印树莓派和舵机部分的支撑支架。</p>
+<p>​            </p>
+<p><img src="https://img.vvzero.com/blog/zhangshibo-open-door-with-face/1.jpg" alt="img"></p>
+<p>舵机部分，略</p>
+<p>实物图片</p>
+<p><img src="https://img.vvzero.com/blog/zhangshibo-open-door-with-face/2.jpg" alt="img"></p>
+<p><img src="https://img.vvzero.com/blog/zhangshibo-open-door-with-face/3.jpg" alt="img"></p>
+<p><img src="https://img.vvzero.com/blog/zhangshibo-open-door-with-face/4.jpg" alt="img"></p>
+<h2 id="使用视频"><a href="#使用视频" class="headerlink" title="使用视频"></a>使用视频</h2><p>感谢舍友的亲情出演</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av21996791">点击查看完整视频</a></p>
+<h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><h3 id="树莓派Python"><a href="#树莓派Python" class="headerlink" title="树莓派Python"></a>树莓派Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> picamera <span class="keyword">import</span> PiCamera</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> RPi.GPIO</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> serial</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"> <span class="comment">#获得百度API的access_token</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">getaccess_token</span>():</span></span><br><span class="line"></span><br><span class="line">host=<span class="string">&#x27;https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&amp;client_id=t7NNK8h4xGoAHuTpbwyo9qYC&amp;client_secret=MBg0AK0PhiOhytA35rSQbSa4boIQsdz3&#x27;</span></span><br><span class="line"></span><br><span class="line">header_1 = &#123;<span class="string">&#x27;Content-Type&#x27;</span>:<span class="string">&#x27;application/json; charset=UTF-8&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">request=requests.post(host,headers =header_1)</span><br><span class="line"></span><br><span class="line">access_token=request.json()[<span class="string">&#x27;access_token&#x27;</span>]</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> access_token</span><br><span class="line"></span><br><span class="line"> <span class="comment">#拍摄当前图片</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">take_picture</span>():</span></span><br><span class="line"></span><br><span class="line">     camera.start_preview()</span><br><span class="line"></span><br><span class="line">     time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">     camera.capture(<span class="string">&#x27;image.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     camera.stop_preview()</span><br><span class="line"></span><br><span class="line"> <span class="comment">#打开工程拍摄的图片并转换成字符串</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">open_pic</span>():</span></span><br><span class="line"></span><br><span class="line">     f = <span class="built_in">open</span>(<span class="string">&#x27;image.jpg&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     img = base64.b64encode(f.read())</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line"> <span class="comment">#上传到百度API进行人脸检验</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">go_api</span>(<span class="params">img,access_token</span>):</span></span><br><span class="line"></span><br><span class="line">     data_1 = &#123;<span class="string">&quot;image&quot;</span>:img,<span class="string">&#x27;group_id&#x27;</span>:<span class="string">&#x27;asd&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">     params_1 = &#123;<span class="string">&#x27;access_token&#x27;</span>:access_token&#125;</span><br><span class="line"></span><br><span class="line">     header_2 = &#123;<span class="string">&#x27;Content-Type&#x27;</span>:<span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">     pic_re=requests.post(<span class="string">&#x27;https://aip.baidubce.com/rest/2.0/face/v2/identify&#x27;</span>,params=params_1,headers=header_2,data=data_1)</span><br><span class="line"></span><br><span class="line">     print(<span class="built_in">len</span>(pic_re.text))</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> <span class="built_in">len</span>(pic_re.text)&gt;<span class="number">130</span>:</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> pic_re.json()<span class="string">&#x27;result&#x27;</span><span class="string">&#x27;scores&#x27;</span>&gt;<span class="number">66</span>:</span><br><span class="line"></span><br><span class="line">             print(pic_re.json()<span class="string">&#x27;result&#x27;</span>[<span class="string">&#x27;scores&#x27;</span>])</span><br><span class="line"></span><br><span class="line">             <span class="keyword">return</span> (<span class="string">&#x27;yes&#x27;</span>)</span><br><span class="line"></span><br><span class="line">         <span class="keyword">else</span> :</span><br><span class="line"></span><br><span class="line">             <span class="keyword">return</span> (<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">         print(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"></span><br><span class="line">         <span class="keyword">return</span> (<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     <span class="comment">#return(pic_re.json()&#x27;result&#x27;[&#x27;scores&#x27;])</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">#点亮指示LED等</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">led</span>():</span></span><br><span class="line"></span><br><span class="line">     RPi.GPIO.output(<span class="number">18</span>, <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">#通过蓝牙对Arduino发出开门指令</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">send</span>():</span></span><br><span class="line"></span><br><span class="line">     serial.write(<span class="built_in">bytes</span>(<span class="number">2</span>, <span class="string">&#x27;UTF-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line">     print(<span class="string">&#x27;发出指令成功&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     serial.flushInput()</span><br><span class="line"></span><br><span class="line"> <span class="comment">#调用相关函数进行整个程序过程</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">try_api</span>(<span class="params">img,access_token</span>):</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">         a=go_api(img,access_token)</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> a==<span class="string">&#x27;yes&#x27;</span>:</span><br><span class="line"></span><br><span class="line">             led()</span><br><span class="line"></span><br><span class="line">             send()</span><br><span class="line"></span><br><span class="line">             time.sleep(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">             RPi.GPIO.output(<span class="number">18</span>, <span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> a==<span class="string">&#x27;no&#x27;</span>:</span><br><span class="line"></span><br><span class="line">             <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">except</span>:</span><br><span class="line"></span><br><span class="line">         <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> name == <span class="string">&#x27;main&#x27;</span>:</span><br><span class="line"></span><br><span class="line">     <span class="comment">#程序运行配置命令---------------------------------</span></span><br><span class="line"></span><br><span class="line">     os.system(<span class="string">&#x27;sudo rfcomm bind 0 00:21:13:01:8E:1A&#x27;</span>)</span><br><span class="line"></span><br><span class="line">     RPi.GPIO.setmode(RPi.GPIO.BCM)</span><br><span class="line"></span><br><span class="line">     RPi.GPIO.setup(<span class="number">18</span>, RPi.GPIO.OUT)</span><br><span class="line"></span><br><span class="line">     port = <span class="string">&quot;/dev/rfcomm0&quot;</span></span><br><span class="line"></span><br><span class="line">     serial = serial.Serial(port,<span class="number">9600</span>)</span><br><span class="line"></span><br><span class="line">     count=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">#程序运行配置命令--------------------------------</span></span><br><span class="line"></span><br><span class="line">     camera = PiCamera()</span><br><span class="line"></span><br><span class="line">     access_token=getaccess_token()</span><br><span class="line"></span><br><span class="line">     <span class="keyword">while</span> <span class="literal">True</span> :</span><br><span class="line"></span><br><span class="line">         take_picture()</span><br><span class="line"></span><br><span class="line">         img=open_pic()</span><br><span class="line"></span><br><span class="line">         try_api(img,access_token)</span><br><span class="line"></span><br><span class="line">         count=count+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">         print(count)</span><br><span class="line"></span><br><span class="line">         <span class="comment">#加入自动重启命令，防止程序运行时间过长死机</span></span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> count == <span class="number">2000</span> :</span><br><span class="line"></span><br><span class="line">             os.system(<span class="string">&#x27;sudo reboot&#x27;</span>)</span><br><span class="line"></span><br><span class="line">             count = <span class="number">0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Arduino"><a href="#Arduino" class="headerlink" title="Arduino"></a>Arduino</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Servo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">Servo myservo;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line"></span><br><span class="line"> Serial.begin(<span class="number">9600</span>);  </span><br><span class="line"></span><br><span class="line"> myservo.attach(<span class="number">9</span>); </span><br><span class="line"></span><br><span class="line"> myservo.write(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"> pinMode(<span class="number">4</span>,OUTPUT);</span><br><span class="line"></span><br><span class="line"> digitalWrite(<span class="number">4</span>, HIGH); </span><br><span class="line"></span><br><span class="line"> myservo.write(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"> delay(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;   digitalWrite(<span class="number">4</span>, LOW); </span><br><span class="line"></span><br><span class="line">   <span class="keyword">while</span>(Serial.available())  </span><br><span class="line"></span><br><span class="line">   &#123;  <span class="keyword">char</span> c;</span><br><span class="line"></span><br><span class="line">      c=Serial.read();</span><br><span class="line"></span><br><span class="line">      Serial.println (c);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (c = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        &#123; digitalWrite(<span class="number">4</span>, HIGH); </span><br><span class="line"></span><br><span class="line">          myservo.write(<span class="number">180</span>);</span><br><span class="line"></span><br><span class="line">         delay(<span class="number">40000</span>);</span><br><span class="line"></span><br><span class="line">         myservo.write(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">         delay(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">         digitalWrite(<span class="number">4</span>, LOW); </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>STL打印文件下载链接:<a target="_blank" rel="noopener" href="https://github.com/h1997l1997/Face-recognition-door-lock-in-raspberry-pie/tree/master/STL">https://github.com/h1997l1997/Face-recognition-door-lock-in-raspberry-pie/tree/master/STL</a></p>
+<p>End</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

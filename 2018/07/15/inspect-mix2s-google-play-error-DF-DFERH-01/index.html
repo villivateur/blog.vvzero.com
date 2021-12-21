@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        Google Play出现DF-DFERH-01错误的分析与修复 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%8F%8F%E8%BF%B0"><span class="toc-text">错误描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90"><span class="toc-text">错误分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88"><span class="toc-text">修复方案</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Google Play出现DF-DFERH-01错误的分析与修复
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-07-15 12:07:38</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#小米" title="小米">小米</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Google" title="Google">Google</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/5-dis-google-playdf-dferh-01">https://bbs.blog.vvzero.com/d/5-dis-google-playdf-dferh-01</a></p>
+</blockquote>
+<p><code>#define 纸飞机 不可描述之神器</code></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>换了陪伴了两年的MI5，换上了MIX2s。嗯……可是换机的数据迁移和初始化实在是工程量巨大。</p>
+<p>当然，没有Google全家桶的安卓机是不完美的。</p>
+<p>于是问题来了。</p>
+<h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>与MI5不同的是，MIX2s自带谷歌框架。</p>
+<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/1.png" style="zoom: 25%;" />
+
+<p>但是出厂并不标配Google Play，需要在应用商店里安装。（当然，小米官方是没有的，需要拉到最下面“在百度中搜索”或“在豌豆荚中搜索”）。</p>
+<p>首次登陆的时候，并不会遇到什么问题（前提是配置好纸飞机）。但是，在重新启动Google Play，或者重启手机后，再次使用均会出现“DF-DFERH-01”的错误。</p>
+<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/2.png" style="zoom:25%;" />
+
+<p>只有清除Google Play应用数据后，才能恢复原状。但是，一旦重启应用或机器，错误就会重现。</p>
+<h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>错误信息是<code>Error retrieving information from server</code>，即从服务器获取信息失败。但是，显然我的纸飞机没有问题啊（别问我怎么知道的）。依靠错误代码在网络上搜索了半天，并不能找到有效的解决方法，清数据、重新登陆谷歌账号，都没有用。但是谷歌的其他服务可以使用（账户同步等）。甚是奇怪。</p>
+<p>最终，还是本国的论坛更加了解国情。在MIUI论坛中，我找到了相关信息。</p>
+<p>在MI5中，由于系统并不自带谷歌框架，所以我安装的是原生的谷歌服务，连接谷歌服务的域名均为<code>.com</code>后缀。但是，小米自带的谷歌服务，域名存在<code>.cn</code>后缀，问题就在于此。</p>
+<p>使用抓包工具对Google Play的数据进行分析，发现了以下数据包：</p>
+<p><img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/6.jpg"></p>
+<p>小米自带的谷歌服务，在Google Play启动的时候，会向<code>services.googleapis.cn</code>获取数据，而正常情况下（国际版），应是<code>services.googleapis.com</code>。在国内，由于众所周知的原因，<code>services.googleapis.cn</code>并不会指向谷歌服务器，而是指向了北京某公司的服务器。</p>
+<p>以下是使用国内两台主机获取的host数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 203.208.39.239</span><br><span class="line">services.googleapis.cn has address 203.208.39.247</span><br><span class="line">services.googleapis.cn has address 203.208.39.255</span><br><span class="line">services.googleapis.cn has address 203.208.39.248</span><br><span class="line">services.googleapis.cn has IPv6 address 2401:3800:4002:805::100f</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 203.208.43.95</span><br><span class="line">services.googleapis.cn has address 203.208.43.79</span><br><span class="line">services.googleapis.cn has address 203.208.43.87</span><br><span class="line">services.googleapis.cn has address 203.208.43.88</span><br><span class="line">services.googleapis.cn has IPv6 address 2401:3800:4001:14::1018</span><br></pre></td></tr></table></figure>
+<p>查询这类ip地址的归属地，发现均归属于北京：</p>
+<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/3.jpg" style="zoom:67%;" />
+
+<blockquote>
+<p>数据来源：ip138.com</p>
+</blockquote>
+<p>而使用国外的主机获取host数据，就截然不同。以下是使用新加坡以及加州的服务器获取的数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 74.125.24.94</span><br><span class="line">services.googleapis.cn has IPv6 address 2404:6800:4003:c03::5e</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 172.217.0.35</span><br><span class="line">services.googleapis.cn has IPv6 address 2607:f8b0:4005:802::2003</span><br></pre></td></tr></table></figure>
+<p>查询ip归属，均属于谷歌公司：</p>
+<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/4.jpg" style="zoom:67%;" />
+
+<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/5.jpg" style="zoom:67%;" />
+
+<blockquote>
+<p> 数据来源：ip138.com</p>
+</blockquote>
+<p><strong>由此，只要将<code>services.googleapis.cn</code>换成国外的DNS服务器进行解析，即可。</strong></p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><p>最简单的方法就是在纸飞机中操作。</p>
+<ul>
+<li>如果想要省事，可以直接开启<code>DNS Forwarding</code>，即把所有的DNS请求发送到墙外进行处理。但是这样会导致访问国内的一些服务出现延迟。</li>
+<li>所以，最好的方法还是把路由方式改成自定义规则，先导入GFW List，再添加如下一条规则：<code>googleapis.cn</code>，并设定为“域名及其所有子域名”。</li>
+</ul>
+<p><strong>最后，祝大家在互联网中，学习愉快！</strong></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

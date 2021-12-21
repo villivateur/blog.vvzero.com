@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        youren-USR-LTE-7S4-simple-AT-command - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%9B%BE"><span class="toc-text">硬件图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E5%87%86%E5%A4%87"><span class="toc-text">资料准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="toc-text">硬件参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E9%80%9F%E7%8E%87"><span class="toc-text">传输速率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="toc-text">串口波特率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E7%94%B5%E5%8E%8B"><span class="toc-text">工作电压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%84%9A%E5%AE%9A%E4%B9%89"><span class="toc-text">引脚定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">基本指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-text">后续</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        youren-USR-LTE-7S4-simple-AT-command
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-22 10:19:56</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#4G" title="4G">4G</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#有人物联网" title="有人物联网">有人物联网</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="硬件图"><a href="#硬件图" class="headerlink" title="硬件图"></a>硬件图</h2><p><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-simple-AT-command/1.jpg" alt="硬件图"></p>
+<h2 id="资料准备"><a href="#资料准备" class="headerlink" title="资料准备"></a>资料准备</h2><p>我在有人物联网官网上搜集了以下的资料和工具<br><a target="_blank" rel="noopener" href="http://www.usr.cn/Product/179.html">链接：有人物联网-串口转4G模块</a></p>
+<p><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-simple-AT-command/2.PNG" alt="资料图"></p>
+<h2 id="硬件参数"><a href="#硬件参数" class="headerlink" title="硬件参数"></a>硬件参数</h2><p>我整理了此模块一部分重要的参数</p>
+<h3 id="传输速率"><a href="#传输速率" class="headerlink" title="传输速率"></a>传输速率</h3><ol>
+<li>TDD-LTE 3GPP R9 CAT4下行150 Mbps，上行50 Mbps</li>
+<li>FDD-LTE 3GPP R9 CAT4下行150 Mbps，上行50 Mbps</li>
+<li>WCDMA HSPA+ 下行速率 21 Mbps 上行速率 5.76 Mbps</li>
+<li>TD-SCDMA 3GPP R9 下行速率 2.8 Mbps 上行速率 2.2 Mbps</li>
+</ol>
+<h3 id="串口波特率"><a href="#串口波特率" class="headerlink" title="串口波特率"></a>串口波特率</h3><p>TTL(3.3V/5V) 300~230400bps</p>
+<h3 id="工作电压"><a href="#工作电压" class="headerlink" title="工作电压"></a>工作电压</h3><p>DC5~16V/3.8V 二选一供电，不可同时使用</p>
+<h3 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h3><p>引脚编号从右下网左下U形编号1~23<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-simple-AT-command/4.PNG" alt="引脚定义1"><br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-simple-AT-command/5.PNG" alt="引脚定义2"><br>个人认为重要的是</p>
+<ul>
+<li>6引脚 串口TX</li>
+<li>7引脚 串口RX</li>
+<li>9引脚 正常工作指示</li>
+<li>11、12引脚 GND</li>
+<li>13、14引脚 VIN</li>
+<li>15引脚 网络状态</li>
+</ul>
+<h2 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h2><ol start="0">
+<li>AT 测试状态是否正常</li>
+<li>AT+Z 软件重启</li>
+<li>AT+REBOOT 设备重启</li>
+<li>AT+WKMOD 查询/设置工作模式</li>
+<li>AT+E 查询/设置是否开启指令回显</li>
+</ol>
+<p><strong>所有查询都是AT+某指令，设置的话，在后面加=</strong></p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>由于项目需要，本人决定首先学习socket网络指令。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

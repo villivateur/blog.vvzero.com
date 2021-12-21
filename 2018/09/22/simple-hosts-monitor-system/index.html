@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        简易云监控服务器的搭建 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#master%E4%B8%AD%E6%8E%A5%E6%94%B6%E8%AF%B7%E6%B1%82%E5%B9%B6%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9A%84php%E8%84%9A%E6%9C%AC"><span class="toc-text">master中接收请求并修改数据文件的php脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#master%E4%B8%AD%E6%A3%80%E6%9F%A5%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E7%9A%84python%E8%84%9A%E6%9C%AC"><span class="toc-text">master中检查数据文件并发送短信的python脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#slave%E4%B8%AD%E7%9A%84crontab%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%85%B6%E4%BB%96%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%90%8C%E7%90%86"><span class="toc-text">slave中的crontab配置，其他定时任务同理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%95%88%E6%9E%9C"><span class="toc-text">实际效果</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        简易云监控服务器的搭建
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-09-22 21:19:58</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#php" title="php">php</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#python" title="python">python</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#云监控" title="云监控">云监控</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我有很多台主机，公网、内网的都有，形式各异。有的时候，因为他人误操作、停电、被攻击，或者系统崩溃等事故，会导致主机无法正常运转。往常，我并不能在第一时间得知消息并及时采取措施。所以，我希望能够有一套系统来监控我的主机是否正常。</p>
+<p>市面上已经有这样的系统，但是我想了想觉得要实现我的需求并不是很困难，所以就决定自己做一套这样的系统。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>在指定被监控的主机(slave)无法向云监控服务器(master)发送请求时，使用短信通知用户处理。</p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><ul>
+<li>slave每隔1分钟向master发送指定格式请求，参数包括<code>name</code>和<code>token</code>，<code>name</code>用于表明自己的身份（主机名），且只当<code>token</code>正确时，master才接受请求。</li>
+<li>master在接收到请求后，会将数据文件<code>data.json</code>中<code>name</code>键所对应的值赋为当前的timestamp（如果<code>name</code>键不存在则新建一个）。</li>
+<li>master上每隔1分钟检查一次<code>data.json</code>中每一个<code>name</code>的键值，并比较当前timestamp与各键值的差值。当某<code>name</code>差值大于300（超过5分钟未更新）则调用短信发送的API，提醒用户该主机出现问题。</li>
+</ul>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><h3 id="master中接收请求并修改数据文件的php脚本"><a href="#master中接收请求并修改数据文件的php脚本" class="headerlink" title="master中接收请求并修改数据文件的php脚本"></a>master中接收请求并修改数据文件的php脚本</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$name</span> = <span class="variable">$_GET</span>[<span class="string">&quot;name&quot;</span>];</span><br><span class="line"><span class="variable">$token</span> = <span class="variable">$_GET</span>[<span class="string">&quot;token&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$name</span>==<span class="string">&quot;&quot;</span> || <span class="variable">$token</span>!=<span class="string">&quot;example_token&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Error&quot;</span>;</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$value</span> = file_get_contents(<span class="string">&quot;data.json&quot;</span>);</span><br><span class="line"><span class="variable">$data</span> = json_decode(<span class="variable">$value</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$data</span>[<span class="variable">$name</span>]=time();</span><br><span class="line"></span><br><span class="line">file_put_contents(<span class="string">&quot;data.json&quot;</span>,json_encode(<span class="variable">$data</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Get&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="master中检查数据文件并发送短信的python脚本"><a href="#master中检查数据文件并发送短信的python脚本" class="headerlink" title="master中检查数据文件并发送短信的python脚本"></a>master中检查数据文件并发送短信的python脚本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每分钟运行一次，可在crontab中配置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> qcloudsms_py <span class="keyword">import</span> SmsSingleSender</span><br><span class="line"><span class="keyword">from</span> qcloudsms_py.httpclient <span class="keyword">import</span> HTTPError</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment"># 腾讯云发短信的脚本，具体规则可参阅官方网站</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sendSMS</span>(<span class="params"><span class="built_in">id</span></span>):</span></span><br><span class="line">    appid = <span class="number">1400000000</span></span><br><span class="line">    appkey = <span class="string">&quot;exampleappkey&quot;</span></span><br><span class="line">    phone_numbers = [<span class="string">&quot;18000000000&quot;</span>]</span><br><span class="line">    template_id = <span class="number">190000</span></span><br><span class="line">    sms_sign = <span class="string">&quot;vvzero&quot;</span></span><br><span class="line"></span><br><span class="line">    ssender = SmsSingleSender(appid, appkey)</span><br><span class="line">    params = [<span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = ssender.send_with_param(<span class="number">86</span>, phone_numbers[<span class="number">0</span>],</span><br><span class="line">        template_id, params, sign=sms_sign, extend=<span class="string">&quot;&quot;</span>, ext=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> HTTPError <span class="keyword">as</span> e:</span><br><span class="line">        logFile.write(<span class="built_in">str</span>(e)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        logFile.write(<span class="built_in">str</span>(e)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    logFile.write(<span class="built_in">str</span>(result)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">logFile = <span class="built_in">open</span>(<span class="string">&quot;hostsMonitor.log&quot;</span>,<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">logFile.write(<span class="string">&quot;\n&quot;</span>+<span class="built_in">str</span>(datetime.datetime.now())+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    inputFile = <span class="built_in">open</span>(<span class="string">&quot;/var/www/iot/checkAlive/data.json&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    logFile.write(<span class="built_in">str</span>(e)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    data = json.load(inputFile)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    logFile.write(<span class="built_in">str</span>(e)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    inputFile.close()</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    logFile.write(<span class="built_in">str</span>(e)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> host <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">int</span>(time.time()) - <span class="built_in">int</span>(data[host]) &gt;= <span class="number">300</span>) <span class="keyword">and</span> (<span class="built_in">int</span>(time.time()) - <span class="built_in">int</span>(data[host]) &lt;= <span class="number">360</span>): <span class="comment"># 超过5分钟没有心跳包就发短信</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            sendSMS(host)</span><br><span class="line">            logFile.write(<span class="string">&quot;Problem found in &quot;</span>+host+<span class="string">&quot;. SMS has been sent.\n&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            logFile.write(<span class="built_in">str</span>(e)+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">logFile.close()</span><br></pre></td></tr></table></figure>
+<h3 id="slave中的crontab配置，其他定时任务同理"><a href="#slave中的crontab配置，其他定时任务同理" class="headerlink" title="slave中的crontab配置，其他定时任务同理"></a>slave中的crontab配置，其他定时任务同理</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/1 * * * * curl -X GET <span class="string">&#x27;https://monitor.example.com/?name=hostname&amp;token=example_token&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="实际效果"><a href="#实际效果" class="headerlink" title="实际效果"></a>实际效果</h2><p>这几天将这套系统运行了一下，没有什么问题。并且在我路由器掉线的时候及时提醒了我。</p>
+<p><img src="https://img.vvzero.com/blog/simple-hosts-monitor-system/1.jpg"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

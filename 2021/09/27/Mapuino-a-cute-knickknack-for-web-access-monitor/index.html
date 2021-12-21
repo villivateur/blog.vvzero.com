@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        Mapuino - 一个硬件极客风的 WEB 访客地图显示摆件 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapuino-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Mapuino 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapuino-%E4%B8%8D%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">Mapuino 不是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapuino-%E7%9A%84%E5%8E%86%E5%8F%B2%E6%95%85%E4%BA%8B"><span class="toc-text">Mapuino 的历史故事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapuino-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="toc-text">Mapuino 的工作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapuino-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">Mapuino 的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E-Topuino-%E7%9B%B8%E6%AF%94%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="toc-text">与 Topuino 相比的改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%8E%E5%BC%80%E6%BA%90"><span class="toc-text">代码与开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Mapuino - 一个硬件极客风的 WEB 访客地图显示摆件
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-09-27 21:46:59</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Arduino" title="Arduino">Arduino</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#ESP8266" title="ESP8266">ESP8266</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#IoT" title="IoT">IoT</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/13-dis-mapuino-web">https://bbs.blog.vvzero.com/d/13-dis-mapuino-web</a></p>
+</blockquote>
+<h2 id="Mapuino-是什么"><a href="#Mapuino-是什么" class="headerlink" title="Mapuino 是什么"></a>Mapuino 是什么</h2><p>Mapuino 是一个简单的摆件，或者叫“玩具”。你可以在自己的个人博客、主页或者任何可以插入个性代码的社交网站（如 V2EX）上添加一行 URL，然后就可以在 Mapuino 上观赏全国哪些地方的人正在访问你的网站。</p>
+<p><img src="https://img.vvzero.com/blog/Mapuino-a-cute-knickknack-for-web-access-monitor/1.jpg"></p>
+<h2 id="Mapuino-不是什么"><a href="#Mapuino-不是什么" class="headerlink" title="Mapuino 不是什么"></a>Mapuino 不是什么</h2><p>Mapuino 不是生产力工具，它功能单一，仅供娱乐。但它真的可以给你的生活带来一些小乐趣。</p>
+<h2 id="Mapuino-的历史故事"><a href="#Mapuino-的历史故事" class="headerlink" title="Mapuino 的历史故事"></a>Mapuino 的历史故事</h2><p>2017 年秋学季，我上大二，有幸加入学校的学生 IT 创新创业区，并认识了 suruifu 同学，当时我所在的部门叫“物联网创新区”。圣诞前夜，suruifu 同学在创新区内给我分享了一个外国小哥的 youtube 视频。视频中，外国小哥做了一个圣诞树，神奇之处是，只要有人 ping 他的电脑 ip，圣诞树上就会随机亮起一个 LED。很多人一起 ping 的时候，圣诞树就会闪闪发光。</p>
+<p>suruifu 同学感慨：“这才是物联网！”</p>
+<p>而后，到了今年，一个月以前，我做了第一个小摆件 <a href="https://blog.vvzero.com/2021/08/31/Topuino-the-wonderful-Knickknack-for-server-monitoring/">Topuino</a>。</p>
+<p>用同样的技术栈，我又做了 Mapuino。</p>
+<h2 id="Mapuino-的工作模式"><a href="#Mapuino-的工作模式" class="headerlink" title="Mapuino 的工作模式"></a>Mapuino 的工作模式</h2><p>Mapuino 与 Topuino 类似，在配置之后，会连接 Wi-Fi 并从服务器获取数据，在每个周期内（比如 1 分钟），所有在上一个周期访问过你网站的用户，其所在省级行政区的 LED 将会亮起。</p>
+<h2 id="Mapuino-的工作原理"><a href="#Mapuino-的工作原理" class="headerlink" title="Mapuino 的工作原理"></a>Mapuino 的工作原理</h2><p>硬件部分与 Topuino 非常类似，采用 ESP8266 作为 MCU，TM1638 作为 LED 驱动。</p>
+<p>Mapuino 会以 1 分钟为周期向服务器发起请求，服务器返回上一个周期哪些地区有用户访问了指定 URL。此 URL 可以嵌入在任何网页中，比如通过 JS 发起请求，或者假装是一个 img 标签，或者也可以用各类站长测速工具直接 DDOS 这个 URL……</p>
+<p>服务端直接解析访问此 URL 的 IP 所在地（目前使用了高德的 API），并临时存储。</p>
+<p><img src="https://img.vvzero.com/blog/Mapuino-a-cute-knickknack-for-web-access-monitor/2.jpg"></p>
+<h2 id="与-Topuino-相比的改进"><a href="#与-Topuino-相比的改进" class="headerlink" title="与 Topuino 相比的改进"></a>与 Topuino 相比的改进</h2><ol>
+<li>体积更小，<del>可以白嫖部分 PCB 打样厂的免费额度</del>；</li>
+<li>调整了下面两个固定孔的位置，可以直接拧上两个螺柱，方便放在桌上；</li>
+<li>隐藏了 Wi-Fi 天线；</li>
+<li>成本更低。</li>
+</ol>
+<h2 id="代码与开源"><a href="#代码与开源" class="headerlink" title="代码与开源"></a>代码与开源</h2><p>硬件端: <a target="_blank" rel="noopener" href="https://github.com/Villivateur/Mapuino">https://github.com/Villivateur/Mapuino</a></p>
+<p>服务端: <a target="_blank" rel="noopener" href="https://github.com/Villivateur/MapuinoServer">https://github.com/Villivateur/MapuinoServer</a></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>我又有其他点子啦，下一个做啥呢？</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

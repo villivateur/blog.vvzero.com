@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        做串口通讯时踩过的坑 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E9%A9%B1%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="toc-text">Windows驱动问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arduino%E4%B8%8A%E4%BC%A0%E4%BB%A3%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">Arduino上传代码的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#USB%E8%BD%ACTTL%E6%A8%A1%E5%9D%97%E7%9A%84%E5%8A%9F%E7%8E%87%E9%97%AE%E9%A2%98"><span class="toc-text">USB转TTL模块的功率问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%B8%B2%E5%8F%A3%E9%97%AE%E9%A2%98"><span class="toc-text">软串口问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E4%B8%B2%E5%8F%A3%E6%A8%A1%E5%9D%97%E4%BE%9B%E7%94%B5%E9%97%AE%E9%A2%98"><span class="toc-text">蓝牙串口模块供电问题</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        做串口通讯时踩过的坑
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-04-12 20:42:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Arduino" title="Arduino">Arduino</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#serial" title="serial">serial</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>心情烦躁，不写点文章感觉无法冷静。于是就稍稍总结了一下我自己在做串口通讯时踩过的坑。大部分都很基础，也许适合刚刚接触的新人。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="Windows驱动问题"><a href="#Windows驱动问题" class="headerlink" title="Windows驱动问题"></a>Windows驱动问题</h3><p>目前市面上能买到的USB转TTL串口模块，其芯片多采用PL2302或CP2102。Windows官方提供的串口驱动不适用于这两种芯片，所以需要手动安装。</p>
+<p>就给下驱动的链接，点击下载：</p>
+<p><a target="_blank" rel="noopener" href="https://source.vvzero.com/share/PL2303_Prolific_DriverInstaller_v1190.zip">PL2303</a></p>
+<p><a target="_blank" rel="noopener" href="https://source.vvzero.com/share/pololu-cp2102-windows-121204.zip">CP2102</a></p>
+<h3 id="Arduino上传代码的问题"><a href="#Arduino上传代码的问题" class="headerlink" title="Arduino上传代码的问题"></a>Arduino上传代码的问题</h3><p>Arduino是可以直接使用标准串口上传代码的，不一定要使用USB接口。只要将USB转TTL串口模块连接至Arduino的标准串口即可。</p>
+<p>但是！大部分Arduino都要冷启动以上传代码！也就是说，在上传之前，你要按住Arduino上的重置按钮，当Arduino IDE提示正在上传的时候，松开重置按钮，即可完成上传。</p>
+<p>当然，不成功就多试几次。</p>
+<h3 id="USB转TTL模块的功率问题"><a href="#USB转TTL模块的功率问题" class="headerlink" title="USB转TTL模块的功率问题"></a>USB转TTL模块的功率问题</h3><p>有些模块的功率并不是很足，所以，像蓝牙模块、Wi-Fi模块，不一定能带得动。</p>
+<h3 id="软串口问题"><a href="#软串口问题" class="headerlink" title="软串口问题"></a>软串口问题</h3><p>Arduino单片机支持软串口，即虚拟两个数字引脚用于串口传输。</p>
+<p>但是！软串口很鸡肋！实测9600的波特率就会出现大量传输错误，至于需要使用115200波特率的ESP8266模块，软串口根本无法胜任！曾在此纠结很久。</p>
+<p>Arduino Mega倒是提供了4个硬件串口。</p>
+<h3 id="蓝牙串口模块供电问题"><a href="#蓝牙串口模块供电问题" class="headerlink" title="蓝牙串口模块供电问题"></a>蓝牙串口模块供电问题</h3><p>HC-05或HC-06模块的工作电压是3.3V，但是，这并不意味着你必须以3.3V供电。事实上，用3.3V供电很可能还会让蓝牙模块功率不足，甚至频繁断开连接的问题。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

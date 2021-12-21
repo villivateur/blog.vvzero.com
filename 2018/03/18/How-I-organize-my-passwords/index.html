@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        没有任何前后端、APP开发经验，如何管理密码 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-text">需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%87%86%E5%A4%87"><span class="toc-text">资源准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%80%9D%E8%B7%AF"><span class="toc-text">具体思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C"><span class="toc-text">实际操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%B0%E7%9A%84Nginx%E7%AB%99%E7%82%B9"><span class="toc-text">建立新的Nginx站点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"><span class="toc-text">设置权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81%E7%9A%84%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-text">制作添加密码的小程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%95%88%E6%9E%9C"><span class="toc-text">页面效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        没有任何前后端、APP开发经验，如何管理密码
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-03-18 12:32:17</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Web" title="Web">Web</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#password" title="password">password</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近由于种种原因，我在各大站点注册了相当多的账号和密码，加上以前的账号，大概有百十来个。为了防止被撞库，我几乎不会在不同站点使用相同的密码，这样一来，想让我记住上百个账号密码是不可能的。我以前是记在手机的便签里，但是这样一来不安全，二来不能搜索指定密码，很不方便。市面上有很多优秀的密码管理软件，但由于我目前的密码记录已经有了自己的格式，无法直接导入，更何况我不愿意把密码记录在其他人的软件里，所以想找个方法来管理账号密码。</p>
+<p>苦逼的是，我没有任何前后端开发经验，也不会做手机APP，真的很难想自己该怎么处理几百条账号密码，直到某次我上完厕所……</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ol>
+<li><p>能够直接导入或使用现有的记录的账号密码；</p>
+</li>
+<li><p>能够随时随地很方便地查看自己的账号密码；</p>
+</li>
+<li><p>自己的密码库需要认证才能访问；</p>
+</li>
+<li><p>能够查找到自己需要的账号密码；</p>
+</li>
+<li><p>能够方便地添加新密码。</p>
+<p>​</p>
+</li>
+</ol>
+<h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><ul>
+<li><p>Nginx公网服务器一台</p>
+</li>
+<li><p>现有的密码库</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="具体思路"><a href="#具体思路" class="headerlink" title="具体思路"></a>具体思路</h2><p>把账号密码放在自己的服务器上，使用https连接，并且使用Nginx设置访问认证，在web页面上查看自己的账号密码。使用浏览器的页内查找功能查找指定的密码。最后，使用一个小脚本，登陆服务器添加新密码。</p>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="建立新的Nginx站点"><a href="#建立新的Nginx站点" class="headerlink" title="建立新的Nginx站点"></a>建立新的Nginx站点</h3><p>在<code>/etc/nginx/sites-enabled/</code>下添加新的配置文件<code>example</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen 443 ssl;</span><br><span class="line"></span><br><span class="line">       server_name example.example.com;</span><br><span class="line">       charset utf-8,gbk;</span><br><span class="line"></span><br><span class="line">       ssl on;</span><br><span class="line">       ssl_certificate &#x2F;etc&#x2F;ssl&#x2F;private&#x2F;example.example.com_bundle.crt;</span><br><span class="line">       ssl_certificate_key &#x2F;etc&#x2F;ssl&#x2F;private&#x2F;example.example.com.key;</span><br><span class="line"></span><br><span class="line">       location &#x2F; &#123;</span><br><span class="line">              root &#x2F;var&#x2F;www&#x2F;example;</span><br><span class="line">              index example.txt;</span><br><span class="line">              auth_basic &quot;Please input the password:&quot;;</span><br><span class="line">              auth_basic_user_file &#x2F;var&#x2F;www&#x2F;example&#x2F;auth.db;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，你得有个ssl证书，如果没有的话，使用http……也无可厚非。</p>
+<p>记得加上<code>charset utf-8,gbk;</code>不然中文的支持不好。</p>
+<p>这里的<code>example.txt</code>即我自己以前记录的密码库。</p>
+<p>然后配合Nginx的认证参数，使用<code>sudo htpasswd -bc /var/www/example/auth.db test 123456</code>生成Nginx的认证用户名和密码。</p>
+<h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>切换至<code>/var/www/example/</code>下，我要确保我自己的密码不能让其他用户读取。</p>
+<p><code>sudo chmod 660 example.txt</code></p>
+<p><code>sudo chmod 660 auth.db</code></p>
+<p>然后，为了能让自己修改密码库文件，把自己加入到root组。</p>
+<p><code>sudo usermod -G root username</code></p>
+<p>重新登陆。</p>
+<h3 id="制作添加密码的小程序"><a href="#制作添加密码的小程序" class="headerlink" title="制作添加密码的小程序"></a>制作添加密码的小程序</h3><p>我用C++撸了一小段，凑合着用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//adk.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        ofstream tmpFile;</span><br><span class="line">        <span class="built_in">string</span> data;</span><br><span class="line"></span><br><span class="line">        tmpFile.open(<span class="string">&quot;tmp.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Name: &quot;</span>;</span><br><span class="line">        getline(<span class="built_in">cin</span>,data);</span><br><span class="line">        tmpFile &lt;&lt; data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Account: &quot;</span>;</span><br><span class="line">        getline(<span class="built_in">cin</span>,data);</span><br><span class="line">        tmpFile &lt;&lt; data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Password: &quot;</span>;</span><br><span class="line">        getline(<span class="built_in">cin</span>,data);</span><br><span class="line">        tmpFile &lt;&lt; data &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        tmpFile.close();</span><br><span class="line"></span><br><span class="line">        system(<span class="string">&quot;cat tmp.txt &gt;&gt; /var/www/example/example.txt&quot;</span>);</span><br><span class="line">        system(<span class="string">&quot;rm tmp.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行的效果是这样的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">username@server:~$ ./adk</span><br><span class="line">Name: testname</span><br><span class="line">Account: testaccount</span><br><span class="line">Password: 123456</span><br><span class="line">username@server:~$</span><br></pre></td></tr></table></figure>
+<p>此时，这一段信息已经附加到密码库后面。</p>
+<h3 id="页面效果"><a href="#页面效果" class="headerlink" title="页面效果"></a>页面效果</h3><p><img src="https://img.vvzero.com/blog/How-I-organize-my-passwords/1.JPG" alt="效果"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>还是觉得，太蠢太蠢。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

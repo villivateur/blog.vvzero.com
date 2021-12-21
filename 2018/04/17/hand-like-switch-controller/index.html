@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        物联网仿手动开关控制器 - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-text">准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E9%80%BB%E8%BE%91"><span class="toc-text">实现逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%88%B6%E4%BD%9C"><span class="toc-text">具体制作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3D%E6%A8%A1%E5%9E%8B%E9%83%A8%E5%88%86"><span class="toc-text">3D模型部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arduino-%E6%8E%A7%E5%88%B6%E9%83%A8%E5%88%86"><span class="toc-text">Arduino 控制部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%88%90%E5%93%81%E5%9B%BE"><span class="toc-text">安装成品图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E6%8E%A7%E5%88%B6%E9%83%A8%E5%88%86"><span class="toc-text">手机控制部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%B5%8B%E8%AF%95"><span class="toc-text">实际测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E6%9C%9F%E5%B1%95%E6%9C%9B"><span class="toc-text">后期展望</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        物联网仿手动开关控制器
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-04-17 21:13:06</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Arduino" title="Arduino">Arduino</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#IoT" title="IoT">IoT</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#servo" title="servo">servo</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>玲玲说想让我做个东西送给她，作为一个直男的思考方式当然是问她的需求，也就是生活中不方便的地方。她说感觉每天晚上要下床去关灯很不方便。我就决定做一个智能化的开关给她。如果直接更换开关盒，寝室里面肯定不现实，所以，只有无损改装的方案了。何况，无损改装的方案，并不会影响手动开关。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>3D打印机（打印外壳用）</li>
+<li>舵机</li>
+<li>电池盒</li>
+<li>Arduino Nano</li>
+<li>HC-05 蓝牙模块</li>
+</ul>
+<h2 id="实现逻辑"><a href="#实现逻辑" class="headerlink" title="实现逻辑"></a>实现逻辑</h2><p>既然是无损改装，我能想到的也就只有用舵机模拟手触动开关。由于宿舍没有无线路由，所以暂且用蓝牙进行通讯控制。电源采用4节5号电池，6V满足舵机、Arduino、蓝牙的供电要求。</p>
+<p>逻辑相当简单，手机发送“开”或“关”的指令 -&gt; 蓝牙模块接收 -&gt; Arduino处理 -&gt; 舵机转动。</p>
+<h2 id="具体制作"><a href="#具体制作" class="headerlink" title="具体制作"></a>具体制作</h2><h3 id="3D模型部分"><a href="#3D模型部分" class="headerlink" title="3D模型部分"></a>3D模型部分</h3><p>在预估好尺寸后，打印出这样的外壳以及摇臂：</p>
+<p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/1.jpg"></p>
+<p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/2.jpg"></p>
+<h3 id="Arduino-控制部分"><a href="#Arduino-控制部分" class="headerlink" title="Arduino 控制部分"></a>Arduino 控制部分</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Servo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">Servo arm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> posdeg[<span class="number">3</span>]=&#123;<span class="number">50</span>, <span class="number">80</span>, <span class="number">110</span>&#125;; <span class="comment">//选取三个角度，模拟手开、关、无动作</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  String pos=<span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">while</span> (Serial.available()) pos+=Serial.read();</span><br><span class="line">  <span class="keyword">if</span> (pos!=<span class="string">&quot;&quot;</span>) </span><br><span class="line">  &#123;</span><br><span class="line">    arm.attach(<span class="number">9</span>);</span><br><span class="line">    Serial.println(posdeg[pos.toInt()<span class="number">-48</span>]);</span><br><span class="line">    arm.write(posdeg[pos.toInt()<span class="number">-48</span>]); </span><br><span class="line">    delay(<span class="number">200</span>); </span><br><span class="line">    arm.write(posdeg[<span class="number">1</span>]); <span class="comment">//回到中间位置，不要一直摁着开关</span></span><br><span class="line">    delay(<span class="number">250</span>);</span><br><span class="line">    arm.detach(); <span class="comment">//断开舵机连接，防止发出声音</span></span><br><span class="line">  &#125;</span><br><span class="line">  delay(<span class="number">15</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于防止舵机不停发声的问题，可以参见我的<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/04/13/servo-without-ringing-by-software/">上一篇博客</a>。</p>
+<h3 id="安装成品图"><a href="#安装成品图" class="headerlink" title="安装成品图"></a>安装成品图</h3><p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/3.jpg"></p>
+<h3 id="手机控制部分"><a href="#手机控制部分" class="headerlink" title="手机控制部分"></a>手机控制部分</h3><p>暂时没有写APP的能力，于是就使用串口调试工具：</p>
+<p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/4.jpg"></p>
+<p>其中，0代表关灯，2代表开灯。1用于位置矫正。</p>
+<h2 id="实际测试"><a href="#实际测试" class="headerlink" title="实际测试"></a>实际测试</h2><p>原理示意：</p>
+<video src='https://img.vvzero.com/blog/hand-like-switch-controller/5.mp4 ' type='video/mp4' controls='controls'  width='100%' height='100%'>
+</video>
+
+<p>实际测试：</p>
+<video src='https://img.vvzero.com/blog/hand-like-switch-controller/6.mp4' type='video/mp4' controls='controls'  width='100%' height='100%'>
+</video>
+
+<p>在测试过程中，4节半满的南孚电池可以支撑两天的使用。</p>
+<h2 id="后期展望"><a href="#后期展望" class="headerlink" title="后期展望"></a>后期展望</h2><ul>
+<li>解决供电问题，确保在一次维护后可以支撑1个月左右的使用。或者直接使用市电。</li>
+<li>对于多个开关集成的面板，可以制作多个摇杆，或者设计可调整的摇臂，以适应不同的开关盒。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        hexo+next+腾讯云cos制作图片页面（相册） - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%87%86%E5%A4%87"><span class="toc-text">工具准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%9B%BE%E7%89%87"><span class="toc-text">准备图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96Excel"><span class="toc-text">初始化Excel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-text">获取文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Excel%E5%A1%AB%E5%85%85"><span class="toc-text">Excel填充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E5%88%B0md%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-text">复制到md文件中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        hexo+next+腾讯云cos制作图片页面（相册）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-21 18:49:33</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#腾讯云" title="腾讯云">腾讯云</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#COS" title="COS">COS</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我花了两天时间搭建好了一个hexo博客平台，也学会了如何post一篇博客。但是，我总是想在hexo上放一点自己喜欢的照片。无奈使用的next主题并没有原生支持相册，网上找的各种方法又太复杂，于是，决定自己用点小聪明，做个简单的能看的图片页面（不敢称之为相册，毕竟几乎没有功能）。</p>
+<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ol>
+<li>Excel 2016  （这个大家应该都有，其他版本也行）</li>
+<li>hexo平台   （具体布置就不谈了）</li>
+<li>腾讯云COS   （这个是免费的，每月50G）</li>
+</ol>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>在正式操作之前，请使用命令<code>hexo new page &quot;gallery&quot;</code> 新建一个页面用于显示照片。</p>
+<h3 id="准备图片"><a href="#准备图片" class="headerlink" title="准备图片"></a>准备图片</h3><p>先把所有照片存到某个目录内。而后上传到腾讯云COS，这里我使用的是COS客户端，其他方法同理。为什么要上传到COS而不放在服务器里？一方面国内服务器带宽太小，使用CDN成本太高而且存在延迟，另一方面也是为了方便防盗链。</p>
+<p><strong>注意！文件名中不能含有空格，否则会读取失败！</strong><br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/1.PNG" alt="准备照片"> </p>
+<h3 id="初始化Excel"><a href="#初始化Excel" class="headerlink" title="初始化Excel"></a>初始化Excel</h3><p>MarkDown中图片链接格式是<code>![]()</code>，按照此格式初始化Excel。第一列放<code>![</code>，第二列放编号（如果自己想给图片取名也可以），第三列是<code>](</code>，第四列放你的COS储存筒的根目录链接，第五列暂时留空，准备放图片文件名，第六列是<code>)</code>。</p>
+<h3 id="获取文件名"><a href="#获取文件名" class="headerlink" title="获取文件名"></a>获取文件名</h3><p>由于图片可能很多，不可能手动添加，故在此目录内打开powershell，使用命令<code>ls -name</code>获取当前目录的所有照片文件名。<br><img src="http://img.vvzero.com/hexo-next-create-gallery-with-tencent-cloud-COS/2.PNG" alt="获取文件名"><br>而后将文件名拷贝到Excel中的第五列。<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/3.PNG" alt="3"></p>
+<h3 id="Excel填充"><a href="#Excel填充" class="headerlink" title="Excel填充"></a>Excel填充</h3><p>而后使用Excel自动填充，完成每一列。并在最后加上一列，生成完整的图片格式：<code>=A1&amp;B1&amp;C1&amp;D1&amp;E1&amp;F1</code>，同样自动填充。<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/4.PNG" alt="自动填充"></p>
+<h3 id="复制到md文件中"><a href="#复制到md文件中" class="headerlink" title="复制到md文件中"></a>复制到md文件中</h3><p>然后，把最后一列复制到gallery目录下的index.md中，就大功告成啦！<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/5.PNG" alt="复制"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>成品图：<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/6.PNG" alt="成品图"><br>没什么好说的啦，还是希望自己能做出一个更像样一点的相册！</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

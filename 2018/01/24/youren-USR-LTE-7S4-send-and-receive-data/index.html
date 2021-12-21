@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        youren-USR-LTE-7S4-send-and-receive-data - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E5%AD%A6%E4%B9%A0"><span class="toc-text">指令学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%83%E8%B7%B3%E5%8C%85"><span class="toc-text">心跳包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93TCP%E6%95%B0%E6%8D%AE"><span class="toc-text">传输TCP数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81"><span class="toc-text">短信发送</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        youren-USR-LTE-7S4-send-and-receive-data
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-01-24 19:12:23</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#4G" title="4G">4G</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#有人物联网" title="有人物联网">有人物联网</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>先前了解了有人USR-LTE-7S4的基本命令操作，但是对于我的项目来讲，最重要的还是网络透传功能。于是，我暂时跳过了HTTPD和串口的操作部分，直接学习网络AT指令和短信部分。</p>
+<h2 id="指令学习"><a href="#指令学习" class="headerlink" title="指令学习"></a>指令学习</h2><p>首先要把工作模式切换为NET网络透传模式。<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/1.PNG" alt="切换模式"></p>
+<h3 id="心跳包"><a href="#心跳包" class="headerlink" title="心跳包"></a>心跳包</h3><p>官方提供的串口工具左侧便可以直接启动心跳包，如果要用指令的话，使用<code>AT+HEARTEN=ON</code>开启心跳包，使用<code>AT+HEARTDT=&lt;data&gt;</code>设置心跳包数据（16进制），<code>AT+HEARTSND=NET/COM</code>设置心跳包发往服务器或串口，使用<code>AT+HEARTTM=&lt;time&gt;</code>设置心跳包发送间隔。<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/2.PNG" alt="心跳包设置"></p>
+<h3 id="传输TCP数据"><a href="#传输TCP数据" class="headerlink" title="传输TCP数据"></a>传输TCP数据</h3><p>官方工具可以直接设定服务器<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/3.jpg" alt="设置服务器"><br>然后我们在自己的公网服务器上开启一个服务监听相应端口就行了。<br>这里贴出python源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">HOST, PORT = <span class="string">&#x27;&#x27;</span>, <span class="number">10081</span></span><br><span class="line">listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">listen_socket.bind((HOST, PORT))</span><br><span class="line">listen_socket.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    client_connection, client_address = listen_socket.accept()</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        req = client_connection.recv(<span class="number">1024</span>)</span><br><span class="line">        <span class="built_in">print</span> req</span><br><span class="line">        resp = <span class="string">&quot;1&quot;</span></span><br><span class="line">        client_connection.sendall(<span class="built_in">str</span>(resp))</span><br><span class="line">    client_connection.close()</span><br></pre></td></tr></table></figure>
+<p>服务端启动后，就可以与服务器进行通讯了。<br><strong>一定要把模块切换为通讯状态</strong></p>
+<p>附上测试的效果图<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/4.PNG" alt="TCP通讯测试"></p>
+<h3 id="短信发送"><a href="#短信发送" class="headerlink" title="短信发送"></a>短信发送</h3><p>按照官方文档，串口发送命令<code>AT+SMSEND=number,data</code>或<code>AT+CISMSSEND=number,type</code>就可以发送短信。但是严格按照官方文档操作后，目标手机没有任何反应。本人已经提交工单。<br><em>也许是自己还很naive吧</em></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

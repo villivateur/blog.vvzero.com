@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        Android Studio 学习笔记1 - 说一声 Hello World - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE"><span class="toc-text">安装和简单配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-text">建立一个新项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0%E6%89%8B%E6%9C%BA"><span class="toc-text">部署到手机</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Android Studio 学习笔记1 - 说一声 Hello World
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-02-05 17:34:47</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Android" title="Android">Android</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/2-blog">https://bbs.blog.vvzero.com/d/2-blog</a></p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>反正寒假在家，什么东西也没带回来，就一个电脑和手机，总要干点什么……<br>正好，想做个记录密码的App……</p>
+<h2 id="安装和简单配置"><a href="#安装和简单配置" class="headerlink" title="安装和简单配置"></a>安装和简单配置</h2><p>安装，就是从<a target="_blank" rel="noopener" href="https://developer.android.com/studio/index.html">官网</a>下载安装包之后，个人认为，默认安装即可。注意，安装路径最好不要带有空格，否则NDK工具会出现问题。<br><strong>我不知道GFW为什么要墙这个网站，但是，如果没有梯子或飞机，就另寻下载地址吧</strong><br>然后，打开应用。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/1.JPG" alt="打开应用"><br>首次运行会提醒选择SDK路径，并会下载依赖包（其实挺人性化的，在国内，因为受阻，它会很快让你输入proxy地址）。</p>
+<h2 id="建立一个新项目"><a href="#建立一个新项目" class="headerlink" title="建立一个新项目"></a>建立一个新项目</h2><p>首页点击建立一个新项目，输入项目名、路径（不能含有空格）、包名，其他默认。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/2.JPG" alt="新建"><br>选择适用设备，这里我就选择手机，安卓4.4（可以兼容绝大多数设备）。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/3.JPG" alt="选择设备"><br>选择项目类型，就选个空项目吧。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/4.JPG" alt="项目类型"><br>设置Activity名称，我这里默认。然后完成。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/5.JPG" alt="Activity"><br>嘿嘿<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/6.JPG" alt="嘿嘿"><br>然后等待他完成，可能会再下载一部分依赖文件和SDK。<br>项目建立完成<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/7.JPG" alt="建立完成"><br>这里，先不忙分析。毕竟，我还没学java。我就知道<code>MainActivity.java</code>是一个主对象。打开<code>activity_main.xml</code>可以看到应用预览和拖控件。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/8.JPG" alt="xml"></p>
+<h2 id="部署到手机"><a href="#部署到手机" class="headerlink" title="部署到手机"></a>部署到手机</h2><p>我不用模拟器，直接上手机。<br>以我的小米5,MIUI 9为例，通过USB连接电脑，打开开发者选项，打开USB调试、USB安装。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/9.JPG" alt="USB DEBUG"><br>在Android Studio 里，点击run，或shift+F10，选择自己的手机，部署即可，记得在手机上选择允许。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/10.JPG" alt="run"><br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/11.JPG" alt="phone"><br>稍等一会后，即可在手机上运行HelloWorld。<br><img src="https://img.vvzero.com/blog/Android-Studio-Learning-1-Build-a-Hello-World-Project/12.JPG" alt="效果"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>

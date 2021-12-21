@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://source.vvzero.com/favicon.ico">
+
+    <title>
+        
+        为 Windows PowerShell 设置 User Alias （命令别名） - undefined
+        
+    </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113782568-1');
+    </script>
+    <script>
+        const Http = new XMLHttpRequest();
+        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
+        Http.open("GET", url);
+        Http.send();
+    </script>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="https://source.vvzero.com/me.png" />
+        </div>
+        <div class="name">
+            <i>Villivateur Von</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>VVZERO</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-text">探索过程及原理概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E6%95%B4%E7%90%86"><span class="toc-text">步骤整理</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        为 Windows PowerShell 设置 User Alias （命令别名）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-07-22 19:56:20</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Windows" title="Windows">Windows</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#PowerShell" title="PowerShell">PowerShell</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <blockquote>
+<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/9-dis-windows-powershell-user-alias">https://bbs.blog.vvzero.com/d/9-dis-windows-powershell-user-alias</a></p>
+</blockquote>
+<blockquote>
+<p>直接看步骤的话，在最下方。</p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Windows Terminal 虽然还处于预览阶段，但是也出来很长一段时间了。它的历史使命，也许就是让原生 Windows 也能有一个像样的命令行环境。以前我一直在用 Cmder，但是 Cmder 的启动速度确实不敢恭维，而 Windows Terminal 启动确实很快。相比 Cmder， Windows Terminal 还缺少很多功能，不过以后应该很快也会补上。</p>
+<img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef29b3f1.png" style="zoom:50%;" />
+
+<p>我想尝试使用 Windows Termimal 进行开发。Windows Terminal 默认可以使用 <code>PowerShell</code>、<code>cmd</code>、<code>wsl bash</code>作为脚本工具。既然是在 Windows 环境下嘛，还是得尊敬一下 Windows PoweShell 的。初次使用，我觉得 PowerShell 跟 Cmder 用起来，最不方便的一点就是，我在 Cmder 里面设了很多的 Alias，也就是通过修改 <code>config/user_aliases.cmd</code> 写一串 <code>&lt;alia&gt;=&lt;xxx&gt; &lt;xxx&gt;</code> 来实现的。</p>
+<img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef29ad52.png" style="zoom:50%;" />
+
+<p>但是，PowerShell 如何实现命令的别名设置呢？</p>
+<h2 id="探索过程及原理概述"><a href="#探索过程及原理概述" class="headerlink" title="探索过程及原理概述"></a>探索过程及原理概述</h2><p>如果搜索关键词 <code>windows powershell set user alias</code>，通常谷歌会给出<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-6">微软官方文档</a>，但是这个文档只是告诉我们如何在脚本里面设置临时的别名，如果要设置永久别名，该怎么办？实际上，“别名”这种东西，也就是 <code>alias</code>，几乎所有的脚本语言，都没有所谓的“永久别名”(Permanent alias)，我们使用 Linux bash 、Cmder 之类的脚本工具，打开终端时，系统会默认执行一个脚本文件（ bash 是用户目录下的 <code>.bashrc</code>，Cmder 是 <code>config/user_aliases.cmd</code> ），而这样的脚本文件里，就包含了别名的定义。这也是为什么，我们在 Linux 类系统中，修改 <code>.bashrc</code> 后，必须要重新登出登录、或者 <code>source .bashrc</code> 的原因了。</p>
+<p>所以，我们只要修改 Windows Powershell 启动时执行的文件就行了。很多论坛里面说，默认执行的脚本是 <code>$Home\Documents\profile.ps1</code> ，也就是 <code>C:\Users\你的用户名\Documents\profile.ps1</code> ，但是这并不正确，最好的方式是，先启动 PowerShell ，再执行 <code>echo $profile</code>，这样得到的文件路径，才是 PowerShell 的默认执行文件路径。</p>
+<p><img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef29d447.png"></p>
+<p>然后，创建这个文件就好啦。</p>
+<p>在文件里面，写上别名设置的语句。再一次注意，假如你的别名指代的命令含有空格，就不可以使用 <code>New-Alias</code> 命令，因为它不能带空格，即使你把指代的命令用引号括起来也没用。那怎么办呢？继续谷歌，原来，正确姿势是用 <code>function</code> ，也就是，我们把自己要定义的指令，定义为一个函数，就行啦。</p>
+<img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef339443.png" style="zoom: 67%;" />
+
+<p>保存文件，重新启动 PowerShell 以后，不出意外，应该会报一个 <code>File xxxxxxx\Microsoft.PowerShell_profile.ps1 cannot be loaded because running scripts is disabled on this system.</code> 根据<a target="_blank" rel="noopener" href="https://tecadmin.net/powershell-running-scripts-is-disabled-system/">此链接</a>，出现这种情况，是因为 Windows 系统为了防止恶意脚本自动执行，故默认不允许自动运行脚本。所以，在确定自己有能力把控的情况下，__以管理员身份__，在 PowerShell 中执行 <code>Set-ExecutionPolicy RemoteSigned </code>，即可。</p>
+<p>再次重启 PowerShell，应该可以发现，自定义别名已经生效了。</p>
+<h2 id="步骤整理"><a href="#步骤整理" class="headerlink" title="步骤整理"></a>步骤整理</h2><p>如果你想为自己的 Windows PowerShell 设置永久的命令别名 (Alias)，可以遵循以下步骤：</p>
+<ol>
+<li><p>打开 PowerShell ，运行 <code>echo $profile</code>，会输出一个文件路径。创建这个文件。</p>
+</li>
+<li><p>打开刚创建的文件，按以下格式设置多条别名：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 别名</span> &#123; 需要替代的命令，可以包含空格 &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>以管理员身份打开 PowerShell，执行 <code>Set-ExecutionPolicy RemoteSigned</code>。</p>
+</li>
+<li><p>重新启动 PowerShell ，应该已经完成了。</p>
+</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
+    </p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+
+
+</html>
