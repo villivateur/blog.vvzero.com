@@ -142,10 +142,7 @@
         </span>
     </div>
     <div class="post-content ">
-        <blockquote>
-<p>本文讨论地址 <a target="_blank" rel="noopener" href="https://bbs.blog.vvzero.com/d/7-dis">https://bbs.blog.vvzero.com/d/7-dis</a></p>
-</blockquote>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在使用舵机完成相关物联设备制作的时候，经常会遇到，舵机已经到达指定位置，但是仍然会有响声。不胜其烦，基友@张世博想出了一个方法就是在舵机供电线路上串一个继电器，在不需要转动的情况下，Arduino控制继电器断电。但是这个方法会增加硬件成本，而且增加代码复杂度。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在使用舵机完成相关物联设备制作的时候，经常会遇到，舵机已经到达指定位置，但是仍然会有响声。不胜其烦，基友@张世博想出了一个方法就是在舵机供电线路上串一个继电器，在不需要转动的情况下，Arduino控制继电器断电。但是这个方法会增加硬件成本，而且增加代码复杂度。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>很简单，以Arduino为例，只要在需要舵机工作时，使用attach()函数，在舵机工作完毕后，使用detach()函数。<br>如下例：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;                                                                                      </span><br><span class="line">    arm.attach(<span class="number">9</span>);                                                                                                                      </span><br><span class="line">    arm.write(posdeg);                               </span><br><span class="line">    delay(<span class="number">250</span>);</span><br><span class="line">    arm.detach(); <span class="comment">//断开舵机连接，防止发出声音                                            </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
