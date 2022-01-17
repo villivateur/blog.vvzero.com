@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="嵌入式物联网全栈系统工程师">
     <meta name="keyword"  content="">
@@ -13,22 +14,6 @@
         分享一下我的家庭网络布局 - undefined
         
     </title>
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113782568-1');
-    </script>
-    <script>
-        const Http = new XMLHttpRequest();
-        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
-        Http.open("GET", url);
-        Http.send();
-    </script>
 
     <!-- Custom CSS -->
     
@@ -37,8 +22,11 @@
     
 <link rel="stylesheet" href="/css/gitment.css">
 
-    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
 
@@ -88,9 +76,16 @@
                 </a>
             </li>
             <li >
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>VVZERO</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -145,9 +140,6 @@
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
     </div>
     <div class="post-content ">
         <blockquote>
@@ -240,8 +232,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
-    </p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
@@ -251,7 +242,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>
@@ -259,6 +250,22 @@
 
 <script src="/js/index.js"></script>
 
+
+
+<script src="/js/gitment.js"></script>
+
+<script>
+    var gitment = new Gitment({
+        id: '分享一下我的家庭网络布局',
+        owner: 'villivateur',
+        repo: 'blog.vvzero.com',
+        oauth: {
+            client_id: '33e719d329716234935e',
+            client_secret: '3390e6ba2e3507413558f8964dc7eb91a27509c4',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 
 

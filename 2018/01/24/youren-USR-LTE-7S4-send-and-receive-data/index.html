@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="嵌入式物联网全栈系统工程师">
     <meta name="keyword"  content="">
@@ -13,22 +14,6 @@
         youren-USR-LTE-7S4-send-and-receive-data - undefined
         
     </title>
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113782568-1');
-    </script>
-    <script>
-        const Http = new XMLHttpRequest();
-        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
-        Http.open("GET", url);
-        Http.send();
-    </script>
 
     <!-- Custom CSS -->
     
@@ -37,8 +22,11 @@
     
 <link rel="stylesheet" href="/css/gitment.css">
 
-    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
 
@@ -88,9 +76,16 @@
                 </a>
             </li>
             <li >
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>VVZERO</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -145,9 +140,6 @@
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
     </div>
     <div class="post-content ">
         <blockquote>
@@ -158,6 +150,7 @@
 <h3 id="心跳包"><a href="#心跳包" class="headerlink" title="心跳包"></a>心跳包</h3><p>官方提供的串口工具左侧便可以直接启动心跳包，如果要用指令的话，使用<code>AT+HEARTEN=ON</code>开启心跳包，使用<code>AT+HEARTDT=&lt;data&gt;</code>设置心跳包数据（16进制），<code>AT+HEARTSND=NET/COM</code>设置心跳包发往服务器或串口，使用<code>AT+HEARTTM=&lt;time&gt;</code>设置心跳包发送间隔。<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/2.PNG" alt="心跳包设置"></p>
 <h3 id="传输TCP数据"><a href="#传输TCP数据" class="headerlink" title="传输TCP数据"></a>传输TCP数据</h3><p>官方工具可以直接设定服务器<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/3.jpg" alt="设置服务器"><br>然后我们在自己的公网服务器上开启一个服务监听相应端口就行了。<br>这里贴出python源码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">HOST, PORT = <span class="string">&#x27;&#x27;</span>, <span class="number">10081</span></span><br><span class="line">listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">listen_socket.bind((HOST, PORT))</span><br><span class="line">listen_socket.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    client_connection, client_address = listen_socket.accept()</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        req = client_connection.recv(<span class="number">1024</span>)</span><br><span class="line">        <span class="built_in">print</span> req</span><br><span class="line">        resp = <span class="string">&quot;1&quot;</span></span><br><span class="line">        client_connection.sendall(<span class="built_in">str</span>(resp))</span><br><span class="line">    client_connection.close()</span><br></pre></td></tr></table></figure>
+
 <p>服务端启动后，就可以与服务器进行通讯了。<br><strong>一定要把模块切换为通讯状态</strong></p>
 <p>附上测试的效果图<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/4.PNG" alt="TCP通讯测试"></p>
 <h3 id="短信发送"><a href="#短信发送" class="headerlink" title="短信发送"></a>短信发送</h3><p>按照官方文档，串口发送命令<code>AT+SMSEND=number,data</code>或<code>AT+CISMSSEND=number,type</code>就可以发送短信。但是严格按照官方文档操作后，目标手机没有任何反应。本人已经提交工单。<br><em>也许是自己还很naive吧</em></p>
@@ -233,8 +226,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
-    </p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
@@ -244,7 +236,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>
@@ -252,6 +244,22 @@
 
 <script src="/js/index.js"></script>
 
+
+
+<script src="/js/gitment.js"></script>
+
+<script>
+    var gitment = new Gitment({
+        id: 'youren-USR-LTE-7S4-send-and-receive-data',
+        owner: 'villivateur',
+        repo: 'blog.vvzero.com',
+        oauth: {
+            client_id: '33e719d329716234935e',
+            client_secret: '3390e6ba2e3507413558f8964dc7eb91a27509c4',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 
 

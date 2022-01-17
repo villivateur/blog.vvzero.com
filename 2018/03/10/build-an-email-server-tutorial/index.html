@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="嵌入式物联网全栈系统工程师">
     <meta name="keyword"  content="">
@@ -13,22 +14,6 @@
         Ubuntu个人邮箱搭建教程 - undefined
         
     </title>
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113782568-1');
-    </script>
-    <script>
-        const Http = new XMLHttpRequest();
-        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
-        Http.open("GET", url);
-        Http.send();
-    </script>
 
     <!-- Custom CSS -->
     
@@ -37,8 +22,11 @@
     
 <link rel="stylesheet" href="/css/gitment.css">
 
-    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
 
@@ -88,9 +76,16 @@
                 </a>
             </li>
             <li >
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>VVZERO</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -151,9 +146,6 @@
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
     </div>
     <div class="post-content ">
         <blockquote>
@@ -228,10 +220,12 @@
 <h3 id="安装postfix"><a href="#安装postfix" class="headerlink" title="安装postfix"></a>安装postfix</h3><p>postfix是用来做“对外”任务的，就是与其他站点进行收发件交互。</p>
 <p>执行命令<code>sudo apt install postfix</code><br>一路确定，除了第二步，输入<code>example.com</code>。</p>
 <p>然后执行命令<code>sudo vim /etc/postfix/main.cf</code>修改配置文件。<br>这里先上我的配置文件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)</span><br><span class="line">biff = no</span><br><span class="line"></span><br><span class="line">append_dot_mydomain = no</span><br><span class="line"></span><br><span class="line">readme_directory = no</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">此处隐藏了部分tls的配置</span></span><br><span class="line"></span><br><span class="line">smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</span><br><span class="line">myhostname = mail.example.com</span><br><span class="line">alias_maps = hash:/etc/aliases</span><br><span class="line">alias_database = hash:/etc/aliases</span><br><span class="line">myorigin = /etc/mailname</span><br><span class="line">mydestination = $myhostname, example.com, localhost, localhost.localdomain, localhost</span><br><span class="line">relayhost =</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">此处需要添加你的公网ip地址或子网</span></span><br><span class="line">mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 </span><br><span class="line">mailbox_size_limit = 0</span><br><span class="line">recipient_delimiter = +</span><br><span class="line">inet_interfaces = all</span><br><span class="line">inet_protocols = all</span><br><span class="line"></span><br><span class="line">home_mailbox = .Mail/</span><br><span class="line"></span><br><span class="line">queue_directory = /var/spool/postfix</span><br><span class="line">broken_sasl_auth_clients = yes</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">这里是为了与接下来要用到的dovecot配合</span></span><br><span class="line">smtpd_sasl_type = dovecot</span><br><span class="line">smtpd_sasl_auth_enable = yes</span><br><span class="line">smtpd_sasl_path = private/auth</span><br><span class="line">smtpd_sasl_local_domain = example.com</span><br><span class="line">smtpd_sasl_authenticated_header = yes</span><br><span class="line">smtpd_sasl_security_options = noanonymous</span><br><span class="line">compatibility_level = 2</span><br><span class="line">smtpd_milters = local:/var/run/dkim-milter/dkim.sock</span><br><span class="line">non_smtpd_milters = local:/var/run/dkim-milter/dkim.sock</span><br><span class="line">milter_protocol = 2</span><br><span class="line">milter_default_action = accept</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)</span><br><span class="line">biff = no</span><br><span class="line"></span><br><span class="line">append_dot_mydomain = no</span><br><span class="line"></span><br><span class="line">readme_directory = no</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">此处隐藏了部分tls的配置</span></span><br><span class="line"></span><br><span class="line">smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</span><br><span class="line">myhostname = mail.example.com</span><br><span class="line">alias_maps = hash:/etc/aliases</span><br><span class="line">alias_database = hash:/etc/aliases</span><br><span class="line">myorigin = /etc/mailname</span><br><span class="line">mydestination = $myhostname, example.com, localhost, localhost.localdomain, localhost</span><br><span class="line">relayhost =</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">此处需要添加你的公网ip地址或子网</span></span><br><span class="line">mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 </span><br><span class="line">mailbox_size_limit = 0</span><br><span class="line">recipient_delimiter = +</span><br><span class="line">inet_interfaces = all</span><br><span class="line">inet_protocols = all</span><br><span class="line"></span><br><span class="line">home_mailbox = .Mail/</span><br><span class="line"></span><br><span class="line">queue_directory = /var/spool/postfix</span><br><span class="line">broken_sasl_auth_clients = yes</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">这里是为了与接下来要用到的dovecot配合</span></span><br><span class="line">smtpd_sasl_type = dovecot</span><br><span class="line">smtpd_sasl_auth_enable = yes</span><br><span class="line">smtpd_sasl_path = private/auth</span><br><span class="line">smtpd_sasl_local_domain = example.com</span><br><span class="line">smtpd_sasl_authenticated_header = yes</span><br><span class="line">smtpd_sasl_security_options = noanonymous</span><br><span class="line">compatibility_level = 2</span><br><span class="line">smtpd_milters = local:/var/run/dkim-milter/dkim.sock</span><br><span class="line">non_smtpd_milters = local:/var/run/dkim-milter/dkim.sock</span><br><span class="line">milter_protocol = 2</span><br><span class="line">milter_default_action = accept</span><br></pre></td></tr></table></figure>
+
 <h3 id="安装dovecot"><a href="#安装dovecot" class="headerlink" title="安装dovecot"></a>安装dovecot</h3><p>dovecot是用来做“对内”任务的，就是与各个邮箱客户端进行同步（毕竟我们不能每次都登陆这台主机来收发邮件）<br>执行命令<code>sudo apt install dovecot-common dovecot-imapd dovecot-pop3d</code><br>dovecot完整的配置文件比较复杂。<br>先进入<code>/etc/dovecot/conf.d/</code></p>
 <p>打开<code>10-master.conf</code>，找到第95行，修改为如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">unix_listener /var/spool/postfix/private/auth &#123;</span><br><span class="line">    mode = 0666</span><br><span class="line">    user = postfix</span><br><span class="line">    group = postfix</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>打开<code>10-auth.conf</code>，找到第100行，修改为：<br><code>auth_mechanisms = plain login</code></p>
 <p>打开<code>10-mail.conf</code>，找到第30行，修改为：<br><code>mail_location = maildir:~/.Mail</code>   注：此处与postfix配置文件中的<code>home_mailbox</code>一项配置相同即可。</p>
 <p>打开<code>20-pop3.conf</code>，找到第50行，去除注释：<br><code>pop3_uidl_format = %08Xu%08Xv</code></p>
@@ -310,8 +304,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
-    </p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
@@ -321,7 +314,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>
@@ -329,6 +322,22 @@
 
 <script src="/js/index.js"></script>
 
+
+
+<script src="/js/gitment.js"></script>
+
+<script>
+    var gitment = new Gitment({
+        id: 'Ubuntu个人邮箱搭建教程',
+        owner: 'villivateur',
+        repo: 'blog.vvzero.com',
+        oauth: {
+            client_id: '33e719d329716234935e',
+            client_secret: '3390e6ba2e3507413558f8964dc7eb91a27509c4',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 
 

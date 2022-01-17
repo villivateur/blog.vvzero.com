@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="嵌入式物联网全栈系统工程师">
     <meta name="keyword"  content="">
@@ -13,22 +14,6 @@
         Hexo+Next主题在首页隐藏特定博客 - undefined
         
     </title>
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113782568-1');
-    </script>
-    <script>
-        const Http = new XMLHttpRequest();
-        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
-        Http.open("GET", url);
-        Http.send();
-    </script>
 
     <!-- Custom CSS -->
     
@@ -37,8 +22,11 @@
     
 <link rel="stylesheet" href="/css/gitment.css">
 
-    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
 
@@ -88,9 +76,16 @@
                 </a>
             </li>
             <li >
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>VVZERO</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -145,9 +140,6 @@
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
     </div>
     <div class="post-content ">
         <blockquote>
@@ -159,10 +151,10 @@
 <li>Next主题</li>
 </ul>
 <h2 id="个人理解及思路"><a href="#个人理解及思路" class="headerlink" title="个人理解及思路"></a>个人理解及思路</h2><p>Next主题在处理博客时，会调用<code>\themes\next\layout\index.swig</code>作为其首页的框架。在未进行配置时，此文件内会有以下语句：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;posts&quot; class=&quot;posts-expand&quot;&gt;</span><br><span class="line">  &#123;% <span class="keyword">for</span> post <span class="keyword">in</span> page.posts %&#125;</span><br><span class="line">    &#123;&#123; post_template.render(post, true) &#125;&#125;</span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="built_in">id</span>=<span class="string">&quot;posts&quot;</span> <span class="class"><span class="keyword">class</span>=&quot;<span class="title">posts</span>-<span class="title">expand</span>&quot;&gt;</span></span><br><span class="line"><span class="class">  &#123;% <span class="title">for</span> <span class="title">post</span> <span class="title">in</span> <span class="title">page</span>.<span class="title">posts</span> %&#125;</span></span><br><span class="line"><span class="class">    &#123;&#123; <span class="title">post_template</span>.<span class="title">render</span>(<span class="params">post, true</span>) &#125;&#125;</span></span><br><span class="line"><span class="class">  &#123;% <span class="title">endfor</span> %&#125;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其中for循环的意思是，把<code>_posts</code>下的所有文件都在首页进行展示。那么，如果不想让某些博客在首页被展示，只要加一个判断语句，把含有某关键字（比如说，标签）的博客屏蔽就可以了。而且这样做，博客仍然能在Archives/Tags等里面找到。</p>
 <h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><p>我这里选择的关键字是标签Tags，把Tags为DIARY的博客过滤掉。<br>修改以上代码如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;posts&quot; class=&quot;posts-expand&quot;&gt;</span><br><span class="line">&#123;% <span class="keyword">for</span> post <span class="keyword">in</span> page.posts %&#125;</span><br><span class="line">  &#123;% <span class="keyword">for</span> tag <span class="keyword">in</span> post.tags %&#125;</span><br><span class="line">	&#123;% <span class="keyword">if</span> tag.name !== <span class="string">&#x27;DIARY&#x27;</span> %&#125;</span><br><span class="line">	  &#123;&#123; post_template.render(post, true) &#125;&#125;</span><br><span class="line">	&#123;% endif %&#125;</span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="built_in">id</span>=<span class="string">&quot;posts&quot;</span> <span class="class"><span class="keyword">class</span>=&quot;<span class="title">posts</span>-<span class="title">expand</span>&quot;&gt;</span></span><br><span class="line"><span class="class">&#123;% <span class="title">for</span> <span class="title">post</span> <span class="title">in</span> <span class="title">page</span>.<span class="title">posts</span> %&#125;</span></span><br><span class="line"><span class="class">  &#123;% <span class="title">for</span> <span class="title">tag</span> <span class="title">in</span> <span class="title">post</span>.<span class="title">tags</span> %&#125;</span></span><br><span class="line"><span class="class">	&#123;% <span class="title">if</span> <span class="title">tag</span>.<span class="title">name</span> !== &#x27;<span class="title">DIARY</span>&#x27; %&#125;</span></span><br><span class="line"><span class="class">	  &#123;&#123; <span class="title">post_template</span>.<span class="title">render</span>(<span class="params">post, true</span>) &#125;&#125;</span></span><br><span class="line"><span class="class">	&#123;% <span class="title">endif</span> %&#125;</span></span><br><span class="line"><span class="class">  &#123;% <span class="title">endfor</span> %&#125;</span></span><br><span class="line"><span class="class">&#123;% <span class="title">endfor</span> %&#125;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>注意，这里要再嵌套一个for循环用于检索tag。个人理解是，Tags是一个集合，包含了多个元素，故不能直接<code>if post.tags !== &#39;DIARY&#39;</code>。</p>
 <p>然后，把你的日记的Tags改成DIARY，就不会在首页显示了。</p>
 <h2 id="把所有日记整合到一个菜单中"><a href="#把所有日记整合到一个菜单中" class="headerlink" title="把所有日记整合到一个菜单中"></a>把所有日记整合到一个菜单中</h2><p>这里有知乎大神的现成的教程，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/33324071/answer/58775540?group_id=654307162210365440#comment-106092511">点击传送门</a></p>
@@ -239,8 +231,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
-    </p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
@@ -250,7 +241,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>
@@ -258,6 +249,22 @@
 
 <script src="/js/index.js"></script>
 
+
+
+<script src="/js/gitment.js"></script>
+
+<script>
+    var gitment = new Gitment({
+        id: 'Hexo+Next主题在首页隐藏特定博客',
+        owner: 'villivateur',
+        repo: 'blog.vvzero.com',
+        oauth: {
+            client_id: '33e719d329716234935e',
+            client_secret: '3390e6ba2e3507413558f8964dc7eb91a27509c4',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="嵌入式物联网全栈系统工程师">
     <meta name="keyword"  content="">
@@ -13,22 +14,6 @@
         树莓派GPIO学习笔记2-初步使用WiringPi库进行C++编程 - undefined
         
     </title>
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113782568-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113782568-1');
-    </script>
-    <script>
-        const Http = new XMLHttpRequest();
-        const url='https://iot.vvzero.com/mapuino/frontendAPI?UUID=4bf32253-2b4b-423c-8baa-06d62e196866';
-        Http.open("GET", url);
-        Http.send();
-    </script>
 
     <!-- Custom CSS -->
     
@@ -37,8 +22,11 @@
     
 <link rel="stylesheet" href="/css/gitment.css">
 
-    <link href="https://source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-<meta name="generator" content="Hexo 5.3.0"></head>
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//source.vvzero.com/hexo-theme-aircloud/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
 
@@ -88,9 +76,16 @@
                 </a>
             </li>
             <li >
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com/">
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>VVZERO</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
                 </a>
             </li>
             
@@ -145,9 +140,6 @@
         
         
         </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
     </div>
     <div class="post-content ">
         <blockquote>
@@ -155,7 +147,7 @@
 </blockquote>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>现在，我已经安装好了WiringPi依赖包，我的最终目的是实现树莓派与4G模块之间的通讯。简单的shell脚本还是不够的，还好WiringPi提供了大量完善的c++库。借这篇博客记录下相关简单的函数使用过程。</p>
 <h2 id="让一个LED闪烁的C-实现"><a href="#让一个LED闪烁的C-实现" class="headerlink" title="让一个LED闪烁的C++实现"></a>让一个LED闪烁的C++实现</h2><p>先在前面说一句话，WiringPi的库函数与Arduino很类似，所以如果有过Arduino开发经验，接受起来会快一点。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//blink.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;wiringPi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        wiringPiSetup();</span><br><span class="line">        pinMode(<span class="number">1</span>,OUTPUT);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                digitalWrite(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">                delay(<span class="number">500</span>);</span><br><span class="line">                digitalWrite(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">                delay(<span class="number">500</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//blink.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;wiringPi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="built_in">wiringPiSetup</span>();</span><br><span class="line">        <span class="built_in">pinMode</span>(<span class="number">1</span>,OUTPUT);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="built_in">digitalWrite</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">                <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">                <span class="built_in">digitalWrite</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">                <span class="built_in">delay</span>(<span class="number">500</span>);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这是一个最简单的LED闪烁的C++代码。首先，如果想使用WiringPi库函数，必须包含头文件<code>wiringPi.h</code>。在正式操作引脚之前，必须进行初始化，<code>wiringPiSetup();</code>。然后，<code>pinMode</code>函数顾名思义，设定某引脚（不是引脚的硬件编号，而是使用<code>gpio readall</code>后得到的<code>wPi</code>编号）的工作状态。<code>digitalWrite(&lt;pin&gt;,&lt;value&gt;)</code>，用于控制引脚电平。<code>delay</code>函数用于延时，这里的数值单位是毫秒ms。<br>当然，初始化有多种方式，引脚工作模式也有很多种，具体参见<a target="_blank" rel="noopener" href="http://wiringpi.com/reference/">WiringPi官方文档</a>。</p>
 <p>然后<code>$ g++ -o BLINK blink.cpp -lwiringPi</code>，生成可执行文件。<code>-lwiringPi</code>是必须的，表示需要链接到wiringPi库。<br><code>$ ./BLINK</code>就可以看到LED闪烁了。</p>
 <h2 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h2><p>使用C++实现串口通讯。</p>
@@ -231,8 +223,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> with vv-edited.
-    </p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
 </footer>
 
 
@@ -242,7 +233,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = ""
+    window.hexo_search_path = "search.json"
     window.hexo_root = "/"
     window.isPost = true
 </script>
@@ -250,6 +241,22 @@
 
 <script src="/js/index.js"></script>
 
+
+
+<script src="/js/gitment.js"></script>
+
+<script>
+    var gitment = new Gitment({
+        id: '树莓派GPIO学习笔记2-初步使用WiringPi库进行C++编程',
+        owner: 'villivateur',
+        repo: 'blog.vvzero.com',
+        oauth: {
+            client_id: '33e719d329716234935e',
+            client_secret: '3390e6ba2e3507413558f8964dc7eb91a27509c4',
+        },
+    })
+    gitment.render('comment-container')
+</script>
 
 
 
