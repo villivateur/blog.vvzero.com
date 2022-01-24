@@ -153,7 +153,7 @@
         
         </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>经过前一段时间的学习，我已经大致了解了树莓派的串口数据传输以及有人USR-LTE-7S4这一4G模块的使用方法。详情请查看以往的博客。现在我对这两个模块进行整合，构成一个系统一完成特定任务。</p>
 <h2 id="目标要求"><a href="#目标要求" class="headerlink" title="目标要求"></a>目标要求</h2><p>任何地点的联网用户在手机上操作，可以控制特定树莓派上的LED亮灭。</p>
 <h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p><img src="https://img.vvzero.com/blog/Control-RaspberryPi-via-4G/1.PNG" alt="拓扑图"><br>客户端（手机）发送开或关的命令到云端服务器，由于4G模块不断向服务器发送心跳包（一秒一次），服务器将会根据客户端提供的数据回复给4G模块“1”或“0”，以示开关。4G模块再通过串口将数据发送给树莓派，进而达到控制LED的目的。</p>

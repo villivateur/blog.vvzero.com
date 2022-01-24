@@ -150,7 +150,7 @@
         
         </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>昨天完成了手机客户端远程控制树莓派上LED亮灭的实验（<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/01/27/Control-RaspberryPi-via-4G/">点击回顾</a>，今天来做一些拓展，从客户端远程一键控制与树莓派处于同一内网的服务器的服务开关。</p>
 <h2 id="目标要求"><a href="#目标要求" class="headerlink" title="目标要求"></a>目标要求</h2><p>在任意联网的客户端点击“关闭”链接，指定服务器的nginx服务关闭。</p>
 <h2 id="制作思路"><a href="#制作思路" class="headerlink" title="制作思路"></a>制作思路</h2><p>只要把“开关LED”这一操作，转换成“执行开关服务”即可。而“开关服务”可以直接使用ssh命令。</p>

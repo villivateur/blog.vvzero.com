@@ -147,7 +147,7 @@
         
         </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>先前了解了有人USR-LTE-7S4的基本命令操作，但是对于我的项目来讲，最重要的还是网络透传功能。于是，我暂时跳过了HTTPD和串口的操作部分，直接学习网络AT指令和短信部分。</p>
 <h2 id="指令学习"><a href="#指令学习" class="headerlink" title="指令学习"></a>指令学习</h2><p>首先要把工作模式切换为NET网络透传模式。<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/1.PNG" alt="切换模式"></p>
 <h3 id="心跳包"><a href="#心跳包" class="headerlink" title="心跳包"></a>心跳包</h3><p>官方提供的串口工具左侧便可以直接启动心跳包，如果要用指令的话，使用<code>AT+HEARTEN=ON</code>开启心跳包，使用<code>AT+HEARTDT=&lt;data&gt;</code>设置心跳包数据（16进制），<code>AT+HEARTSND=NET/COM</code>设置心跳包发往服务器或串口，使用<code>AT+HEARTTM=&lt;time&gt;</code>设置心跳包发送间隔。<br><img src="https://img.vvzero.com/blog/youren-USR-LTE-7S4-send-and-receive-data/2.PNG" alt="心跳包设置"></p>
