@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>VVBLOG</title>
+  <title>三帛的世界</title>
   
   <subtitle>三帛的世界</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://blog.vvzero.com/</id>
   
   <author>
-    <name>Villivateur Von</name>
+    <name>冯锦瑾</name>
     
   </author>
   
