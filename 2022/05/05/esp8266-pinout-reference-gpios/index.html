@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keywords"  content="冯锦瑾, villivateur, 三帛的世界">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+        如何在 ESP8266 选用合适的引脚 - 三帛的世界
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    <!-- 
+<link rel="stylesheet" href="/css/gitment.css">
+ -->
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="/static/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/static/me.png" />
+        </div>
+        <div class="name">
+            <i>冯锦瑾</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>主站</span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel="noopener" href="https://status.vvzero.com">
+                    <i class="iconfont icon-guanyu1"></i>
+                    <span>服务监测</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ESP12-E-%E6%A8%A1%E5%9D%97%E5%BC%95%E8%84%9A%E5%AE%9A%E4%B9%89"><span class="toc-text">ESP12-E 模块引脚定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESP-01-S-%E5%BC%95%E8%84%9A%E5%AE%9A%E4%B9%89"><span class="toc-text">ESP-01(S) 引脚定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESP-12E-NodeMCU-%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="toc-text">ESP-12E NodeMCU 开发板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wemos-D1-Mini-%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="toc-text">Wemos D1 Mini 开发板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ESP8266-%E7%9A%84%E5%A4%96%E8%AE%BE"><span class="toc-text">ESP8266 的外设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BC%95%E8%84%9A"><span class="toc-text">推荐使用的引脚</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5-FLASH-%E8%8A%AF%E7%89%87%E7%9A%84%E5%BC%95%E8%84%9A"><span class="toc-text">连接 FLASH 芯片的引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%95%E8%84%9A"><span class="toc-text">启动过程中用到的引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%97%B6%E4%B8%BA%E9%AB%98%E7%94%B5%E5%B9%B3%E7%9A%84%E5%BC%95%E8%84%9A"><span class="toc-text">启动时为高电平的引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E8%BE%93%E5%85%A5%E5%BC%95%E8%84%9A"><span class="toc-text">模拟输入引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%BF%E8%BD%BD-LED"><span class="toc-text">板载 LED</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E4%BD%8D%E5%BC%95%E8%84%9A"><span class="toc-text">复位引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPIO0"><span class="toc-text">GPIO0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPIO16"><span class="toc-text">GPIO16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I2C"><span class="toc-text">I2C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SPI"><span class="toc-text">SPI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PWM-%E5%BC%95%E8%84%9A"><span class="toc-text">PWM 引脚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%BC%95%E8%84%9A"><span class="toc-text">中断引脚</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        如何在 ESP8266 选用合适的引脚
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-05-05 18:40:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Arduino" title="Arduino">Arduino</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#esp8266" title="esp8266">esp8266</a>
+        <span>/</span>
+        
+        
+        </span>
+    </div>
+    <div class="post-content no-indent">
+        <blockquote>
+<p>本文是“攻玉计划”的一部分，翻译自 <a target="_blank" rel="noopener" href="https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/">https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/</a></p>
+</blockquote>
+<p>本文旨在介绍 ESP8266 的引脚定义、引脚功能及如何使用它们。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/1.png"></p>
+<p>ESP-12E 模块拥有 17 个 GPIO 引脚。但在各个开发板上，ESP8266 芯片的 GPIO 引脚并不一定全部引出，而且某些引脚不建议使用，某些引脚有非常特殊的功能。</p>
+<p>本文将指导你如何正确使用 ESP8266 的各个 GPIO，避免用错引脚而浪费时间。</p>
+<h2 id="ESP12-E-模块引脚定义"><a href="#ESP12-E-模块引脚定义" class="headerlink" title="ESP12-E 模块引脚定义"></a>ESP12-E 模块引脚定义</h2><p>下图阐述了 ESP-12E 模块的引脚定义。当你的项目使用裸 ESP-12E/F 模块的时候，可以参考此图。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/2.png"></p>
+<blockquote>
+<p>🔵注意：某些开发板可能不能使用全部的引脚，但相同的引脚在不同的开发板上，功能肯定是一样的。</p>
+</blockquote>
+<p>当前市场上有很多不同的 ESP8266 模块/开发板，它们的形状、大小、可用 GPIO 数目各不相同。但最常用的是 ESP-01(S)、ESP-12E/F、NodeMCU 开发板以及 Wemos D1 Mini 开发板。你可以自己搜索这些开发板模块的区别。</p>
+<h2 id="ESP-01-S-引脚定义"><a href="#ESP-01-S-引脚定义" class="headerlink" title="ESP-01(S) 引脚定义"></a>ESP-01(S) 引脚定义</h2><p>如果你在用 ESP-01(S) 的板子，可以参考下图的 GPIO 引脚定义。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/3.png"></p>
+<h2 id="ESP-12E-NodeMCU-开发板"><a href="#ESP-12E-NodeMCU-开发板" class="headerlink" title="ESP-12E NodeMCU 开发板"></a>ESP-12E NodeMCU 开发板</h2><p>ESP-12E NodeMCU 开发板的引脚定义如下图所示。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/4.png"></p>
+<h2 id="Wemos-D1-Mini-开发板"><a href="#Wemos-D1-Mini-开发板" class="headerlink" title="Wemos D1 Mini 开发板"></a>Wemos D1 Mini 开发板</h2><p>Wemos D1 Mini 开发板的引脚定义如下图所示。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/5.png"></p>
+<h2 id="ESP8266-的外设"><a href="#ESP8266-的外设" class="headerlink" title="ESP8266 的外设"></a>ESP8266 的外设</h2><p>ESP8266 的外设包括：</p>
+<ul>
+<li>17 个 GPIO</li>
+<li>SPI</li>
+<li>I2C（软件实现）</li>
+<li>I2S（支持 DMA）</li>
+<li>UART</li>
+<li>10 位 ADC</li>
+</ul>
+<h2 id="推荐使用的引脚"><a href="#推荐使用的引脚" class="headerlink" title="推荐使用的引脚"></a>推荐使用的引脚</h2><p>需要注意的一点是，ESP8266 开发板上丝印的引脚号，并不是芯片真正的 GPIO 编号。比如，D0 是 GPIO16，D1 是 GPIO5。</p>
+<p>下表说明了 ESP8266 开发板上丝印的引脚号与实际 GPIO 编号的对应关系，并提醒你哪些引脚在使用时需要注意。</p>
+<p>绿色标记的引脚可以随意使用；黄色标记的引脚可以使用，但需要注意它们在芯片启动时的影响，可能带来意外的问题。红色标记的引脚不建议用作输入或输出功能。</p>
+<table>
+<thead>
+<tr>
+<th>丝印标签</th>
+<th>GPIO</th>
+<th>可作为输入</th>
+<th>可作为输出</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D0</td>
+<td>GPIO16</td>
+<td>不可用于中断</td>
+<td>不可用于 PWM 或 I2C</td>
+<td>🟠启动时为高电平<br>用于从深度睡眠中唤醒</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>GPIO5</td>
+<td>🟢是</td>
+<td>🟢是</td>
+<td>通常用作 <strong>SCL</strong> (I2C)</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>GPIO4</td>
+<td>🟢是</td>
+<td>🟢是</td>
+<td>通常用作 <strong>SDA</strong> (I2C)</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>GPIO0</td>
+<td>已被上拉</td>
+<td>🟢是</td>
+<td>与 FLASH 按键连接，如果拉低则会启动失败</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>GPIO2</td>
+<td>已被上拉</td>
+<td>🟢是</td>
+<td>🟠启动时为高电平<br>连接板载 LED，如果拉低则会启动失败</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>GPIO14</td>
+<td>🟢是</td>
+<td>🟢是</td>
+<td><strong>SPI</strong> (SCLK)</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>GPIO12</td>
+<td>🟢是</td>
+<td>🟢是</td>
+<td><strong>SPI</strong> (MISO)</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>GPIO13</td>
+<td>🟢是</td>
+<td>🟢是</td>
+<td><strong>SPI</strong> (MOSI)</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>GPIO15</td>
+<td>已被下拉至 GND</td>
+<td>🟡是</td>
+<td><strong>SPI</strong> (CS)<br>如果拉高则会启动失败</td>
+</tr>
+<tr>
+<td>RX</td>
+<td>GPIO3</td>
+<td>🟡是</td>
+<td>🔴RX 引脚</td>
+<td>🟠启动时为高电平</td>
+</tr>
+<tr>
+<td>TX</td>
+<td>GPIO1</td>
+<td>🔴TX 引脚</td>
+<td>🟡是</td>
+<td>🟠启动时为高电平<br>启动时的调试输出引脚，如果拉低会启动失败</td>
+</tr>
+<tr>
+<td>A0</td>
+<td>ADC0</td>
+<td>🟢模拟输入</td>
+<td>🔴禁用</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>接下来的篇幅将更详细地介绍 ESP8266 GPIO 引脚的功能。</p>
+<h3 id="连接-FLASH-芯片的引脚"><a href="#连接-FLASH-芯片的引脚" class="headerlink" title="连接 FLASH 芯片的引脚"></a>连接 FLASH 芯片的引脚</h3><p>GPIO6 到 GPIO11 通常用于连接 FLASH 芯片，所以，不推荐使用这几个引脚。</p>
+<h3 id="启动过程中用到的引脚"><a href="#启动过程中用到的引脚" class="headerlink" title="启动过程中用到的引脚"></a>启动过程中用到的引脚</h3><p>如果某些引脚被拉高或者拉低，ESP8266 可能会启动失败。下表是部分引脚在启动时的状态：</p>
+<ul>
+<li><strong>GPIO16</strong>：启动时为高电平</li>
+<li><strong>GPIO0</strong>：如果被拉低，则启动失败</li>
+<li><strong>GPIO2</strong>：启动时为高电平，如果被拉低，则启动失败</li>
+<li><strong>GPIO15</strong>：如果被拉高，则启动失败</li>
+<li><strong>GPIO3</strong>：启动时为高电平</li>
+<li><strong>GPIO1</strong>：启动时为高电平，如果被拉低，则启动失败</li>
+<li><strong>GPIO10</strong>：启动时为高电平</li>
+<li><strong>GPIO9</strong>：启动时为高电平</li>
+</ul>
+<h3 id="启动时为高电平的引脚"><a href="#启动时为高电平的引脚" class="headerlink" title="启动时为高电平的引脚"></a>启动时为高电平的引脚</h3><p>以下引脚在启动时会输出 3.3V 的高电平。如果你在这些引脚上接了继电器之类的外设，可能会带来一些问题：</p>
+<ul>
+<li>GPIO16</li>
+<li>GPIO3</li>
+<li>GPIO1</li>
+<li>GPIO10</li>
+<li>GPIO9</li>
+</ul>
+<p>此外，其他引脚（除了 GPIO5 和 GPIO4），在启动时会输出低电平信号，同样可能带来问题。你可以阅读 <a target="_blank" rel="noopener" href="https://rabbithole.wwwdotorg.org/2017/03/28/esp8266-gpio.html">此文章</a> 以详细了解各个 GPIO 在启动时的状态。</p>
+<blockquote>
+<p>🟢如果需要控制继电器或功率管，GPIO4 和 GPIO5 是最安全的引脚。</p>
+</blockquote>
+<h3 id="模拟输入引脚"><a href="#模拟输入引脚" class="headerlink" title="模拟输入引脚"></a>模拟输入引脚</h3><p>ESP8266 只有一个引脚支持模拟输入，此引脚叫 ADC0，丝印上常标记为 A0。</p>
+<p>如果使用 ESP8266 裸芯片（ESP-12E/F）的话，此引脚的电压输入范围为 0-1V。如果使用了 NodeMCU 之类的开发板，那么电压输入范围就是 0-3.3V，因为开发板上已经集成了分压器。</p>
+<h3 id="板载-LED"><a href="#板载-LED" class="headerlink" title="板载 LED"></a>板载 LED</h3><p>大多数 ESP8266 模块均有一个内置的 LED，通常连在 GPIO2 上。LED 亮灭的逻辑是反向的，GPIO2 为高电平时，LED 熄灭；GPIO2 低电平时，LED 亮起。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/6.png"></p>
+<h3 id="复位引脚"><a href="#复位引脚" class="headerlink" title="复位引脚"></a>复位引脚</h3><p>当 RST 引脚被拉低时，ESP8266 将被复位。按开发板上的 RESET 按键同理。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/7.png"></p>
+<h3 id="GPIO0"><a href="#GPIO0" class="headerlink" title="GPIO0"></a>GPIO0</h3><p>当 GPIO0 被拉低时，复位 ESP8266，芯片将进入 bootloader 模式。按开发板上的 FLASH/BOOT 按钮同理。</p>
+<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/8.png"></p>
+<h3 id="GPIO16"><a href="#GPIO16" class="headerlink" title="GPIO16"></a>GPIO16</h3><p>GPIO16 可被用于从深度睡眠中唤醒 ESP8266。要实现此功能，需要将 GPIO16 连接在 RST 引脚上。关于如何实现深度睡眠，请搜索并参考 Arduino 官网上的相关案例。</p>
+<h3 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h3><p>ESP8266 没有硬件 I2C 引脚，但可以用软件模拟，所以你可以使用任意引脚实现 I2C。通常我们会使用以下引脚：</p>
+<ul>
+<li><strong>GPIO5</strong>：SCL</li>
+<li><strong>GPIO4</strong>：SDA</li>
+</ul>
+<h3 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h3><p>ESP8266 上的 SPI 引脚如下：</p>
+<ul>
+<li><strong>GPIO12</strong>：MISO</li>
+<li><strong>GPIO13</strong>：MOSI</li>
+<li><strong>GPIO14</strong>：SCLK</li>
+<li><strong>GPIO15</strong>：CS</li>
+</ul>
+<h3 id="PWM-引脚"><a href="#PWM-引脚" class="headerlink" title="PWM 引脚"></a>PWM 引脚</h3><p>我们可以在 ESP8266 的所有引脚（GPIO0 至 GPIO15）上软件实现 PWM 功能。ESP8266 上的 PWM 有 10 位精度。关于如何实现 PWM 功能，请搜索并参考 Arduino 官网上的相关案例。</p>
+<h3 id="中断引脚"><a href="#中断引脚" class="headerlink" title="中断引脚"></a>中断引脚</h3><p>ESP8266 的所有 GPIO 引脚均支持中断，除了 GPIO16。相关案例请搜索并参考 Arduino 官网上的相关案例。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>希望本文能解决你对 ESP8266 GPIO 的相关疑惑，祝好！</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+        
+            <div style="text-align: center;">
+                <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
+                    点击加载评论组件<br>
+                    请确保您的网络环境可以访问 Disqus
+                </button>
+            </div>
+        
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://qinmaye.top/">马也闲扯</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="/static/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        function loadDisqus() {
+            var elem = document.getElementById("loadDisqusButton");
+            elem.remove();
+
+            if( '' || '')
+            var disqus_config = function () {
+                this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://villivateur.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    </script>
+
+
+
+</html>
