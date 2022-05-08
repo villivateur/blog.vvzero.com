@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.vvzero.com/"/>
-  <updated>2022-05-05T12:16:34.631Z</updated>
+  <updated>2022-05-08T04:01:10.683Z</updated>
   <id>https://blog.vvzero.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何在 Markdown 中修改字体颜色</title>
+    <link href="https://blog.vvzero.com/2022/05/06/How-to-apply-color-in-Markdown/"/>
+    <id>https://blog.vvzero.com/2022/05/06/How-to-apply-color-in-Markdown/</id>
+    <published>2022-05-06T12:21:48.000Z</published>
+    <updated>2022-05-08T04:01:10.683Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文是“攻玉计划”的一部分，翻译自 <a href="https://stackoverflow.com/questions/35465557/how-to-apply-color-in-markdown">https://stackoverflow.com/questions/35465557/how-to-apply-color-in-markdown</a></p></blockquote><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>我想用 Markdown 记录文字信息，但我搜了一圈 Google，发现 Markdown 不支持修改字体颜色。而且 StackOverflow 和 GitHub 的 Markdown 编辑模式也不支持指定文字颜色。</p><p>有什么办法可以在 Markdown 里指定文字颜色吗？</p><h2 id="最佳答案"><a href="#最佳答案" class="headerlink" title="最佳答案"></a>最佳答案</h2><p><strong>太长不看系列：</strong></p><p>Markdown 自身并不支持色彩配置，但你可以在 Markdown 中添加 HTML 代码，例如：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color:blue&quot;</span>&gt;</span>这是**蓝色**的文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure><p><strong>以下是长回答：</strong></p><p>根据官方的 <a href="http://daringfireball.net/projects/markdown/syntax#html">语法规则</a>：</p><blockquote><p>Markdown 只有一个用途，就是作为编写网页的一种语法格式。<br>Markdown 不能取代 HTML，甚至不能实现 HTML 的大部分功能。它的语法很简单，只能覆盖很小一部分的 HTML 标签。Markdown 并不是为了让你更方便地插入 HTML 标签。我的观点是，HTML 标签已经很方便了，而 Markdown 是为了让人更容易读、写、改。HTML 是用于发布的格式，而 Markdown 是给人写的格式。因此，<strong>Markdown的语法格式只用来处理可以用纯文本表达的信息。</strong><br>对于任何 Markdown 未实现的功能，直接插入 HTML 代码即可。</p></blockquote><p>由于 Markdown 并不是用来发布的格式，修改字体的颜色已经超出了 Markdown 的处理范围。但你仍可以插入裸的 HTML 代码（因为 HTML 是发布级的格式），例如以下 Markdown 文本：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">包含 <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color:blue&quot;</span>&gt;</span>*蓝色* 文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span>的 Markdown 语句。</span><br></pre></td></tr></table></figure><p>将会转换为以下 HTML 代码：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>包含 <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color:blue&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span>蓝色<span class="tag">&lt;/<span class="name">em</span>&gt;</span> 文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span>的 Markdown 语句。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure><p>目前，StackOverflow （也许 GitHub 也是）会把 HTML 代码原原本本地显示出来（因为安全性考虑），因此你无法在这些地方实现文字颜色的功能，但你可以在 Markdown 的任何标准实现中使用。</p><p>另一种解决方案是，直接使用 <a href="http://maruku.rubyforge.org/proposal.html#attribute_lists">Markuru</a> 的非标准属性表。此标准后续被 <a href="https://pythonhosted.org/Markdown/extensions/attr_list.html">其它</a> <a href="https://pythonhosted.org/Markdown/extensions/attr_list.html">一些人</a>（可能还有其他类似理念的方案，比如 <a href="http://pandoc.org/MANUAL.html#divs-and-spans">pandoc 中的 div 和 span 参数</a>）继承开发。如果用了这种方案，你就可以为一段文字或者行内元素配置一个类，然后用 CSS 给这个类定义色彩属性。但显然，你必须使用支持这些非标准方案的编辑工具，并且这样写出来的文档也没法移植到其他系统上。</p><h2 id="其他回答-1"><a href="#其他回答-1" class="headerlink" title="其他回答 1"></a>其他回答 1</h2><p>如果你不想嵌入 HTML，只想用纯净的 Markdown 语句，可以尝试添加 emoji 以便强调指定语句。比如：⚠️警告⚠️，🔴重要❗🔴 或者 🔥新功能🔥。</p><h2 id="其他回答-2"><a href="#其他回答-2" class="headerlink" title="其他回答 2"></a>其他回答 2</h2><p>尽管 Markdown 不支持文字颜色属性，但你可以用 CSS 重定义一些格式标签，以便用它们来修改文字颜色。当然，你可以选择是否保留这些格式标签的原有属性。</p><p>例如：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 重置标签属性</span><br><span class="line">s &#123; <span class="attribute">text-decoration</span>: none; &#125; // 删除线</span><br><span class="line"><span class="selector-tag">em</span> &#123; <span class="attribute">font-style</span>: normal; <span class="attribute">font-weight</span>: bold; &#125; // 斜体</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 增加颜色属性</span><br><span class="line">s &#123; <span class="attribute">color</span>: green &#125;</span><br><span class="line"><span class="selector-tag">em</span> &#123; <span class="attribute">color</span>: blue &#125;</span><br></pre></td></tr></table></figure><p>参见 <a href="https://stackoverflow.com/questions/25535836/how-to-restyle-em-tag-to-be-bold-instead-of-italic">如何使 em 标签标记粗体而不是斜体</a>。</p><p>然后，在 Markdown 文本中这样使用：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~~这是绿色~~</span><br><span class="line">_这是蓝色_</span><br></pre></td></tr></table></figure><h2 id="其他回答-3"><a href="#其他回答-3" class="headerlink" title="其他回答 3"></a>其他回答 3</h2><p>可以换个思路，你可以用各种颜色的 Unicode 字符以满足相关需求，比如 🔴，U+1F534（大红圈）。</p><p>举个例子，在我 GitHub 里的硬件项目中，我会用以下的字符以注明接线的颜色：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">🔴 红色: +5V</span><br><span class="line">🟠 橙色: +3.3V</span><br><span class="line">⚫ 黑色: GND</span><br><span class="line">⚪ 白色: GND (拉低)</span><br><span class="line">🟣 紫色: I2C 信号线</span><br><span class="line">🟢 绿色: 时钟信号</span><br><span class="line">🟡 黄色: WS2812 信号</span><br><span class="line">🔵 蓝色: 电阻桥（模拟）输入</span><br></pre></td></tr></table></figure><p>这也许能帮到你，你可以直接复制粘贴上述字符到你的文档中，或者直接在网上搜例如“Unicode 紫色方块”之类。当然，它们也叫做 emoji。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文是“攻玉计划”的一部分，翻译自 &lt;a href=&quot;https://stackoverflow.com/questions/35465557/how-to-apply-color-in-markdown&quot;&gt;https://stackoverflo
+      
+    
+    </summary>
+    
+      <category term="攻玉计划" scheme="https://blog.vvzero.com/categories/%E6%94%BB%E7%8E%89%E8%AE%A1%E5%88%92/"/>
+    
+    
+      <category term="Markdown" scheme="https://blog.vvzero.com/tags/Markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>如何在 ESP8266 上选用合适的引脚</title>
@@ -580,38 +606,6 @@
       <category term="Nginx" scheme="https://blog.vvzero.com/tags/Nginx/"/>
     
       <category term="h5ai" scheme="https://blog.vvzero.com/tags/h5ai/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>像我这样的人</title>
-    <link href="https://blog.vvzero.com/2018/10/04/people-like-me/"/>
-    <id>https://blog.vvzero.com/2018/10/04/people-like-me/</id>
-    <published>2018-10-04T12:55:47.000Z</published>
-    <updated>2022-01-17T08:39:56.513Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>作者：长歌如令</p></blockquote><blockquote><p>标题与毛不易的歌曲重名，于是去听了一下毛不易的这首歌，挺悲伤。</p><p>但是我不是一个悲伤的人。</p></blockquote><h2 id="一、性格"><a href="#一、性格" class="headerlink" title="一、性格"></a>一、性格</h2><p>其实还是偏内向，但是又有话痨属性，所以我有时会自言自语，跟朋友在一起的时候也会说个不停。</p><h2 id="二、-爱好"><a href="#二、-爱好" class="headerlink" title="二、 爱好"></a>二、 爱好</h2><p>这个真不是一个词就能概括的，我最喜欢的是有空闲的时间去做自己想做的事情，至于我想做的事情是什么，要根据当天的心情，可能只是躺着玩手机，刷视频，可能是看书，可能是戴着耳机出去走走，也可能是出去买菜做饭，然后自己全部吃完。当然这些都是我在一个人的时候爱做的事情，其实我也挺喜欢一个人呆着的，不要问我怎样快乐的独处，因为独处本身对我来说就是快乐的。</p><h2 id="三、理想"><a href="#三、理想" class="headerlink" title="三、理想"></a>三、理想</h2><p>能经济独立，有闲钱可以出去旅游。</p><h2 id="四、特长"><a href="#四、特长" class="headerlink" title="四、特长"></a>四、特长</h2><p>说真的，没有……</p><p>可能刚接触我的人会觉得我很奇怪，比如有时会自言自语，然后笑点也很低，可能会突然就笑起来（这样写是不是会觉得我有点可怕），但是我觉得我还是挺好相处的吧。</p><p>我觉得我是典型的做事三分钟热度，做事的动力是冲动，想到什么就会立刻去做什么。不管别人怎么看，只要我觉得是对的就会去做，比如我高三的时候坚持写日记，在别人刷题的时候，我在写日记，别人睡觉的时候，我在看书，我只是比较坚持自己想做的事情吧，其实像我这样的人应该也挺多的，之前会觉得别人无趣，但想想也许别人会觉得我很无趣，几乎别人喜欢的事情我都无感，不玩游戏，不追剧，不看小说，不追星，不管什么事情都不会特别喜欢，不会狂热。好像是挺无趣的，可是有趣千人千色，我觉得有趣就行。</p><h2 id="五、最后"><a href="#五、最后" class="headerlink" title="五、最后"></a>五、最后</h2><p>像我这样平凡的人，却也会自命不凡，实际上没什么不同，或者说每一个都是与众不同的，（我也不知道我在说些什么），anyway，我就是这样的人。</p><p><strong>我想，大家都是像我这样吧，矛盾而又自在地活着，也许偶尔会自命不凡，但是深刻地知道没什么不凡，像我这样平凡的人。</strong></p><p><img src="https://img.vvzero.com/blog/people-like-me/1.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;作者：长歌如令&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;标题与毛不易的歌曲重名，于是去听了一下毛不易的这首歌，挺悲伤。&lt;/p&gt;
-&lt;p&gt;但是我不是一个悲伤的人。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;一、性格
-      
-    
-    </summary>
-    
-      <category term="CHANNY" scheme="https://blog.vvzero.com/categories/CHANNY/"/>
-    
-    
-      <category term="长令记事" scheme="https://blog.vvzero.com/tags/%E9%95%BF%E4%BB%A4%E8%AE%B0%E4%BA%8B/"/>
     
   </entry>
   
