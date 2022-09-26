@@ -158,7 +158,7 @@
 <li>学校教学办公区有线宽带，经直接拨号，同样可以获得一个 ipv4 内网地址和一个 ipv6 地址，均可以访问互联网。</li>
 </ul>
 <h2 id="一步步的尝试"><a href="#一步步的尝试" class="headerlink" title="一步步的尝试"></a>一步步的尝试</h2><h3 id="直接用-ipv6-上提供-ipv6-服务的网站"><a href="#直接用-ipv6-上提供-ipv6-服务的网站" class="headerlink" title="直接用 ipv6 上提供 ipv6 服务的网站"></a>直接用 ipv6 上提供 ipv6 服务的网站</h3><p>既然可以从 nuaa.portal 获取可以访问互联网的 ipv6 地址，那么最简单的思路，就是直接使用这条通道。但是，由于学校没有 ipv6 的 DNS（认证后，如果访问 ipv6 站点，其实仍然是使用 ipv4 的 DNS 服务器），故必须配置 ipv6 的 DNS。这一点很简单，直接修改 DNS 服务器即可：</p>
-<p><img src="https://img.vvzero.com/blog/Use-the-Internet-via-nuaa-portal-for-free/2.png"></p>
+<p><img src="/static/blog_images/Use-the-Internet-via-nuaa-portal-for-free/2.png"></p>
 <p>这里推荐两个 ipv6 的 DNS 服务器，一个是 Google 家的，一个是清华大学 TUNA 协会的：</p>
 <ul>
 <li><code>2001:4860:4860::8888</code></li>
@@ -178,7 +178,7 @@
 <p>使用这个方法，本地 DNS 甚至都不需要配置。</p>
 <h3 id="终极（硬核）蹭网方案"><a href="#终极（硬核）蹭网方案" class="headerlink" title="终极（硬核）蹭网方案"></a>终极（硬核）蹭网方案</h3><p>还记得一开始我说过，教学办公区也能获得 ipv6 地址吗？</p>
 <p>对，我就是想用远程桌面！</p>
-<p><img src="https://img.vvzero.com/blog/Use-the-Internet-via-nuaa-portal-for-free/1.jpg"></p>
+<p><img src="/static/blog_images/Use-the-Internet-via-nuaa-portal-for-free/1.jpg"></p>
 <p>我在学校创新区日常开着一台机器，拨号联网，（性能还不错）。</p>
 <p>emmm，其实这个方法真的很硬核很有效，而且，由于 nuaa.portal 和教学办公区实际属于同一个大的内网环境，学校的路由器还不错，实测 ping 延迟只有 2ms，完全满足了日常电脑使用（除了不能使用显卡玩游戏什么的）。微软家的远程桌面还是很强大的！</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我其实还是想再来一年的免费 nuaa.portal 账号的。</p>

@@ -152,7 +152,7 @@
     <div class="post-content no-indent">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>近期更新了Windows 10 1803，结果惊奇地发现，Windows居然自带OpenSSH，而且在这个版本里面默认启用了！于是尝试了一番，现在写点记录。</p>
 <h2 id="可用功能"><a href="#可用功能" class="headerlink" title="可用功能"></a>可用功能</h2><p>OpenSSH可执行文件都在<code>C:\Windows\System32\OpenSSH</code>中，如下图所示：</p>
-<p><img src="https://img.vvzero.com/blog/about-openssh-on-windows/1.PNG"></p>
+<p><img src="/static/blog_images/about-openssh-on-windows/1.PNG"></p>
 <p>与Linux中的OpenSSH并无大异。但是，我找了很久也没看到它的配置文件在哪。然后找到了国外友人在MSDN博客上的介绍：<a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/">点此查看</a></p>
 <h2 id="使用小记"><a href="#使用小记" class="headerlink" title="使用小记"></a>使用小记</h2><p>在cmder中正常使用没有问题，但是一开始我想加入自己的私钥，由于没有找到配置文件，只能依照上面的博客，进行如下操作：</p>
 <ol>

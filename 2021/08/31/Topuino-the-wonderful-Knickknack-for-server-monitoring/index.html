@@ -156,12 +156,12 @@
         <blockquote>
 <p>我做了一个用来监控服务器的桌面小摆件</p>
 </blockquote>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/1.png"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/1.png"></p>
 <h2 id="什么是-Topuino"><a href="#什么是-Topuino" class="headerlink" title="什么是 Topuino"></a>什么是 Topuino</h2><p>Topuino 是我 DIY 的一个桌面小摆件，可以实现通用服务器或计算机的数据监控，包括 CPU 占用、RAM 占用、两个硬盘的可用空间、硬盘读写速度、网络 IO 速率。</p>
 <h2 id="为什么叫-Topuino"><a href="#为什么叫-Topuino" class="headerlink" title="为什么叫 Topuino"></a>为什么叫 Topuino</h2><p>在 Linux 系列服务器上，我们通常使用 top 命令查看 CPU 内存占用，我最初的设想也是将 top 命令实物化，这就是 Topuino 中 Top 的由来。</p>
 <p>在选型的时候，为了兼顾开发效率和成本，我选用了大名鼎鼎的 ESP8266 单片机，配合了 Arduino 开发框架，Arduino 则是 Topuino 中 uino 的由来。</p>
 <h2 id="Topuino-有哪些亮点"><a href="#Topuino-有哪些亮点" class="headerlink" title="Topuino 有哪些亮点"></a>Topuino 有哪些亮点</h2><p>先看图解：</p>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/2.png"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/2.png"></p>
 <ol>
 <li>我觉得它挺好看，哑光黑的 PCB 底板富有科技感，红绿蓝三色 LED 层次分明，指示性强；</li>
 <li>显示的参数满足大部分的需求，刷新率为 1 秒，CPU、内存、磁盘占用以百分比表示在柱状图上，磁盘、网络 IO 各以四位数码管显示，配合 KB、MB 单位显示，可以表示 0KB - 9999MB /s 的速率；</li>
@@ -169,19 +169,19 @@
 <li>使用了通用的 USB-TypeC 接口（后期会做带电池版本）；</li>
 <li>成本不高，谁都可以承担。</li>
 </ol>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/3.jpg"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/3.jpg"></p>
 <h2 id="Topuino-的工作原理"><a href="#Topuino-的工作原理" class="headerlink" title="Topuino 的工作原理"></a>Topuino 的工作原理</h2><ul>
 <li>服务器部分很简单，主站使用了 Flask，维护一个数据库，保存着从站（被监控服务器）UUID 与运行参数的映射关系（实际上现在是用 python 的字典简单实现的）。主站接收从站的运行数据，并向 Topuino 回传数据；</li>
 <li>服务器从站采用 python 的 psutil 库，获取所有的运行数据；</li>
 <li>Topuino 硬件部分使用了 ESP-12F 作为 MCU，显示采用 LED 整列和数码管，显示驱动是 TM1638 芯片。</li>
 </ul>
 <p>附上原理图：</p>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/4.png"></p>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/5.png"></p>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/6.png"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/4.png"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/5.png"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/6.png"></p>
 <p>PCB 打样交给专门的厂家，回来自己焊。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>你愿意在办公桌上放一个监控服务器的小摆件吗？至少，我做出来之后，很喜欢，就像看着一只猫一样。</p>
-<p><img src="https://img.vvzero.com/blog/Topuino-the-wonderful-Knickknack-for-server-monitoring/7.png"></p>
+<p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/7.png"></p>
 <p>另：ESP8266 的代码初步开源在 <a target="_blank" rel="noopener" href="https://github.com/Villivateur/Topuino">https://github.com/Villivateur/Topuino</a> ，供大家参考。服务器端代码因为太简单且写得太丑，以后再说吧~~</p>
 
         

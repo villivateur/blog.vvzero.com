@@ -162,10 +162,10 @@
 </ol>
 <h2 id="Control-Process"><a href="#Control-Process" class="headerlink" title="Control Process"></a>Control Process</h2><p>首先，Arduino向ESP8266发送请求连接远程服务器（TCP），在200ms延时内得到回复后，继续请求发送TCP数据包，而后传输数据（我这里只发送了一个“6”）。如果上面任意一步出现错误，错误指示灯将亮起，并且自动重新连接。如果连接无误，Arduino将会收到服务器回复的信息，“1”或“0”。这里我用“1”代表亮起被控制的LED，“0”代表熄灭它。</p>
 <p>配合服务端的Socket程序，便可以实现简单的远程通讯。</p>
-<h2 id="Pictures"><a href="#Pictures" class="headerlink" title="Pictures"></a>Pictures</h2><p><img src="https://img.vvzero.com/blog/Remote-Control-Client-via-ESP8266-Arduino/1.png" alt="Real Products"></p>
+<h2 id="Pictures"><a href="#Pictures" class="headerlink" title="Pictures"></a>Pictures</h2><p><img src="/static/blog_images/Remote-Control-Client-via-ESP8266-Arduino/1.png" alt="Real Products"></p>
 <center>Real Products</center>
 
-<p><img src="https://img.vvzero.com/blog/Remote-Control-Client-via-ESP8266-Arduino/2.png" alt="The Server Terminal"></p>
+<p><img src="/static/blog_images/Remote-Control-Client-via-ESP8266-Arduino/2.png" alt="The Server Terminal"></p>
 <center>The Server Terminal</center>
 
 <h2 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h2><p>The Arduino Client:</p>

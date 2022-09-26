@@ -154,21 +154,21 @@
 <p>本文是“攻玉计划”的一部分，翻译自 <a target="_blank" rel="noopener" href="https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/">https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/</a></p>
 </blockquote>
 <p>本文旨在介绍 ESP8266 的引脚定义、引脚功能及如何使用它们。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/1.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/1.png"></p>
 <p>ESP-12E 模块拥有 17 个 GPIO 引脚。但在各个开发板上，ESP8266 芯片的 GPIO 引脚并不一定全部引出，而且某些引脚不建议使用，某些引脚有非常特殊的功能。</p>
 <p>本文将指导你如何正确使用 ESP8266 的各个 GPIO，避免用错引脚而浪费时间。</p>
 <h2 id="ESP12-E-模块引脚定义"><a href="#ESP12-E-模块引脚定义" class="headerlink" title="ESP12-E 模块引脚定义"></a>ESP12-E 模块引脚定义</h2><p>下图阐述了 ESP-12E 模块的引脚定义。当你的项目使用裸 ESP-12E/F 模块的时候，可以参考此图。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/2.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/2.png"></p>
 <blockquote>
 <p>🔵注意：某些开发板可能不能使用全部的引脚，但相同的引脚在不同的开发板上，功能肯定是一样的。</p>
 </blockquote>
 <p>当前市场上有很多不同的 ESP8266 模块/开发板，它们的形状、大小、可用 GPIO 数目各不相同。但最常用的是 ESP-01(S)、ESP-12E/F、NodeMCU 开发板以及 Wemos D1 Mini 开发板。你可以自己搜索这些开发板模块的区别。</p>
 <h2 id="ESP-01-S-引脚定义"><a href="#ESP-01-S-引脚定义" class="headerlink" title="ESP-01(S) 引脚定义"></a>ESP-01(S) 引脚定义</h2><p>如果你在用 ESP-01(S) 的板子，可以参考下图的 GPIO 引脚定义。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/3.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/3.png"></p>
 <h2 id="ESP-12E-NodeMCU-开发板"><a href="#ESP-12E-NodeMCU-开发板" class="headerlink" title="ESP-12E NodeMCU 开发板"></a>ESP-12E NodeMCU 开发板</h2><p>ESP-12E NodeMCU 开发板的引脚定义如下图所示。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/4.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/4.png"></p>
 <h2 id="Wemos-D1-Mini-开发板"><a href="#Wemos-D1-Mini-开发板" class="headerlink" title="Wemos D1 Mini 开发板"></a>Wemos D1 Mini 开发板</h2><p>Wemos D1 Mini 开发板的引脚定义如下图所示。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/5.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/5.png"></p>
 <h2 id="ESP8266-的外设"><a href="#ESP8266-的外设" class="headerlink" title="ESP8266 的外设"></a>ESP8266 的外设</h2><p>ESP8266 的外设包括：</p>
 <ul>
 <li>17 个 GPIO</li>
@@ -304,11 +304,11 @@
 <h3 id="模拟输入引脚"><a href="#模拟输入引脚" class="headerlink" title="模拟输入引脚"></a>模拟输入引脚</h3><p>ESP8266 只有一个引脚支持模拟输入，此引脚叫 ADC0，丝印上常标记为 A0。</p>
 <p>如果使用 ESP8266 裸芯片（ESP-12E/F）的话，此引脚的电压输入范围为 0-1V。如果使用了 NodeMCU 之类的开发板，那么电压输入范围就是 0-3.3V，因为开发板上已经集成了分压器。</p>
 <h3 id="板载-LED"><a href="#板载-LED" class="headerlink" title="板载 LED"></a>板载 LED</h3><p>大多数 ESP8266 模块均有一个内置的 LED，通常连在 GPIO2 上。LED 亮灭的逻辑是反向的，GPIO2 为高电平时，LED 熄灭；GPIO2 低电平时，LED 亮起。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/6.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/6.png"></p>
 <h3 id="复位引脚"><a href="#复位引脚" class="headerlink" title="复位引脚"></a>复位引脚</h3><p>当 RST 引脚被拉低时，ESP8266 将被复位。按开发板上的 RESET 按键同理。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/7.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/7.png"></p>
 <h3 id="GPIO0"><a href="#GPIO0" class="headerlink" title="GPIO0"></a>GPIO0</h3><p>当 GPIO0 被拉低时，复位 ESP8266，芯片将进入 bootloader 模式。按开发板上的 FLASH/BOOT 按钮同理。</p>
-<p><img src="https://img.vvzero.com/blog/esp8266-pinout-reference-gpios/8.png"></p>
+<p><img src="/static/blog_images/esp8266-pinout-reference-gpios/8.png"></p>
 <h3 id="GPIO16"><a href="#GPIO16" class="headerlink" title="GPIO16"></a>GPIO16</h3><p>GPIO16 可被用于从深度睡眠中唤醒 ESP8266。要实现此功能，需要将 GPIO16 连接在 RST 引脚上。关于如何实现深度睡眠，请搜索并参考 Arduino 官网上的相关案例。</p>
 <h3 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h3><p>ESP8266 没有硬件 I2C 引脚，但可以用软件模拟，所以你可以使用任意引脚实现 I2C。通常我们会使用以下引脚：</p>
 <ul>

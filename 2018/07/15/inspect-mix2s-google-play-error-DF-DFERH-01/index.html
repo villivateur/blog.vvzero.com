@@ -155,18 +155,18 @@
 <p>当然，没有Google全家桶的安卓机是不完美的。</p>
 <p>于是问题来了。</p>
 <h2 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h2><p>与MI5不同的是，MIX2s自带谷歌框架。</p>
-<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/1.png" style="zoom: 25%;" />
+<img src="/static/blog_images/inspect-mix2s-google-play-error-DF-DFERH-01/1.png" style="zoom: 25%;" />
 
 <p>但是出厂并不标配Google Play，需要在应用商店里安装。（当然，小米官方是没有的，需要拉到最下面“在百度中搜索”或“在豌豆荚中搜索”）。</p>
 <p>首次登陆的时候，并不会遇到什么问题（前提是配置好纸飞机）。但是，在重新启动Google Play，或者重启手机后，再次使用均会出现“DF-DFERH-01”的错误。</p>
-<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/2.png" style="zoom:25%;" />
+<img src="/static/blog_images/inspect-mix2s-google-play-error-DF-DFERH-01/2.png" style="zoom:25%;" />
 
 <p>只有清除Google Play应用数据后，才能恢复原状。但是，一旦重启应用或机器，错误就会重现。</p>
 <h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><p>错误信息是<code>Error retrieving information from server</code>，即从服务器获取信息失败。但是，显然我的纸飞机没有问题啊（别问我怎么知道的）。依靠错误代码在网络上搜索了半天，并不能找到有效的解决方法，清数据、重新登陆谷歌账号，都没有用。但是谷歌的其他服务可以使用（账户同步等）。甚是奇怪。</p>
 <p>最终，还是本国的论坛更加了解国情。在MIUI论坛中，我找到了相关信息。</p>
 <p>在MI5中，由于系统并不自带谷歌框架，所以我安装的是原生的谷歌服务，连接谷歌服务的域名均为<code>.com</code>后缀。但是，小米自带的谷歌服务，域名存在<code>.cn</code>后缀，问题就在于此。</p>
 <p>使用抓包工具对Google Play的数据进行分析，发现了以下数据包：</p>
-<p><img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/6.jpg"></p>
+<p><img src="/static/blog_images/inspect-mix2s-google-play-error-DF-DFERH-01/6.jpg"></p>
 <p>小米自带的谷歌服务，在Google Play启动的时候，会向<code>services.googleapis.cn</code>获取数据，而正常情况下（国际版），应是<code>services.googleapis.com</code>。在国内，由于众所周知的原因，<code>services.googleapis.cn</code>并不会指向谷歌服务器，而是指向了北京某公司的服务器。</p>
 <p>以下是使用国内两台主机获取的host数据：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 203.208.39.239</span><br><span class="line">services.googleapis.cn has address 203.208.39.247</span><br><span class="line">services.googleapis.cn has address 203.208.39.255</span><br><span class="line">services.googleapis.cn has address 203.208.39.248</span><br><span class="line">services.googleapis.cn has IPv6 address 2401:3800:4002:805::100f</span><br></pre></td></tr></table></figure>
@@ -174,7 +174,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 203.208.43.95</span><br><span class="line">services.googleapis.cn has address 203.208.43.79</span><br><span class="line">services.googleapis.cn has address 203.208.43.87</span><br><span class="line">services.googleapis.cn has address 203.208.43.88</span><br><span class="line">services.googleapis.cn has IPv6 address 2401:3800:4001:14::1018</span><br></pre></td></tr></table></figure>
 
 <p>查询这类ip地址的归属地，发现均归属于北京：</p>
-<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/3.jpg" style="zoom:67%;" />
+<img src="/static/blog_images/inspect-mix2s-google-play-error-DF-DFERH-01/3.jpg" style="zoom:67%;" />
 
 <blockquote>
 <p>数据来源：ip138.com</p>
@@ -185,9 +185,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ host services.googleapis.cn</span><br><span class="line">services.googleapis.cn has address 172.217.0.35</span><br><span class="line">services.googleapis.cn has IPv6 address 2607:f8b0:4005:802::2003</span><br></pre></td></tr></table></figure>
 
 <p>查询ip归属，均属于谷歌公司：</p>
-<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/4.jpg" style="zoom:67%;" />
+<img src="/static/blog_images/inspect-mix2s-google-play-error-DF-DFERH-01/4.jpg" style="zoom:67%;" />
 
-<img src="https://img.vvzero.com/blog/inspect-mix2s-google-play-error-DF-DFERH-01/5.jpg" style="zoom:67%;" />
+<img src="/static/blog_images/inspect-mix2s-google-play-error-DF-DFERH-01/5.jpg" style="zoom:67%;" />
 
 <blockquote>
 <p> 数据来源：ip138.com</p>

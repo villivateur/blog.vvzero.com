@@ -158,12 +158,12 @@
 </ol>
 <h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>在正式操作之前，请使用命令<code>hexo new page &quot;gallery&quot;</code> 新建一个页面用于显示照片。</p>
 <h3 id="准备图片"><a href="#准备图片" class="headerlink" title="准备图片"></a>准备图片</h3><p>先把所有照片存到某个目录内。而后上传到腾讯云COS，这里我使用的是COS客户端，其他方法同理。为什么要上传到COS而不放在服务器里？一方面国内服务器带宽太小，使用CDN成本太高而且存在延迟，另一方面也是为了方便防盗链。</p>
-<p><strong>注意！文件名中不能含有空格，否则会读取失败！</strong><br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/1.PNG" alt="准备照片"> </p>
+<p><strong>注意！文件名中不能含有空格，否则会读取失败！</strong><br><img src="/static/blog_images/hexo-next-create-gallery-with-tencent-cloud-COS/1.PNG" alt="准备照片"> </p>
 <h3 id="初始化Excel"><a href="#初始化Excel" class="headerlink" title="初始化Excel"></a>初始化Excel</h3><p>MarkDown中图片链接格式是<code>![]()</code>，按照此格式初始化Excel。第一列放<code>![</code>，第二列放编号（如果自己想给图片取名也可以），第三列是<code>](</code>，第四列放你的COS储存筒的根目录链接，第五列暂时留空，准备放图片文件名，第六列是<code>)</code>。</p>
-<h3 id="获取文件名"><a href="#获取文件名" class="headerlink" title="获取文件名"></a>获取文件名</h3><p>由于图片可能很多，不可能手动添加，故在此目录内打开powershell，使用命令<code>ls -name</code>获取当前目录的所有照片文件名。<br><img src="http://img.vvzero.com/hexo-next-create-gallery-with-tencent-cloud-COS/2.PNG" alt="获取文件名"><br>而后将文件名拷贝到Excel中的第五列。<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/3.PNG" alt="3"></p>
-<h3 id="Excel填充"><a href="#Excel填充" class="headerlink" title="Excel填充"></a>Excel填充</h3><p>而后使用Excel自动填充，完成每一列。并在最后加上一列，生成完整的图片格式：<code>=A1&amp;B1&amp;C1&amp;D1&amp;E1&amp;F1</code>，同样自动填充。<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/4.PNG" alt="自动填充"></p>
-<h3 id="复制到md文件中"><a href="#复制到md文件中" class="headerlink" title="复制到md文件中"></a>复制到md文件中</h3><p>然后，把最后一列复制到gallery目录下的index.md中，就大功告成啦！<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/5.PNG" alt="复制"></p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>成品图：<br><img src="https://img.vvzero.com/blog/hexo-next-create-gallery-with-tencent-cloud-COS/6.PNG" alt="成品图"><br>没什么好说的啦，还是希望自己能做出一个更像样一点的相册！</p>
+<h3 id="获取文件名"><a href="#获取文件名" class="headerlink" title="获取文件名"></a>获取文件名</h3><p>由于图片可能很多，不可能手动添加，故在此目录内打开powershell，使用命令<code>ls -name</code>获取当前目录的所有照片文件名。<br><img src="http://img.vvzero.com/hexo-next-create-gallery-with-tencent-cloud-COS/2.PNG" alt="获取文件名"><br>而后将文件名拷贝到Excel中的第五列。<br><img src="/static/blog_images/hexo-next-create-gallery-with-tencent-cloud-COS/3.PNG" alt="3"></p>
+<h3 id="Excel填充"><a href="#Excel填充" class="headerlink" title="Excel填充"></a>Excel填充</h3><p>而后使用Excel自动填充，完成每一列。并在最后加上一列，生成完整的图片格式：<code>=A1&amp;B1&amp;C1&amp;D1&amp;E1&amp;F1</code>，同样自动填充。<br><img src="/static/blog_images/hexo-next-create-gallery-with-tencent-cloud-COS/4.PNG" alt="自动填充"></p>
+<h3 id="复制到md文件中"><a href="#复制到md文件中" class="headerlink" title="复制到md文件中"></a>复制到md文件中</h3><p>然后，把最后一列复制到gallery目录下的index.md中，就大功告成啦！<br><img src="/static/blog_images/hexo-next-create-gallery-with-tencent-cloud-COS/5.PNG" alt="复制"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>成品图：<br><img src="/static/blog_images/hexo-next-create-gallery-with-tencent-cloud-COS/6.PNG" alt="成品图"><br>没什么好说的啦，还是希望自己能做出一个更像样一点的相册！</p>
 
         
         <br />

@@ -164,21 +164,21 @@
 <h2 id="实现逻辑"><a href="#实现逻辑" class="headerlink" title="实现逻辑"></a>实现逻辑</h2><p>既然是无损改装，我能想到的也就只有用舵机模拟手触动开关。由于宿舍没有无线路由，所以暂且用蓝牙进行通讯控制。电源采用4节5号电池，6V满足舵机、Arduino、蓝牙的供电要求。</p>
 <p>逻辑相当简单，手机发送“开”或“关”的指令 -&gt; 蓝牙模块接收 -&gt; Arduino处理 -&gt; 舵机转动。</p>
 <h2 id="具体制作"><a href="#具体制作" class="headerlink" title="具体制作"></a>具体制作</h2><h3 id="3D模型部分"><a href="#3D模型部分" class="headerlink" title="3D模型部分"></a>3D模型部分</h3><p>在预估好尺寸后，打印出这样的外壳以及摇臂：</p>
-<p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/1.jpg"></p>
-<p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/2.jpg"></p>
+<p><img src="/static/blog_images/hand-like-switch-controller/1.jpg"></p>
+<p><img src="/static/blog_images/hand-like-switch-controller/2.jpg"></p>
 <h3 id="Arduino-控制部分"><a href="#Arduino-控制部分" class="headerlink" title="Arduino 控制部分"></a>Arduino 控制部分</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Servo.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">Servo arm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> posdeg[<span class="number">3</span>]=&#123;<span class="number">50</span>, <span class="number">80</span>, <span class="number">110</span>&#125;; <span class="comment">//选取三个角度，模拟手开、关、无动作</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  String pos=<span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">while</span> (Serial.available()) pos+=Serial.read();</span><br><span class="line">  <span class="keyword">if</span> (pos!=<span class="string">&quot;&quot;</span>) </span><br><span class="line">  &#123;</span><br><span class="line">    arm.attach(<span class="number">9</span>);</span><br><span class="line">    Serial.println(posdeg[pos.toInt()<span class="number">-48</span>]);</span><br><span class="line">    arm.write(posdeg[pos.toInt()<span class="number">-48</span>]); </span><br><span class="line">    delay(<span class="number">200</span>); </span><br><span class="line">    arm.write(posdeg[<span class="number">1</span>]); <span class="comment">//回到中间位置，不要一直摁着开关</span></span><br><span class="line">    delay(<span class="number">250</span>);</span><br><span class="line">    arm.detach(); <span class="comment">//断开舵机连接，防止发出声音</span></span><br><span class="line">  &#125;</span><br><span class="line">  delay(<span class="number">15</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>关于防止舵机不停发声的问题，可以参见我的<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/04/13/servo-without-ringing-by-software/">上一篇博客</a>。</p>
-<h3 id="安装成品图"><a href="#安装成品图" class="headerlink" title="安装成品图"></a>安装成品图</h3><p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/3.jpg"></p>
+<h3 id="安装成品图"><a href="#安装成品图" class="headerlink" title="安装成品图"></a>安装成品图</h3><p><img src="/static/blog_images/hand-like-switch-controller/3.jpg"></p>
 <h3 id="手机控制部分"><a href="#手机控制部分" class="headerlink" title="手机控制部分"></a>手机控制部分</h3><p>暂时没有写APP的能力，于是就使用串口调试工具：</p>
-<p><img src="https://img.vvzero.com/blog/hand-like-switch-controller/4.jpg"></p>
+<p><img src="/static/blog_images/hand-like-switch-controller/4.jpg"></p>
 <p>其中，0代表关灯，2代表开灯。1用于位置矫正。</p>
 <h2 id="实际测试"><a href="#实际测试" class="headerlink" title="实际测试"></a>实际测试</h2><p>原理示意：</p>
-<video src='https://img.vvzero.com/blog/hand-like-switch-controller/5.mp4 ' type='video/mp4' controls='controls'  width='100%' height='100%'>
+<video src='/static/blog_images/hand-like-switch-controller/5.mp4 ' type='video/mp4' controls='controls'  width='100%' height='100%'>
 </video>
 
 <p>实际测试：</p>
-<video src='https://img.vvzero.com/blog/hand-like-switch-controller/6.mp4' type='video/mp4' controls='controls'  width='100%' height='100%'>
+<video src='/static/blog_images/hand-like-switch-controller/6.mp4' type='video/mp4' controls='controls'  width='100%' height='100%'>
 </video>
 
 <p>在测试过程中，4节半满的南孚电池可以支撑两天的使用。</p>

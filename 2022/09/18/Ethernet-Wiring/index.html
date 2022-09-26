@@ -159,10 +159,10 @@
 <h2 id="术语解释"><a href="#术语解释" class="headerlink" title="术语解释"></a>术语解释</h2><p>即使你刚接触网络通信不久，也应该听说了很多网线相关的概念，例如“以太网”“双绞线”“RJ45”“屏蔽线”“非屏蔽线”等。</p>
 <p>但这些概念代表了什么含义？互相之间又有什么异同？有没有什么概念被误用了？坦白而言，这些概念经常被误用，不妨看看：</p>
 <h3 id="8P8C"><a href="#8P8C" class="headerlink" title="8P8C"></a>8P8C</h3><p>这是网线两端接口的物理标准，表示它有 8 个卡口位（Position）和 8 个触点（Contacts）。这也定义了此塑料透明接口的外形设计和尺寸。</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/1.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/1.png"></p>
 <h3 id="RJ45"><a href="#RJ45" class="headerlink" title="RJ45"></a>RJ45</h3><p>标准插座接口（Registered Jack）第 45 号标准定义了线缆中导线的个数以及线序，并规定使用 8P8C 的物理接口。</p>
 <p>特别地，RJ45 定义了两种线序标准：T568a 和 T568b：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/2.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/2.png"></p>
 <p>请注意，两个标准唯一的实际区别是第 2 对线和第 3 对线的颜色不同。</p>
 <blockquote>
 <p>很多人经常用 RJ45 来指代 8P8C 插口，但这是不对的。还有另一种叫 RJ61 的类似标准，也使用了 8P8C 的插口，但其内部的线序不一样。标准插座接口定义家族中还有很多其他 RJxx 的接口，但接线定义和物理尺寸都不一样。</p>
@@ -170,7 +170,7 @@
 <h3 id="双绞线"><a href="#双绞线" class="headerlink" title="双绞线"></a>双绞线</h3><p>双绞线是一种组合线缆，包含了 8 根独立的导线，其中每两根作为一对，每对的两根线互相绞绕在一起。由此得到 4 对导线，每对导线作为一个数据传输通道。</p>
 <p>导线成对出现这一概念很重要，我们在后文中会讲到，简而言之，这有助于减少电磁干扰（EMI）。</p>
 <p>通常，双绞线有两种规格：<strong>屏蔽线</strong>及<strong>非屏蔽线</strong>。</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/3.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/3.png"></p>
 <p>注意，不管哪种规格，网线中都有 4 对导线，也就是 4 个独立的数据通道。</p>
 <h3 id="非屏蔽线"><a href="#非屏蔽线" class="headerlink" title="非屏蔽线"></a>非屏蔽线</h3><p>非屏蔽线（Unshielded Twisted Pair）（UTP）在实际工程部署中更为常见。它对外部的电磁噪声没有额外的防护，但得益于双绞线的固有特性，其数据传输也非常可靠。我们将在后文详细阐述。</p>
 <p>非屏蔽线更便宜，物理韧性更好，也更软。这些优点使得非屏蔽线在大多数场合更受欢迎。</p>
@@ -206,21 +206,21 @@
 <p>100BASE-TX 及 10BASE-T 标准中定义的网线，都包含 8 根导线，两两以双绞线的形式结合为 4 对。</p>
 <p>在这四对线中，实际只用到两对：第 2、3 对。每根线都是单工的介质，也就是说，信号只能按照指定的单方向传输。</p>
 <p>为了实现全双工通讯，某对线将始终沿某个方向传输数据，而另一对线将始终沿相反的方向传输数据。</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/4.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/4.png"></p>
 <p>网络接口卡（Network Interface Card）（NIC）的配置会决定哪对线用于发送数据，哪对线用于接收数据。</p>
 <p>使用第 2 对线（1 号和 2 号引脚）发送数据（TX）、且使用第 3 对线（3 号和 6 号引脚）接收（RX）数据的的 NIC 被称作介质相关接口（Media Dependent Interface）（MDI），与之相反，使用第 3 对线作为 RX、第 2 对线作为 TX 的 NIC 被称为交叉模式介质相关接口（Media Dependent Interface Crossover）（MDI-X）。</p>
 <h3 id="电脑之间直连通讯"><a href="#电脑之间直连通讯" class="headerlink" title="电脑之间直连通讯"></a>电脑之间直连通讯</h3><p>假设一台电脑使用 MDI 模式的 NIC ，那么它就总是用第 2 对线发送数据，用第 3 对线接收数据。但如果两台用网线连接在一起的电脑都用第 2 对线发送数据，那么就会产生冲突。与此同时，两台电脑也都无法从第 3 对线上接收到数据。</p>
 <p>因此，网线对需要交叉一下，以便从一台电脑的第 2 对线发送的数据，会被另一台电脑的第 3 对线接收到，反之亦然。</p>
 <p>下图是一个简单的示意（无需在意示意图中线的颜色，这只是为了区分两个不通的路径而已）：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/5.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/5.png"></p>
 <p>注意，两台电脑都在独立的通道上发送数据，并且依靠交叉线机制（如图所示中间的 X），两台电脑都能接收到对方发送的数据。</p>
 <p>因此，<strong>两台电脑直连后，必须使用交叉线才能通讯</strong>。</p>
 <h3 id="电脑之间通过交换机通讯"><a href="#电脑之间通过交换机通讯" class="headerlink" title="电脑之间通过交换机通讯"></a>电脑之间通过交换机通讯</h3><p>交换机使得同一网络下两台电脑的通讯变得更简单。交换机的 NIC 都采用 MDI-X 标准，也就是说，交换机总是在第 3 对线上发送数据，在第 2 对线上接收数据（与电脑的 NIC 相反）。</p>
 <p>也就是说，交换机内部有一个交叉的机制，网线本身也就不需要交叉了：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/6.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/6.png"></p>
 <p>可见，<strong>连接在交换机上的电脑可以直接使用直通线</strong>，让交换机处理线序交叉即可。端到端的通讯路径也是一样的：每个设备都在自己的 TX 线上发送数据，在 RX 线上接收数据。</p>
 <h3 id="电脑之间通过两个串联的交换机"><a href="#电脑之间通过两个串联的交换机" class="headerlink" title="电脑之间通过两个串联的交换机"></a>电脑之间通过两个串联的交换机</h3><p>我们刚刚讨论了，两台电脑直连，需要使用交叉线；类似的，两台交换机之间也需要交叉线：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/7.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/7.png"></p>
 <p>在这种情况下，端到端的通讯路径也与上述方式无异。</p>
 <h3 id="路由器与集线器"><a href="#路由器与集线器" class="headerlink" title="路由器与集线器"></a>路由器与集线器</h3><p>那么，路由器和集线器呢？他们用了怎样的 NIC ？</p>
 <p>实际情况是，路由器与电脑类似，使用了 MDI 标准（第 2 对线是 TX，第 3 对线是 RX），因此，你可以将上述图片中的任意电脑换成路由器，通讯路径分析也是一样的。</p>
@@ -230,14 +230,14 @@
 </blockquote>
 <h3 id="以太网线序图"><a href="#以太网线序图" class="headerlink" title="以太网线序图"></a>以太网线序图</h3><p>前文讲到，RJ45 的导线颜色有两种标准：T568a 和 T568b。双绞线两侧所使用的标准决定了其是交叉线还是直通线。</p>
 <p>要想做一根直通线，只要保证线两端的标准一致就行了，都是 T568a 或者都是 T568b：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/8.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/8.png"></p>
 <p>要想做一根交叉线，只需其中一端为 T568a，另一端为 T568b 即可。</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/9.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/9.png"></p>
 <p>注意，第 1 对线和第 4 对线没有使用（蓝色对和棕色对）。理论上你的网线中可以去掉这几根线，但是去掉之后剩下的线排列起来有些困难。</p>
 <p>另外，这两对线因为用不到，所以无需交叉。但是，吉比特以太网标准需要用到全部 8 根线，所以为了一致性，通常所有网线对都被交叉。我们会在后文讨论吉比特以太网。</p>
 <p>最后需要注意的是，数据信号本身并不在乎导线的颜色，只要它们连在了正确的接口上就能通讯。但能用不代表就是一个好主意，颜色乱接的话，后续维护起来就是噩梦。</p>
 <h3 id="助记图"><a href="#助记图" class="headerlink" title="助记图"></a>助记图</h3><p>综上所述，我们可以把交叉线和直通线的用法画作一张图：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/10.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/10.png"></p>
 <p>之所以这么摆放，是因为这样画起来更方便。我们把 L1、L2 层的设备画在左右两侧，L3 层设备画在上下两边，然后两两连接。关于网络协议分层请参见 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B">OSI 模型</a>。</p>
 <p>小结一下：</p>
 <ul>
@@ -284,10 +284,10 @@
 <h3 id="减少外部-EMI-的吸收"><a href="#减少外部-EMI-的吸收" class="headerlink" title="减少外部 EMI 的吸收"></a>减少外部 EMI 的吸收</h3><p>即使采用了上述的“差分线”，我们也无法避开所有外部的电磁干扰。无线网络、蓝牙、卫星通讯以及手机等都会成为空间中杂散的无线电波来源。</p>
 <p>但幸好贝尔又出现了，并设计了一种非常简单却很有效的方案以屏蔽电磁干扰。</p>
 <p>这一设计基于 EMI 的一个基本概念：离 EMI 辐射源越近，收到的干扰越强。如果两根线交替着靠近 EMI 辐射源，它们就能吸收同样多的辐射。如下图所示：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/11.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/11.png"></p>
 <p>蓝色线的初始电压是 +50V，绿线与之相反为 -50V。EMI 辐射源为图中的红圈，一圈圈向外辐射，离中心越远的圈层干扰电压越小。如果简单将图中每根线上绘制的点受到的干扰电压相加，会发现两根线都增加了 22V 的电压。</p>
 <p>尽管上图导线右侧的电压与左侧的不同，但是两根导线之间的电压差却总是一致的，一直都是 100V。EMI 对两根导线的影响是等同的。经过简单的计算与变换，即可根据最终的 100V 电压差得到初始信号分别为 +50V 和 -50V，如下图所示：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/12.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/12.png"></p>
 <blockquote>
 <p>提醒一下，以上 EMI 干扰相关电压数值被严重夸大了。实际上，正常情况下 EMI 带来的电压扰动是微伏（µV）级别的，即 1/1000,000 V。但原理依然是一样的。</p>
 </blockquote>
@@ -297,11 +297,11 @@
 <p>如果要在某个位号上发送比特 1，发送方会向 TX+ 线上施加 +2.5V 电压；如果要发送比特 0，就向 TX+ 线上发送 -2.5V 电压。</p>
 <p>而 TX- 线则始终相反，比特 1 是 -2.5V，比特 0 是 +2.5V。</p>
 <p>下表是发送 110010101110 二进制序列的相关情况：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/13.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/13.png"></p>
 <p>注意上图不是网线的实体布局，只代表 TX+ 和 TX- 线上交替变化的电压信号。双绞线实际是均匀缠绕的。</p>
 <p>就像之前讲到的，每对中的两根线上的电压总是互为相反量，一切都很整齐，且在水平方向上是对称的。</p>
 <p>现在假设网线附近有 EMI 辐射源，我们在上表中添加一行噪声数据，然后看看最终会变成什么样：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/14.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/14.png"></p>
 <p>注意到，现在这幅图已经不再对称了。两根线仍然发送相反的电压，但加了一个偏置量。</p>
 <p>但是，接收端并不一定要完美的 +2.5V 和 -2.5V，它只需确定哪根线发送更高的电平。如果 TX+ 发送的是高电平，那么这个位号就表示 1，如果 TX- 是更高的电平，那么这个位号就表示 0。</p>
 <p>或者更简单，如果上图中蓝线在上面，就代表 1，黄线在上面，就代表 0。</p>
@@ -309,7 +309,7 @@
 <h2 id="吉比特以太网"><a href="#吉比特以太网" class="headerlink" title="吉比特以太网"></a>吉比特以太网</h2><p>我们已经详细介绍了快速以太网（100Mbps），现在我们继续讨论一下吉比特以太网（千兆以太网，1000Mbps 或者 1Gbps）。</p>
 <p>首要的区别就是，吉比特以太网标准需要用到全部 4 对 8 根线，不像百兆网只用到 2 对。因此，在制造吉比特以太网网线时，全部 4 对线都需要交叉。</p>
 <p>前文讲到，RJ45 有两种不同的标准：T-568a 和 T-568b。下图描绘了 4 对线都交叉它们各自的样子：</p>
-<p><img src="https://img.vvzero.com/blog/Ethernet-Wiring/15.png"></p>
+<p><img src="/static/blog_images/Ethernet-Wiring/15.png"></p>
 <p>也就是说，吉比特以太网需要自动 MDI-X。所以，你可以直接在千兆网络中使用直通线，然后让网卡自动选择是否需要交叉。</p>
 <p>吉比特以太网有两种布线标准：</p>
 <h3 id="1000BASE-TX"><a href="#1000BASE-TX" class="headerlink" title="1000BASE-TX"></a>1000BASE-TX</h3><p>此标准使用了全部 4 对线，但规定了其中两对线为 TX，另外两对线为 RX。</p>

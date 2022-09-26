@@ -156,7 +156,7 @@
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>既然不能使用本机（127.0.0.1）做转发，那么为什么不使用本地网络中其他的机器进行数据转发呢？一开始我想在本地网络中加一个树莓派之类的小主机，但觉得这样太累赘了。虚拟机也是独立的机器，我觉得一样有效。</p>
 <p>所以，只要在虚拟机里面装一个反向代理应用（Nginx），把发往虚拟机 445 端口的流量转发到 Samba 服务器，然后使用 Windows Samba 客户端访问这个虚拟机，就等于访问 Samba 服务器。</p>
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>这里，我使用了 Windows Hyper V，创建了 Ubuntu 20.04 Server 虚拟机（直接下载官方 ISO），然后使用默认交换机作为虚拟机的网络。</p>
-<img src="https://img.vvzero.com/blog/ih/2020/04/28/2416a9e0b66ec.png" alt="Snipaste_2020-04-28_14-07-57.png" style="zoom:33%;" />
+<img src="/static/blog_images/ih/2020/04/28/2416a9e0b66ec.png" alt="Snipaste_2020-04-28_14-07-57.png" style="zoom:33%;" />
 
 <p>启动后，安装系统，然后除了更新镜像源、安装 Nginx，什么都不用做。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>

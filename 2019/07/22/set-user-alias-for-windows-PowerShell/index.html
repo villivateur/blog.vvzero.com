@@ -154,18 +154,18 @@
 <p>直接看步骤的话，在最下方。</p>
 </blockquote>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Windows Terminal 虽然还处于预览阶段，但是也出来很长一段时间了。它的历史使命，也许就是让原生 Windows 也能有一个像样的命令行环境。以前我一直在用 Cmder，但是 Cmder 的启动速度确实不敢恭维，而 Windows Terminal 启动确实很快。相比 Cmder， Windows Terminal 还缺少很多功能，不过以后应该很快也会补上。</p>
-<img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef29b3f1.png" style="zoom:50%;" />
+<img src="/static/blog_images/set-user-alias-for-windows-PowerShell/5d35bef29b3f1.png" style="zoom:50%;" />
 
 <p>我想尝试使用 Windows Termimal 进行开发。Windows Terminal 默认可以使用 <code>PowerShell</code>、<code>cmd</code>、<code>wsl bash</code>作为脚本工具。既然是在 Windows 环境下嘛，还是得尊敬一下 Windows PoweShell 的。初次使用，我觉得 PowerShell 跟 Cmder 用起来，最不方便的一点就是，我在 Cmder 里面设了很多的 Alias，也就是通过修改 <code>config/user_aliases.cmd</code> 写一串 <code>&lt;alia&gt;=&lt;xxx&gt; &lt;xxx&gt;</code> 来实现的。</p>
-<img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef29ad52.png" style="zoom:50%;" />
+<img src="/static/blog_images/set-user-alias-for-windows-PowerShell/5d35bef29ad52.png" style="zoom:50%;" />
 
 <p>但是，PowerShell 如何实现命令的别名设置呢？</p>
 <h2 id="探索过程及原理概述"><a href="#探索过程及原理概述" class="headerlink" title="探索过程及原理概述"></a>探索过程及原理概述</h2><p>如果搜索关键词 <code>windows powershell set user alias</code>，通常谷歌会给出<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-6">微软官方文档</a>，但是这个文档只是告诉我们如何在脚本里面设置临时的别名，如果要设置永久别名，该怎么办？实际上，“别名”这种东西，也就是 <code>alias</code>，几乎所有的脚本语言，都没有所谓的“永久别名”(Permanent alias)，我们使用 Linux bash 、Cmder 之类的脚本工具，打开终端时，系统会默认执行一个脚本文件（ bash 是用户目录下的 <code>.bashrc</code>，Cmder 是 <code>config/user_aliases.cmd</code> ），而这样的脚本文件里，就包含了别名的定义。这也是为什么，我们在 Linux 类系统中，修改 <code>.bashrc</code> 后，必须要重新登出登录、或者 <code>source .bashrc</code> 的原因了。</p>
 <p>所以，我们只要修改 Windows Powershell 启动时执行的文件就行了。很多论坛里面说，默认执行的脚本是 <code>$Home\Documents\profile.ps1</code> ，也就是 <code>C:\Users\你的用户名\Documents\profile.ps1</code> ，但是这并不正确，最好的方式是，先启动 PowerShell ，再执行 <code>echo $profile</code>，这样得到的文件路径，才是 PowerShell 的默认执行文件路径。</p>
-<p><img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef29d447.png"></p>
+<p><img src="/static/blog_images/set-user-alias-for-windows-PowerShell/5d35bef29d447.png"></p>
 <p>然后，创建这个文件就好啦。</p>
 <p>在文件里面，写上别名设置的语句。再一次注意，假如你的别名指代的命令含有空格，就不可以使用 <code>New-Alias</code> 命令，因为它不能带空格，即使你把指代的命令用引号括起来也没用。那怎么办呢？继续谷歌，原来，正确姿势是用 <code>function</code> ，也就是，我们把自己要定义的指令，定义为一个函数，就行啦。</p>
-<img src="https://img.vvzero.com/blog/set-user-alias-for-windows-PowerShell/5d35bef339443.png" style="zoom: 67%;" />
+<img src="/static/blog_images/set-user-alias-for-windows-PowerShell/5d35bef339443.png" style="zoom: 67%;" />
 
 <p>保存文件，重新启动 PowerShell 以后，不出意外，应该会报一个 <code>File xxxxxxx\Microsoft.PowerShell_profile.ps1 cannot be loaded because running scripts is disabled on this system.</code> 根据<a target="_blank" rel="noopener" href="https://tecadmin.net/powershell-running-scripts-is-disabled-system/">此链接</a>，出现这种情况，是因为 Windows 系统为了防止恶意脚本自动执行，故默认不允许自动运行脚本。所以，在确定自己有能力把控的情况下，__以管理员身份__，在 PowerShell 中执行 <code>Set-ExecutionPolicy RemoteSigned </code>，即可。</p>
 <p>再次重启 PowerShell，应该可以发现，自定义别名已经生效了。</p>
