@@ -27,7 +27,7 @@
     <link href="/static/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body>
 
@@ -166,11 +166,11 @@
 <h3 id="怀疑与其他线程之间存在干扰，或者存在数组越界访问"><a href="#怀疑与其他线程之间存在干扰，或者存在数组越界访问" class="headerlink" title="怀疑与其他线程之间存在干扰，或者存在数组越界访问"></a>怀疑与其他线程之间存在干扰，或者存在数组越界访问</h3><p>这样 Debug 就很简单了。我关闭了所有其他的线程，不出所料，Bug 消失了。</p>
 <p>一点点放开线程，发现是一个<strong>运动控制的硬中断</strong>造成的 Bug。</p>
 <p>然后再“二分法”排除代码，结果排除到最后，仅仅是一行代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b, c 也为 long long</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a = (<span class="keyword">long</span> <span class="keyword">long</span>)((<span class="keyword">double</span>)b * (<span class="keyword">double</span>)c);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b, c 也为 long long</span></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> a = (<span class="type">long</span> <span class="type">long</span>)((<span class="type">double</span>)b * (<span class="type">double</span>)c);</span><br></pre></td></tr></table></figure>
 
 <p>这让我大跌眼镜，因为实验证明，把这句话删了，TCP 通讯就正常了。</p>
 <h3 id="怀疑是浮点运算的问题"><a href="#怀疑是浮点运算的问题" class="headerlink" title="怀疑是浮点运算的问题"></a>怀疑是浮点运算的问题</h3><p>更加让我迷惑的是，把上述语句改下，同样也没问题了：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a = b * c;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">long</span> a = b * c;</span><br></pre></td></tr></table></figure>
 
 <p>进一步定位：我在另一个线程中添加了浮点运算，并把这个有影响的中断关闭，TCP 通讯同样出问题了。</p>
 <p>就此，几乎可以确定是浮点数运算造成的问题了。</p>
@@ -200,7 +200,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__asm(<span class="string">&quot;VPOP &#123;d0-d15&#125;&quot;</span>); <span class="comment">// FPU 寄存器出栈</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="第三行代码"><a href="#第三行代码" class="headerlink" title="第三行代码"></a>第三行代码</h3><p>FreeRTOS 启用 FPU 支持相关宏：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> configUSE_TASK_FPU_SUPPORT 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> configUSE_TASK_FPU_SUPPORT 2</span></span><br></pre></td></tr></table></figure>
 
 <p>至此，问题解决。</p>
 

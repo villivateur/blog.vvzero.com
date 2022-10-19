@@ -27,7 +27,7 @@
     <link href="/static/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 <body>
 
@@ -157,7 +157,7 @@
 <li>配置好git的登陆权限</li>
 <li>配置好文件读取权限</li>
 </ol>
-<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> SetGit.sh</span></span><br><span class="line"></span><br><span class="line">apt install git</span><br><span class="line">useradd -d /home/git -m -s /bin/bash git</span><br><span class="line">git init --bare /home/git/example.git</span><br><span class="line">chown -R git:git /home/git/example.git</span><br><span class="line">mkdir /home/git/.ssh</span><br><span class="line">touch /home/git/.ssh/authorized_keys</span><br><span class="line">chown -R git:git /home/git/.ssh</span><br><span class="line">chmod -R 600 /home/git/.ssh</span><br><span class="line">vim /home/git/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">SetGit.sh</span></span><br><span class="line"></span><br><span class="line">apt install git</span><br><span class="line">useradd -d /home/git -m -s /bin/bash git</span><br><span class="line">git init --bare /home/git/example.git</span><br><span class="line">chown -R git:git /home/git/example.git</span><br><span class="line">mkdir /home/git/.ssh</span><br><span class="line">touch /home/git/.ssh/authorized_keys</span><br><span class="line">chown -R git:git /home/git/.ssh</span><br><span class="line">chmod -R 600 /home/git/.ssh</span><br><span class="line">vim /home/git/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 
 <p>在最后，贴入所需要使用git的人的公钥即可。</p>
 <p>使用git仓库</p>
