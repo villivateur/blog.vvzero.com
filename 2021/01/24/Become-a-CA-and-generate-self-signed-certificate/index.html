@@ -164,22 +164,21 @@
 <li>openssl</li>
 </ol>
 <h2 id="创建-CA-的私钥"><a href="#创建-CA-的私钥" class="headerlink" title="创建 CA 的私钥"></a>创建 CA 的私钥</h2><p>很容易理解，CA 也有自己的公钥和私钥。</p>
-<p><code>openssl genrsa -des3 -out CAPrivate.key 2048</code></p>
-<p>这个命令会生成一个私钥 <code>CAPrivate.key</code>，并且必须要填写私钥的密码。可以将 2048 改成 4096。不要奇怪这里只有一个私钥，其实公钥也保存在这个文件里了。</p>
-<h2 id="创建根证书"><a href="#创建根证书" class="headerlink" title="创建根证书"></a>创建根证书</h2><p><code>openssl req -x509 -new -nodes -key CAPrivate.key -sha256 -days 365 -out CAPrivate.pem</code></p>
+<p><code>openssl genrsa -des3 -out CAPrivate.key 4096</code></p>
+<p>这个命令会生成一个私钥 <code>CAPrivate.key</code>，并且必须要填写私钥的密码。不要奇怪这里只有一个私钥，其实公钥也保存在这个文件里了。</p>
+<h2 id="创建根证书"><a href="#创建根证书" class="headerlink" title="创建根证书"></a>创建根证书</h2><p><code>openssl req -x509 -new -nodes -key CAPrivate.key -sha256 -days 3650 -out CAPrivate.pem</code></p>
 <p>根证书，顾名思义，肯定是自签发的。这个证书待会需要安装到你的终端设备里面，不然靠这个根证书签发的其他证书不会被信任。</p>
 <p>这个命令里面需要填写很多信息，按照实际填写就好。</p>
 <p>至此，作为一个简单的 CA，所有的文件都已经齐全了。</p>
 <h2 id="创建待签发证书的私钥"><a href="#创建待签发证书的私钥" class="headerlink" title="创建待签发证书的私钥"></a>创建待签发证书的私钥</h2><p>这个私钥与 CA 无关，是待签发的下一级证书。这一步和下一步可以在另一台机器上完成，然后把文件传给保存 CA 信息的机器就好。</p>
-<p><code>openssl genrsa -out MyPrivate.key 2048</code></p>
-<p>同样，可以把 2048 改成 4096。</p>
+<p><code>openssl genrsa -out example.key 4096</code></p>
 <h2 id="创建-CSR"><a href="#创建-CSR" class="headerlink" title="创建 CSR"></a>创建 CSR</h2><p>可以理解为一个待发送给 CA、为你签发证书的一个请求。</p>
-<p><code>openssl req -new -key MyPrivate.key -out MyRequest.csr</code></p>
+<p><code>openssl req -new -key example.key -out example.csr</code></p>
 <p>同样，这里需要填写很多信息，需要注意的是 <code>Common Name</code> 这个项目，如果你的证书是给 https 用的，这里就填你的域名。</p>
-<h2 id="使用-CA-的私钥签发证书"><a href="#使用-CA-的私钥签发证书" class="headerlink" title="使用 CA 的私钥签发证书"></a>使用 CA 的私钥签发证书</h2><p><code>openssl x509 -req -in MyRequest.csr -CA CAPrivate.pem -CAkey CAPrivate.key -CAcreateserial -out X509Certificate.crt -days 365 -sha256</code></p>
+<h2 id="使用-CA-的私钥签发证书"><a href="#使用-CA-的私钥签发证书" class="headerlink" title="使用 CA 的私钥签发证书"></a>使用 CA 的私钥签发证书</h2><p><code>openssl x509 -req -in example.csr -CA CAPrivate.pem -CAkey CAPrivate.key -CAcreateserial -out example.crt -days 365 -sha256</code></p>
 <h2 id="试一试刚刚签发的证书"><a href="#试一试刚刚签发的证书" class="headerlink" title="试一试刚刚签发的证书"></a>试一试刚刚签发的证书</h2><ol>
-<li>在待测试终端设备上安装 CA 的根证书 <code>CAPricate.pem</code>，比如 Windows、Android，某些浏览器必须单独安装证书。</li>
-<li>把 <code>MyPrivate.key</code> 和 <code>X509Certificate.crt</code> 作为 HTTPS 服务（比如 Nginx）的私钥和证书，写好配置文件。</li>
+<li>在待测试终端设备上安装 CA 的根证书 <code>CAPrivate.pem</code>，比如 Windows、Android，某些浏览器必须单独安装证书。</li>
+<li>把 <code>example.key</code> 和 <code>example.crt</code> 作为 HTTPS 服务（比如 Nginx）的私钥和证书，写好配置文件。</li>
 <li>在浏览器里面试试看，应该可以显示小锁，且没有安全警告。</li>
 </ol>
 
