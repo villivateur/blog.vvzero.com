@@ -175,7 +175,7 @@
 <p>如果打印出了你的配置，则代表创建成功。如果没有输出，请检查有没有操作错误。</p>
 <h2 id="用-CA-的私钥签发证书"><a href="#用-CA-的私钥签发证书" class="headerlink" title="用 CA 的私钥签发证书"></a>用 CA 的私钥签发证书</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -req -days 365 -<span class="keyword">in</span> example.csr -CA /path/to/CAPrivate.pem -CAkey /path/to/CAPrivate.key -CAcreateserial -out example.crt -extensions req_ext -extfile req.conf</span><br></pre></td></tr></table></figure>
 
-<p>注意其中的 <code>-extensions req_ext -extfile req.cnf</code> 是关键，很多教程没有加这个参数，导致生成的证书丢了 SAN 字段。</p>
+<p>注意其中的 <code>-extensions req_ext -extfile req.conf</code> 是关键，很多教程没有加这个参数，导致生成的证书丢了 SAN 字段。</p>
 <h2 id="验证证书的-SAN-字段"><a href="#验证证书的-SAN-字段" class="headerlink" title="验证证书的 SAN 字段"></a>验证证书的 SAN 字段</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -text -noout -<span class="keyword">in</span> example.crt | grep -A 1 <span class="string">&quot;Subject Alternative Name&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>同上，需要打印出正确的 SAN 配置，才算成功。</p>
@@ -242,7 +242,7 @@
         <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
         <span>/</span>
         
-        <span><a target="_blank" rel="noopener" href="https://qrzbing.cn/">迷茫中前行</a></span>
+        <span><a target="_blank" rel="noopener" href="https://blog.qrzbing.cn/">迷茫中前行</a></span>
         <span>/</span>
         
         <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
