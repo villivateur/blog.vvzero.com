@@ -163,9 +163,12 @@
 </ul>
 <h2 id="个人理解及思路"><a href="#个人理解及思路" class="headerlink" title="个人理解及思路"></a>个人理解及思路</h2><p>Next主题在处理博客时，会调用<code>\themes\next\layout\index.swig</code>作为其首页的框架。在未进行配置时，此文件内会有以下语句：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="built_in">id</span>=<span class="string">&quot;posts&quot;</span> <span class="keyword">class</span>=<span class="string">&quot;posts-expand&quot;</span>&gt;</span><br><span class="line">  &#123;% <span class="keyword">for</span> post <span class="keyword">in</span> page.posts %&#125;</span><br><span class="line">    &#123;&#123; post_template.render(post, true) &#125;&#125;</span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
 <p>其中for循环的意思是，把<code>_posts</code>下的所有文件都在首页进行展示。那么，如果不想让某些博客在首页被展示，只要加一个判断语句，把含有某关键字（比如说，标签）的博客屏蔽就可以了。而且这样做，博客仍然能在Archives/Tags等里面找到。</p>
-<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><p>我这里选择的关键字是标签Tags，把Tags为DIARY的博客过滤掉。<br>修改以上代码如下：</p>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><p>我这里选择的关键字是标签Tags，把Tags为DIARY的博客过滤掉。</p>
+<p>修改以上代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="built_in">id</span>=<span class="string">&quot;posts&quot;</span> <span class="keyword">class</span>=<span class="string">&quot;posts-expand&quot;</span>&gt;</span><br><span class="line">&#123;% <span class="keyword">for</span> post <span class="keyword">in</span> page.posts %&#125;</span><br><span class="line">  &#123;% <span class="keyword">for</span> tag <span class="keyword">in</span> post.tags %&#125;</span><br><span class="line">	&#123;% <span class="keyword">if</span> tag.name !== <span class="string">&#x27;DIARY&#x27;</span> %&#125;</span><br><span class="line">	  &#123;&#123; post_template.render(post, true) &#125;&#125;</span><br><span class="line">	&#123;% endif %&#125;</span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line">&#123;% endfor %&#125;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
 <p>注意，这里要再嵌套一个for循环用于检索tag。个人理解是，Tags是一个集合，包含了多个元素，故不能直接<code>if post.tags !== &#39;DIARY&#39;</code>。</p>
 <p>然后，把你的日记的Tags改成DIARY，就不会在首页显示了。</p>
 <h2 id="把所有日记整合到一个菜单中"><a href="#把所有日记整合到一个菜单中" class="headerlink" title="把所有日记整合到一个菜单中"></a>把所有日记整合到一个菜单中</h2><p>这里有知乎大神的现成的教程，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/33324071/answer/58775540?group_id=654307162210365440#comment-106092511">点击传送门</a></p>
@@ -245,7 +248,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
 </footer>
 
 

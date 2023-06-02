@@ -153,10 +153,35 @@
         </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>反正寒假在家，什么东西也没带回来，就一个电脑和手机，总要干点什么……<br>正好，想做个记录密码的App……</p>
-<h2 id="安装和简单配置"><a href="#安装和简单配置" class="headerlink" title="安装和简单配置"></a>安装和简单配置</h2><p>安装，就是从<a target="_blank" rel="noopener" href="https://developer.android.com/studio/index.html">官网</a>下载安装包之后，个人认为，默认安装即可。注意，安装路径最好不要带有空格，否则NDK工具会出现问题。<br><strong>我不知道GFW为什么要墙这个网站，但是，如果没有梯子或飞机，就另寻下载地址吧</strong><br>然后，打开应用。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/1.JPG" alt="打开应用"><br>首次运行会提醒选择SDK路径，并会下载依赖包（其实挺人性化的，在国内，因为受阻，它会很快让你输入proxy地址）。</p>
-<h2 id="建立一个新项目"><a href="#建立一个新项目" class="headerlink" title="建立一个新项目"></a>建立一个新项目</h2><p>首页点击建立一个新项目，输入项目名、路径（不能含有空格）、包名，其他默认。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/2.JPG" alt="新建"><br>选择适用设备，这里我就选择手机，安卓4.4（可以兼容绝大多数设备）。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/3.JPG" alt="选择设备"><br>选择项目类型，就选个空项目吧。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/4.JPG" alt="项目类型"><br>设置Activity名称，我这里默认。然后完成。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/5.JPG" alt="Activity"><br>嘿嘿<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/6.JPG" alt="嘿嘿"><br>然后等待他完成，可能会再下载一部分依赖文件和SDK。<br>项目建立完成<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/7.JPG" alt="建立完成"><br>这里，先不忙分析。毕竟，我还没学java。我就知道<code>MainActivity.java</code>是一个主对象。打开<code>activity_main.xml</code>可以看到应用预览和拖控件。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/8.JPG" alt="xml"></p>
-<h2 id="部署到手机"><a href="#部署到手机" class="headerlink" title="部署到手机"></a>部署到手机</h2><p>我不用模拟器，直接上手机。<br>以我的小米5,MIUI 9为例，通过USB连接电脑，打开开发者选项，打开USB调试、USB安装。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/9.JPG" alt="USB DEBUG"><br>在Android Studio 里，点击run，或shift+F10，选择自己的手机，部署即可，记得在手机上选择允许。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/10.JPG" alt="run"><br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/11.JPG" alt="phone"><br>稍等一会后，即可在手机上运行HelloWorld。<br><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/12.JPG" alt="效果"></p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>反正寒假在家，什么东西也没带回来，就一个电脑和手机，总要干点什么……</p>
+<p>正好，想做个记录密码的App……</p>
+<h2 id="安装和简单配置"><a href="#安装和简单配置" class="headerlink" title="安装和简单配置"></a>安装和简单配置</h2><p>安装，就是从<a target="_blank" rel="noopener" href="https://developer.android.com/studio/index.html">官网</a>下载安装包之后，个人认为，默认安装即可。注意，安装路径最好不要带有空格，否则NDK工具会出现问题。</p>
+<p>然后，打开应用。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/1.JPG" alt="打开应用"></p>
+<p>首次运行会提醒选择SDK路径，并会下载依赖包（其实挺人性化的，在国内，因为受阻，它会很快让你输入proxy地址）。</p>
+<h2 id="建立一个新项目"><a href="#建立一个新项目" class="headerlink" title="建立一个新项目"></a>建立一个新项目</h2><p>首页点击建立一个新项目，输入项目名、路径（不能含有空格）、包名，其他默认。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/2.JPG" alt="新建"></p>
+<p>选择适用设备，这里我就选择手机，安卓4.4（可以兼容绝大多数设备）。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/3.JPG" alt="选择设备"></p>
+<p>选择项目类型，就选个空项目吧。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/4.JPG" alt="项目类型"></p>
+<p>设置Activity名称，我这里默认。然后完成。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/5.JPG" alt="Activity"></p>
+<p>嘿嘿</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/6.JPG" alt="嘿嘿"></p>
+<p>然后等待他完成，可能会再下载一部分依赖文件和SDK。</p>
+<p>项目建立完成</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/7.JPG" alt="建立完成"></p>
+<p>这里，先不忙分析。毕竟，我还没学java。我就知道<code>MainActivity.java</code>是一个主对象。打开<code>activity_main.xml</code>可以看到应用预览和拖控件。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/8.JPG" alt="xml"></p>
+<h2 id="部署到手机"><a href="#部署到手机" class="headerlink" title="部署到手机"></a>部署到手机</h2><p>我不用模拟器，直接上手机。</p>
+<p>以我的小米5,MIUI 9为例，通过USB连接电脑，打开开发者选项，打开USB调试、USB安装。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/9.JPG" alt="USB DEBUG"></p>
+<p>在Android Studio 里，点击run，或shift+F10，选择自己的手机，部署即可，记得在手机上选择允许。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/10.JPG" alt="run"></p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/11.JPG" alt="phone"></p>
+<p>稍等一会后，即可在手机上运行HelloWorld。</p>
+<p><img src="/static/blog_images/Android-Studio-Learning-1-Build-a-Hello-World-Project/12.JPG" alt="效果"></p>
 
         
         <br />
@@ -232,7 +257,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
 </footer>
 
 

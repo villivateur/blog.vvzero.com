@@ -195,7 +195,7 @@
 <p><code>$nohup ./frpc &amp;</code></p>
 <p>此时，已经可以通过<code>&lt;公网ip&gt;:22222</code>访问。</p>
 <h3 id="更多：配置专有域名（云平台）"><a href="#更多：配置专有域名（云平台）" class="headerlink" title="更多：配置专有域名（云平台）"></a>更多：配置专有域名（云平台）</h3><p>在公网服务器Nginx中添加如下配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen 80;</span><br><span class="line"></span><br><span class="line">       server_name iot.vvzero.com;</span><br><span class="line"></span><br><span class="line">       location / &#123;</span><br><span class="line">            proxy_pass http://frp.vvzero.com:22222;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen 80;</span><br><span class="line"></span><br><span class="line">       server_name iot.vvzero.com;</span><br><span class="line"></span><br><span class="line">       location / &#123;</span><br><span class="line">            proxy_pass http://frp.vvzero.com:22222;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>即可。</p>
 
@@ -273,7 +273,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
 </footer>
 
 

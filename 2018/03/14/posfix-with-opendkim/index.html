@@ -164,18 +164,35 @@
 <li>已经按照<a target="_blank" rel="noopener" href="https://www.vvzero.com/2018/03/10/build-an-email-server-tutorial/">上一篇文章</a>配置完一台ubuntu服务器</li>
 </ul>
 <h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><h3 id="安装opendkim"><a href="#安装opendkim" class="headerlink" title="安装opendkim"></a>安装opendkim</h3><p><code>sudo apt install opendkim opendkim-tools</code></p>
-<h3 id="修改opendkim配置文件"><a href="#修改opendkim配置文件" class="headerlink" title="修改opendkim配置文件"></a>修改opendkim配置文件</h3><p>修改<code>/etc/opendkim.conf</code><br>添加以下代码</p>
+<h3 id="修改opendkim配置文件"><a href="#修改opendkim配置文件" class="headerlink" title="修改opendkim配置文件"></a>修改opendkim配置文件</h3><p>修改<code>/etc/opendkim.conf</code></p>
+<p>添加以下代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Domain                  example.com                                                       </span><br><span class="line">KeyFile         /etc/dkimkeys/dkim.key                                                   </span><br><span class="line">Selector                dkim                                                             </span><br><span class="line">SOCKET                  inet:8891@localhost</span><br></pre></td></tr></table></figure>
+
 <p>这里配置的意义是，告诉opendkim你的邮箱域名，设置私钥地址，以及配置dkim服务端口，可以根据自己的需求修改成其他值。</p>
-<p>然后修改<code>/etc/default/opendkim</code><br>添加这一条语句：<br><code>SOCKET=&quot;inet:8891@localhost&quot;</code><br>该句意为配置opendkim的服务地址，应与上一个配置文件一致。</p>
-<h3 id="生成DKIM密钥对"><a href="#生成DKIM密钥对" class="headerlink" title="生成DKIM密钥对"></a>生成DKIM密钥对</h3><p>在某个目录内执行下面的语句：<br>ˋsudo opendkim-genkey -t -s dkim -d example.com<code> 生成你的域名的密钥对，然后会有两个文件 ˋdkim.key</code>以及<code>dkim.txt</code><br>移动<code>dkim.key</code><br><code>sudo mv dkim.key /etc/dkimkeys/</code><br>配置所有者权限<br><code>sudo chown opendkim:opendkim dkim.key</code></p>
-<h3 id="配置postfix"><a href="#配置postfix" class="headerlink" title="配置postfix"></a>配置postfix</h3><p>编辑<code>/etc/postfix/main.cf</code><br>添加或修改以下配置项</p>
+<p>然后修改<code>/etc/default/opendkim</code></p>
+<p>添加这一条语句：</p>
+<p><code>SOCKET=&quot;inet:8891@localhost&quot;</code></p>
+<p>该句意为配置opendkim的服务地址，应与上一个配置文件一致。</p>
+<h3 id="生成DKIM密钥对"><a href="#生成DKIM密钥对" class="headerlink" title="生成DKIM密钥对"></a>生成DKIM密钥对</h3><p>在某个目录内执行下面的语句：</p>
+<p>ˋsudo opendkim-genkey -t -s dkim -d example.com`</p>
+<p>生成你的域名的密钥对，然后会有两个文件</p>
+<p>ˋdkim.key<code>以及</code>dkim.txt`</p>
+<p>移动<code>dkim.key</code></p>
+<p><code>sudo mv dkim.key /etc/dkimkeys/</code></p>
+<p>配置所有者权限</p>
+<p><code>sudo chown opendkim:opendkim dkim.key</code></p>
+<h3 id="配置postfix"><a href="#配置postfix" class="headerlink" title="配置postfix"></a>配置postfix</h3><p>编辑<code>/etc/postfix/main.cf</code></p>
+<p>添加或修改以下配置项</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#DKIM                                                                                   </span></span><br><span class="line">smtpd_milters = inet:localhost:8891                                                      </span><br><span class="line">non_smtpd_milters = inet:localhost:8891                                                  </span><br><span class="line">milter_protocol = 2                                                                      </span><br><span class="line">milter_default_action = accept</span><br></pre></td></tr></table></figure>
+
 <p>与opendkim一致即可。</p>
-<p>编辑<code>/etc/postfix/master.cf</code><br>添加配置项<br><code>-o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters</code></p>
+<p>编辑<code>/etc/postfix/master.cf</code></p>
+<p>添加配置项</p>
+<p><code>-o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters</code></p>
 <h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><p><code>sudo service opendkim restart</code><br><code>sudo service postfix restart</code></p>
 <h3 id="添加DKIM记录"><a href="#添加DKIM记录" class="headerlink" title="添加DKIM记录"></a>添加DKIM记录</h3><p>首先找到生成DKIM密钥对那一步，同时生成的一个<code>dkim.txt</code>文件，格式为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dkim._domainkey IN      TXT     ( <span class="string">&quot;v=DKIM1; k=rsa; t=y; &quot;</span></span><br><span class="line">          <span class="string">&quot;p=MIGfMA0GCSqGSIb3DQEBAQUAXXXXXXBiQKBgQC/eeMNBhzr+guknXXXXciiY/Wc7HJYNKdxVi+/qlA+6TgleaJY7CC/clWvRAtuXlAzjccsI1V/ICaHSzn9fhZZMKURmy2gsXXXXXXXYw7VZhFNBpTCqRALwsxOryW2BcX8eiwu1oY9krxbUQXXXXXXXXXXI4CLiXXXXXXXXeMK0wIDAQAB&quot;</span> )  ; ----- DKIM key dkim <span class="keyword">for</span> example.com</span><br></pre></td></tr></table></figure>
+
 <p>在DNS解析里添加如下记录</p>
 <table>
 <thead>
@@ -190,13 +207,11 @@
 <td>TXT</td>
 <td><code>&quot;v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAXXXXXXBiQKBgQC/eeMNBhzr+guknXXXXciiY/Wc7HJYNKdxVi+/qlA+6TgleaJY7CC/clWvRAtuXlAzjccsI1V/ICaHSzn9fhZZMKURmy2gsXXXXXXXYw7VZhFNBpTCqRALwsxOryW2BcX8eiwu1oY9krxbUQXXXXXXXXXXI4CLiXXXXXXXXeMK0wIDAQAB&quot;</code></td>
 </tr>
-<tr>
-<td>根据自己的实际数据填写。</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
-<h2 id="测试有效性"><a href="#测试有效性" class="headerlink" title="测试有效性"></a>测试有效性</h2><p>贴出两个测试网站：<br><a target="_blank" rel="noopener" href="http://dkimvalidator.com/">dkimvalidator</a><br><a target="_blank" rel="noopener" href="http://www.mail-tester.com/">Spamtest</a></p>
+<p>根据自己的实际数据填写。</p>
+<h2 id="测试有效性"><a href="#测试有效性" class="headerlink" title="测试有效性"></a>测试有效性</h2><p>贴出两个测试网站：</p>
+<p><a target="_blank" rel="noopener" href="http://dkimvalidator.com/">dkimvalidator</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.mail-tester.com/">Spamtest</a></p>
 
         
         <br />
@@ -272,7 +287,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
 </footer>
 
 

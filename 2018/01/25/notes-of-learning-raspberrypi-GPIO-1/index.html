@@ -163,9 +163,24 @@
 <li>220Ω电阻</li>
 <li>杜邦线若干</li>
 </ul>
-<h2 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h2><p>理论上直接操纵树莓派的相关文件就可以直接控制GPIO引脚电平（Linux系统中所有硬件都被虚拟成文件），但是我们没有必要去造这个轮子。<br>本人熟悉C++，所以决定使用wiringPi这一开源库。<br><a target="_blank" rel="noopener" href="http://wiringpi.com/">WiringPi官方网站</a><br><a target="_blank" rel="noopener" href="http://wiringpi.com/reference/">WiringPi官方手册</a><br>首先输入shell指令<code>$ gpio -v</code>确定树莓派没有安装WiringPi（如果安装了会显示版本号）。<br>然后安装Git<code>$ sudo apt-get install git-core</code><br>更新系统<code>$ sudo apt-get update</code> <code>$ sudo apt-get upgrade</code><br>新建一个目录用于存放WiringPi临时文件，然后在此目录内<code>$ git clone git://git.drogon.net/wiringPi .</code><br>然后<code>./build</code><br>无需root权限就可以进行安装。</p>
-<h2 id="初步了解WiringPi"><a href="#初步了解WiringPi" class="headerlink" title="初步了解WiringPi"></a>初步了解WiringPi</h2><p>安装好后，使用命令<code>$ gpio readall</code>查看引脚信息。<br><img src="/static/blog_images/notes-of-learning-raspberrypi-GPIO-1/2.PNG" alt="引脚信息"><br><img src="/static/blog_images/notes-of-learning-raspberrypi-GPIO-1/1.jpg" alt="引脚图"><br>很形象地展示了树莓派的引脚状况。<code>BCM</code>这一列暂时不去考虑，<code>V</code>代表电平，<code>Mode</code>表示工作模式，<code>Name</code>就不解释了，<code>wPi</code>是WiringPi的接口编号，GPIO编程就使用此编号。<br>如果使用过单片机，就很容易理解了。<br>暂时先学两个命令<code>gpio write </code>，<code>gpio mode </code>。</p>
+<h2 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h2><p>理论上直接操纵树莓派的相关文件就可以直接控制GPIO引脚电平（Linux系统中所有硬件都被虚拟成文件），但是我们没有必要去造这个轮子。</p>
+<p>本人熟悉C++，所以决定使用wiringPi这一开源库。</p>
+<p><a target="_blank" rel="noopener" href="http://wiringpi.com/">WiringPi官方网站</a></p>
+<p><a target="_blank" rel="noopener" href="http://wiringpi.com/reference/">WiringPi官方手册</a></p>
+<p>首先输入shell指令<code>$ gpio -v</code>确定树莓派没有安装WiringPi（如果安装了会显示版本号）。</p>
+<p>然后安装Git<code>$ sudo apt-get install git-core</code></p>
+<p>更新系统<code>$ sudo apt-get update</code> <code>$ sudo apt-get upgrade</code></p>
+<p>新建一个目录用于存放WiringPi临时文件，然后在此目录内<code>$ git clone git://git.drogon.net/wiringPi .</code></p>
+<p>然后<code>./build</code></p>
+<p>无需root权限就可以进行安装。</p>
+<h2 id="初步了解WiringPi"><a href="#初步了解WiringPi" class="headerlink" title="初步了解WiringPi"></a>初步了解WiringPi</h2><p>安装好后，使用命令<code>$ gpio readall</code>查看引脚信息。</p>
+<p><img src="/static/blog_images/notes-of-learning-raspberrypi-GPIO-1/2.PNG" alt="引脚信息"></p>
+<p><img src="/static/blog_images/notes-of-learning-raspberrypi-GPIO-1/1.jpg" alt="引脚图"></p>
+<p>很形象地展示了树莓派的引脚状况。<code>BCM</code>这一列暂时不去考虑，<code>V</code>代表电平，<code>Mode</code>表示工作模式，<code>Name</code>就不解释了，<code>wPi</code>是WiringPi的接口编号，GPIO编程就使用此编号。</p>
+<p>如果使用过单片机，就很容易理解了。</p>
+<p>暂时先学两个命令<code>gpio write </code>，<code>gpio mode </code>。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpio write &lt;pin&gt; &lt;value&gt;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpio mode &lt;pin&gt; &lt;mode&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>例如</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpio write 1 1</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">gpio mode 1 OUT</span></span><br></pre></td></tr></table></figure>
 
@@ -249,7 +264,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
 </footer>
 
 

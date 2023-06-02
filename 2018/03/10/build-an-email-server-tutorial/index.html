@@ -162,11 +162,15 @@
         </span>
     </div>
     <div class="post-content no-indent">
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了某些不可告人的秘密，我决定搭建一个自己的邮箱服务器。<br>当然，被人要你的邮箱的时候，你拿出自己域名的邮箱，也挺有场（zhuang）子（bi）的。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了某些不可告人的秘密，我决定搭建一个自己的邮箱服务器。</p>
+<p>当然，被人要你的邮箱的时候，你拿出自己域名的邮箱，也挺有场（zhuang）子（bi）的。</p>
 <h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><ol>
-<li>ubuntu公网服务器一台（其他linux系统同理）</li>
-<li>有效一级域名一个，假设是<code>example.com</code></li>
-<li>若干邮件客户端、其他邮箱账户，供测试用</li>
+<li><p>ubuntu公网服务器一台（其他linux系统同理）</p>
+</li>
+<li><p>有效一级域名一个，假设是<code>example.com</code></p>
+</li>
+<li><p>若干邮件客户端、其他邮箱账户，供测试用</p>
+</li>
 </ol>
 <h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><h3 id="配置DNS解析"><a href="#配置DNS解析" class="headerlink" title="配置DNS解析"></a>配置DNS解析</h3><p>配置DNS是为了告诉其他人，你的域名收发件服务器是哪一个；以及防止自己的邮件被其他站点认为是垃圾邮件（这一点折腾了我很久，所以先写）<br>配置一下几条记录</p>
 <table>
@@ -229,19 +233,32 @@
 </tbody></table>
 <h3 id="配置主机名hostname"><a href="#配置主机名hostname" class="headerlink" title="配置主机名hostname"></a>配置主机名hostname</h3><p>执行命令<code>sudo hostnamectl set-hostname mail.example.com</code><br>重启机器。</p>
 <h3 id="安装postfix"><a href="#安装postfix" class="headerlink" title="安装postfix"></a>安装postfix</h3><p>postfix是用来做“对外”任务的，就是与其他站点进行收发件交互。</p>
-<p>执行命令<code>sudo apt install postfix</code><br>一路确定，除了第二步，输入<code>example.com</code>。</p>
-<p>然后执行命令<code>sudo vim /etc/postfix/main.cf</code>修改配置文件。<br>这里先上我的配置文件。</p>
+<p>执行命令<code>sudo apt install postfix</code></p>
+<p>一路确定，除了第二步，输入<code>example.com</code>。</p>
+<p>然后执行命令<code>sudo vim /etc/postfix/main.cf</code>修改配置文件。</p>
+<p>这里先上我的配置文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)</span><br><span class="line">biff = no</span><br><span class="line"></span><br><span class="line">append_dot_mydomain = no</span><br><span class="line"></span><br><span class="line">readme_directory = no</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">此处隐藏了部分tls的配置</span></span><br><span class="line"></span><br><span class="line">smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination</span><br><span class="line">myhostname = mail.example.com</span><br><span class="line">alias_maps = hash:/etc/aliases</span><br><span class="line">alias_database = hash:/etc/aliases</span><br><span class="line">myorigin = /etc/mailname</span><br><span class="line">mydestination = $myhostname, example.com, localhost, localhost.localdomain, localhost</span><br><span class="line">relayhost =</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">此处需要添加你的公网ip地址或子网</span></span><br><span class="line">mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 </span><br><span class="line">mailbox_size_limit = 0</span><br><span class="line">recipient_delimiter = +</span><br><span class="line">inet_interfaces = all</span><br><span class="line">inet_protocols = all</span><br><span class="line"></span><br><span class="line">home_mailbox = .Mail/</span><br><span class="line"></span><br><span class="line">queue_directory = /var/spool/postfix</span><br><span class="line">broken_sasl_auth_clients = yes</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">这里是为了与接下来要用到的dovecot配合</span></span><br><span class="line">smtpd_sasl_type = dovecot</span><br><span class="line">smtpd_sasl_auth_enable = yes</span><br><span class="line">smtpd_sasl_path = private/auth</span><br><span class="line">smtpd_sasl_local_domain = example.com</span><br><span class="line">smtpd_sasl_authenticated_header = yes</span><br><span class="line">smtpd_sasl_security_options = noanonymous</span><br><span class="line">compatibility_level = 2</span><br><span class="line">smtpd_milters = local:/var/run/dkim-milter/dkim.sock</span><br><span class="line">non_smtpd_milters = local:/var/run/dkim-milter/dkim.sock</span><br><span class="line">milter_protocol = 2</span><br><span class="line">milter_default_action = accept</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装dovecot"><a href="#安装dovecot" class="headerlink" title="安装dovecot"></a>安装dovecot</h3><p>dovecot是用来做“对内”任务的，就是与各个邮箱客户端进行同步（毕竟我们不能每次都登陆这台主机来收发邮件）<br>执行命令<code>sudo apt install dovecot-common dovecot-imapd dovecot-pop3d</code><br>dovecot完整的配置文件比较复杂。<br>先进入<code>/etc/dovecot/conf.d/</code></p>
+<h3 id="安装dovecot"><a href="#安装dovecot" class="headerlink" title="安装dovecot"></a>安装dovecot</h3><p>dovecot是用来做“对内”任务的，就是与各个邮箱客户端进行同步（毕竟我们不能每次都登陆这台主机来收发邮件）</p>
+<p>执行命令<code>sudo apt install dovecot-common dovecot-imapd dovecot-pop3d</code></p>
+<p>dovecot完整的配置文件比较复杂。</p>
+<p>先进入<code>/etc/dovecot/conf.d/</code></p>
 <p>打开<code>10-master.conf</code>，找到第95行，修改为如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">unix_listener /var/spool/postfix/private/auth &#123;</span><br><span class="line">    mode = 0666</span><br><span class="line">    user = postfix</span><br><span class="line">    group = postfix</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>打开<code>10-auth.conf</code>，找到第100行，修改为：<br><code>auth_mechanisms = plain login</code></p>
-<p>打开<code>10-mail.conf</code>，找到第30行，修改为：<br><code>mail_location = maildir:~/.Mail</code>   注：此处与postfix配置文件中的<code>home_mailbox</code>一项配置相同即可。</p>
-<p>打开<code>20-pop3.conf</code>，找到第50行，去除注释：<br><code>pop3_uidl_format = %08Xu%08Xv</code></p>
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p><code>sudo service postfix restart</code><br><code>sudo service dovecot restart</code></p>
-<p>此时，使用邮箱客户端即可连接使用。<br>服务器内所有都可以登陆。<br>smtp: smtp.example.com port: 25<br>imap: imap.example.com port: 143<br>pop3: pop3.example.com port: 110</p>
+<p>打开<code>10-auth.conf</code>，找到第100行，修改为：</p>
+<p><code>auth_mechanisms = plain login</code></p>
+<p>打开<code>10-mail.conf</code>，找到第30行，修改为：</p>
+<p><code>mail_location = maildir:~/.Mail</code>   注：此处与postfix配置文件中的<code>home_mailbox</code>一项配置相同即可。</p>
+<p>打开<code>20-pop3.conf</code>，找到第50行，去除注释：</p>
+<p><code>pop3_uidl_format = %08Xu%08Xv</code></p>
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p><code>sudo service postfix restart</code></p>
+<p><code>sudo service dovecot restart</code></p>
+<p>此时，使用邮箱客户端即可连接使用。</p>
+<p>服务器内所有都可以登陆。</p>
+<p>smtp: smtp.example.com port: 25</p>
+<p>imap: imap.example.com port: 143</p>
+<p>pop3: pop3.example.com port: 110</p>
 <h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>下一篇文章将会讲解如何配置postfix及dovecot的SSL证书。</p>
 
         
@@ -318,7 +335,7 @@
     </p>
     
     <p>
-        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
 </footer>
 
 
