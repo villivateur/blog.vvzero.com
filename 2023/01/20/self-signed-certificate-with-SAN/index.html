@@ -136,7 +136,7 @@
         
         </span>
     </div>
-    <div class="post-content ">
+    <div class="post-content no-indent">
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在本站之前一篇文章 <a href="https://blog.vvzero.com/2021/01/24/Become-a-CA-and-generate-self-signed-certificate/">如何成为 CA，并签发自己的证书</a> 中，我们介绍了如何做一个“正规”的自签名证书。</p>
 <p>但是，这个方法对于现代的浏览器不太管用了，因为 Chrome、Firefox 等浏览器已经不再判定证书的 CN (Common Name) 字段与域名是否一致了，而是改用判定 SAN (Subject Alternative Name) 字段。具体为什么这么做以及 SAN 的含义，网上有很多解释，很重要但是这里不谈，只谈如何在自签名证书中正确配置 SAN 字段。</p>
 <p>网上的教程有很多，但很多没有说清楚，或者缺少一些关键步骤和参数，导致实际情况下出各种问题，这里我尽量整理了一个完善的版本。</p>
