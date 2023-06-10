@@ -77,28 +77,9 @@
                 </a>
             </li>
             <li>
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>主站</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noopener" href="https://iot.vvzero.com">
+                <a href="/sponsor/">
                     <i class="iconfont icon-guidang"></i>
-                    <span>购买极客产品</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noopener" href="https://status.vvzero.com">
-                    <i class="iconfont icon-guanyu1"></i>
-                    <span>服务监测</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span><b>请赞助我</b></span>
                 </a>
             </li>
             
@@ -158,7 +139,7 @@
         
         </span>
     </div>
-    <div class="post-content no-indent">
+    <div class="post-content ">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我有很多台主机，公网、内网的都有，形式各异。有的时候，因为他人误操作、停电、被攻击，或者系统崩溃等事故，会导致主机无法正常运转。往常，我并不能在第一时间得知消息并及时采取措施。所以，我希望能够有一套系统来监控我的主机是否正常。</p>
 <p>市面上已经有这样的系统，但是我想了想觉得要实现我的需求并不是很困难，所以就决定自己做一套这样的系统。</p>
 <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>在指定被监控的主机(slave)无法向云监控服务器(master)发送请求时，使用短信通知用户处理。</p>
@@ -189,7 +170,8 @@
         
             <div style="text-align: center;">
                 <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
-                    点击加载评论组件<br>
+                    点击加载评论组件
+                    <br>
                     请确保您的网络环境可以访问 Disqus
                 </button>
             </div>
@@ -201,6 +183,14 @@
 <footer class="footer">
     <ul class="list-inline text-center">
         
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/vvzero">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
         
 
         
@@ -260,7 +250,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
+    window.hexo_search_path = "search.xml"
     window.hexo_root = "/"
     window.isPost = true
 </script>

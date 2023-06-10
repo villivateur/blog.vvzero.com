@@ -77,28 +77,9 @@
                 </a>
             </li>
             <li>
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>主站</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noopener" href="https://iot.vvzero.com">
+                <a href="/sponsor/">
                     <i class="iconfont icon-guidang"></i>
-                    <span>购买极客产品</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noopener" href="https://status.vvzero.com">
-                    <i class="iconfont icon-guanyu1"></i>
-                    <span>服务监测</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span><b>请赞助我</b></span>
                 </a>
             </li>
             
@@ -152,7 +133,7 @@
         
         </span>
     </div>
-    <div class="post-content no-indent">
+    <div class="post-content ">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于众所周知的原因，Android SDK官方镜像在国内无法访问。在前几个Android Studio版本中，可以在Android SDK Manager面板里面设置代理，并强制将https转换为http，使用国内的镜像源。</p>
 <p>但是由于最新版（3.1）已经取消了Android SDK Manager面板，也没有强制转换https选项，所以无法使用以前的方法来设置（否则会报400错误）。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><img src="/static/blog_images/set-proxy-for-newest-android-studio/1.JPG" alt="img001"></p>
@@ -174,7 +155,8 @@
         
             <div style="text-align: center;">
                 <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
-                    点击加载评论组件<br>
+                    点击加载评论组件
+                    <br>
                     请确保您的网络环境可以访问 Disqus
                 </button>
             </div>
@@ -186,6 +168,14 @@
 <footer class="footer">
     <ul class="list-inline text-center">
         
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/vvzero">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
         
 
         
@@ -245,7 +235,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
+    window.hexo_search_path = "search.xml"
     window.hexo_root = "/"
     window.isPost = true
 </script>

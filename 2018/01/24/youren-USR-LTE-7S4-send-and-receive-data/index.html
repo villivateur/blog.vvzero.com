@@ -77,28 +77,9 @@
                 </a>
             </li>
             <li>
-                <a target="_blank" rel="noopener" href="https://www.vvzero.com">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>主站</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noopener" href="https://iot.vvzero.com">
+                <a href="/sponsor/">
                     <i class="iconfont icon-guidang"></i>
-                    <span>购买极客产品</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" rel="noopener" href="https://status.vvzero.com">
-                    <i class="iconfont icon-guanyu1"></i>
-                    <span>服务监测</span>
-                </a>
-            </li>
-            
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>搜索</span>
+                    <span><b>请赞助我</b></span>
                 </a>
             </li>
             
@@ -155,7 +136,7 @@
         
         </span>
     </div>
-    <div class="post-content no-indent">
+    <div class="post-content ">
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>先前了解了有人USR-LTE-7S4的基本命令操作，但是对于我的项目来讲，最重要的还是网络透传功能。于是，我暂时跳过了HTTPD和串口的操作部分，直接学习网络AT指令和短信部分。</p>
 <h2 id="指令学习"><a href="#指令学习" class="headerlink" title="指令学习"></a>指令学习</h2><p>首先要把工作模式切换为NET网络透传模式。</p>
 <p><img src="/static/blog_images/youren-USR-LTE-7S4-send-and-receive-data/1.PNG" alt="切换模式"></p>
@@ -187,7 +168,8 @@
         
             <div style="text-align: center;">
                 <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
-                    点击加载评论组件<br>
+                    点击加载评论组件
+                    <br>
                     请确保您的网络环境可以访问 Disqus
                 </button>
             </div>
@@ -199,6 +181,14 @@
 <footer class="footer">
     <ul class="list-inline text-center">
         
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/vvzero">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
         
 
         
@@ -258,7 +248,7 @@
 
 <script>
     // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
+    window.hexo_search_path = "search.xml"
     window.hexo_root = "/"
     window.isPost = true
 </script>
