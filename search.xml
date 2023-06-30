@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>航模舵机控制及其 PWM 调制的进一步理解</title>
+      <link href="/2023/06/30/deep-into-RC-plane-s-servo-control-and-PWM/"/>
+      <url>/2023/06/30/deep-into-RC-plane-s-servo-control-and-PWM/</url>
+      
+        <content type="html"><![CDATA[<p>起因是这样的，前段时间，我同时开始玩履带车和固定翼航模。履带车的动力是直流电机加驱动板，PWM 调制，0-100% 占空比控制电机从静止到全速转动。</p><p>航模的话，虽说十年前我就开始接触了，但一直都是浮于表面的玩，能动就行。玩航模必须要有遥控器和接收机，接收机也是输出 PWM 信号的，连接舵机就能控制其在指定角度范围内运动，连接电调就能控制电机转速。</p><p>于是，我想当然的，航模接收机 <del>应该也是输出 0-100% 占空比的 PWM 信号，0 就是舵机一个极限角度，50% 就是中位，100% 就是另一个极限角度。</del></p><p>然而事实并不是，我把履带车的驱动板接上航模的接收机，不管我怎么推拉摇杆，履带车始终以一个非常低的速度运动。</p><p>这就引起了我的好奇。</p><h2 id="先简单看下航模接收机的-PWM-信号图形"><a href="#先简单看下航模接收机的-PWM-信号图形" class="headerlink" title="先简单看下航模接收机的 PWM 信号图形"></a>先简单看下航模接收机的 PWM 信号图形</h2><p>手头没有示波器，就拿一个简单的逻辑分析仪应付一下：</p><p>我只测量 1 通道数据（通常是副翼/横滚通道）。</p><p>这是摇杆在中点：</p><p><img src="/static/blog_images/deep-into-RC-plane-s-servo-control-and-PWM/0.png"></p><p>摇杆在最左侧：</p><p><img src="/static/blog_images/deep-into-RC-plane-s-servo-control-and-PWM/1.png"></p><p>摇杆在最右侧：</p><p><img src="/static/blog_images/deep-into-RC-plane-s-servo-control-and-PWM/2.png"></p><p>真有趣，占空比始终在 5%~10% 左右。说明航模遥控器的 PWM 信号肯定不是简单靠占空比来控制舵机的。不然放着 10%-100% 这么大的空间不用，有点暴殄天物。</p><h2 id="航模-PWM-信号的真实解释"><a href="#航模-PWM-信号的真实解释" class="headerlink" title="航模 PWM 信号的真实解释"></a>航模 PWM 信号的真实解释</h2><p>我查了很多论坛，一开始感觉很奇怪，他们（比如 <a href="https://www.societyofrobots.com/robotforum/index.php?topic=4299.0">这个</a> ）基本上只谈 PWM 的脉冲时间长度为 1-2ms，以及频率“一般”为 50Hz，却几乎不谈占空比。</p><p>我看了一会突然醒悟了，因为 PWM 不是本来就叫“脉冲宽度调制”吗？只不过以前我都用它来调光、控制电机，所以才关注占空比，但 PWM 本身应该去关注“宽度”啊。</p><p>所以，就像 <a href="https://electronics.stackexchange.com/questions/176739/why-do-rc-applications-use-such-a-small-pwm-duty-cycle">这里</a> 回答的一样，航模舵机本身并不关注占空比是多少，只关注每个周期内，高电平的时间是多长。1ms 就代表最小角度，2ms 就是最大角度，1.5ms 就是中位。</p><p>因为一般频率是 50Hz，也就是周期为 20ms，所以占空比看起来才是 5%-10%。</p><h2 id="更多的解释"><a href="#更多的解释" class="headerlink" title="更多的解释"></a>更多的解释</h2><p>至于为什么选择 50Hz，解释是：这个频率是舵机的工作频率而已，舵机要按照这个周期动作。太快舵机会吃不消，太慢的话，响应就慢了。</p><p>也有 200Hz 的舵机，但脉冲宽度也是 1-2ms，于是占空比就变成了 20%-40%。</p><p>当然也有部分舵机会用 0.5-1ms 以及 2-2.5ms 这个区间的脉冲宽度，以达到更大的舵量。</p><p>而对于电调而言，信号也是一样的，沿用舵机的信号就很方便。</p><p>另外为什么选择 1-2ms？因为很久以前的遥控器就这么规定了，不多说。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 航模 </tag>
+            
+            <tag> 舵机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何自签名带 SAN 字段的 SSL/TLS 证书</title>
       <link href="/2023/01/20/self-signed-certificate-with-SAN/"/>
       <url>/2023/01/20/self-signed-certificate-with-SAN/</url>
