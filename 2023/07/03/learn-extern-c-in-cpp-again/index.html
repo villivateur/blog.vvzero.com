@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="嵌入式物联网全栈系统工程师">
+    <meta property="og:type" content="website">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keywords"  content="冯锦瑾, villivateur, 三帛的世界">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+        再一次理解 C++ 中的 extern &#34;C&#34; - 三帛的世界
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    <!-- 
+<link rel="stylesheet" href="/css/gitment.css">
+ -->
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="/static/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 三帛的世界 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/static/me.png" />
+        </div>
+        <div class="name">
+            <i>冯锦瑾</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/sponsor/">
+                    <i class="iconfont icon-guidang"></i>
+                    <span><b>请赞助我</b></span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BA%86%E8%A7%A3-extern-%E2%80%9CC%E2%80%9D-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">通过反汇编了解 extern “C” 的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%90%E4%BA%9B%E4%B8%8D%E8%83%BD-extern-%E2%80%9CC%E2%80%9D-%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">某些不能 extern “C” 中使用的代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-C-%E4%B8%AD%E8%B0%83%E7%94%A8-C-%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%A0%B7%E4%BE%8B"><span class="toc-text">在 C++ 中调用 C 代码的最小可运行代码样例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8-C-%E4%B8%AD%E8%B0%83%E7%94%A8-C-%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8F%AF%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%A0%B7%E4%BE%8B-1"><span class="toc-text">在 C 中调用 C++ 代码的最小可运行代码样例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E6%88%91%E5%9C%A8-C-%E4%B8%AD%E5%8C%85%E5%90%AB%E6%A0%87%E5%87%86%E5%BA%93-C-%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8Cextern-%E2%80%9CC%E2%80%9D-%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="toc-text">当我在 C++ 中包含标准库 C 头文件的时候，extern “C” 在哪？</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 三帛的世界 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        再一次理解 C++ 中的 extern &quot;C&quot;
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2023-07-03 22:18:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#C" title="C">C</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#C++" title="C++">C++</a>
+        <span>/</span>
+        
+        
+        </span>
+    </div>
+    <div class="post-content no-indent">
+        <blockquote>
+<p>本文是“攻玉计划”的一部分，翻译自 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c">https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c</a> 中 Ciro Santilli 的回答</p>
+</blockquote>
+<h2 id="通过反汇编了解-extern-“C”-的作用"><a href="#通过反汇编了解-extern-“C”-的作用" class="headerlink" title="通过反汇编了解 extern “C” 的作用"></a>通过反汇编了解 extern “C” 的作用</h2><p>main.cpp</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">g</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">ef</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">eg</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Prevent g and eg from being optimized away. */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">h</span><span class="params">()</span> </span>&#123; <span class="built_in">g</span>(); <span class="built_in">eg</span>(); &#125;</span><br></pre></td></tr></table></figure>
+
+<p>将上述代码编译为 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/26294034/how-to-make-an-executable-elf-file-in-linux-using-a-hex-editor/30648229#30648229">ELF</a> 格式的二进制，然后反汇编：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ -c -std=c++11 -Wall -Wextra -pedantic -o main.o main.cpp</span><br><span class="line">readelf -s main.o</span><br></pre></td></tr></table></figure>
+
+<p>摘取一部分输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> 8: 0000000000000000     7 FUNC    GLOBAL DEFAULT    1 _Z1fv</span><br><span class="line"> 9: 0000000000000007     7 FUNC    GLOBAL DEFAULT    1 ef</span><br><span class="line">10: 000000000000000e    17 FUNC    GLOBAL DEFAULT    1 _Z1hv</span><br><span class="line">11: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND _GLOBAL_OFFSET_TABLE_</span><br><span class="line">12: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND _Z1gv</span><br><span class="line">13: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND eg</span><br></pre></td></tr></table></figure>
+
+<p>可见：</p>
+<ul>
+<li><code>ef</code> 和 <code>eg</code> 在符号表中的名称与其在原先代码中的名称一致</li>
+<li>其他符号都被修饰过了，我们可以用 <code>c++filt</code> 工具还原其本来的样子：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ c++filt _Z1fv</span><br><span class="line">f()</span><br><span class="line">$ c++filt _Z1hv</span><br><span class="line">h()</span><br><span class="line">$ c++filt _Z1gv</span><br><span class="line">g()</span><br></pre></td></tr></table></figure>
+
+<p>所以，在以下两种情况下，我们需要使用 <code>extern &quot;C&quot;</code>：</p>
+<ul>
+<li>在 C++ 中调用 C 代码：告诉 <code>g++</code> 可能会遇到由 <code>gcc</code> 生成的未修饰过的符号名</li>
+<li>在 C 中调用 C++ 代码：让 <code>g++</code> 生成未修饰的符号名，以供 <code>gcc</code> 调用</li>
+</ul>
+<h2 id="某些不能-extern-“C”-中使用的代码"><a href="#某些不能-extern-“C”-中使用的代码" class="headerlink" title="某些不能 extern “C” 中使用的代码"></a>某些不能 extern “C” 中使用的代码</h2><p>显然，任何需要使用 C++ 名称修饰的语言特性，都不能写在 <code>extern &quot;C&quot;</code> 中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line">    <span class="comment">// 函数重载</span></span><br><span class="line">    <span class="comment">// 报错：f 的声明有冲突</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模板</span></span><br><span class="line">    <span class="comment">// 报错：模板不能用于 C 的链接</span></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">C</span>&gt; <span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(C i)</span> </span>&#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="在-C-中调用-C-代码的最小可运行代码样例"><a href="#在-C-中调用-C-代码的最小可运行代码样例" class="headerlink" title="在 C++ 中调用 C 代码的最小可运行代码样例"></a>在 C++ 中调用 C 代码的最小可运行代码样例</h2><p>在 C++ 中调用 C 代码很简单：每个 C 函数都只有一个未修饰的符号名，所以不需要额外的操作。</p>
+<p>main.cpp</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;c.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">assert</span>(<span class="built_in">f</span>() == <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>c.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> C_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> C_H</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 这里，ifdef 可以让这个头文件既可以用于 C++ 工程，也能用于 C 工程，</span></span><br><span class="line"><span class="comment"> * 因为 C 标准里面没有 extern &quot;C&quot; 的定义 */</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>c.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;c.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">f</span><span class="params">(<span class="type">void</span>)</span> &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g++ -c -o main.o -std=c++98 main.cpp</span><br><span class="line">gcc -c -o c.o -std=c89 c.c</span><br><span class="line">g++ -o main.out main.o c.o</span><br><span class="line">./main.out</span><br></pre></td></tr></table></figure>
+
+<p>如果没有 <code>extern &quot;C&quot;</code> 的话，链接器会报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main.cpp:6: undefined reference to `f()&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>g++</code> 会寻找一个修饰过的 <code>f</code>，但是 <code>gcc</code> 并不会编译出修饰过的符号名。</p>
+<h2 id="在-C-中调用-C-代码的最小可运行代码样例-1"><a href="#在-C-中调用-C-代码的最小可运行代码样例-1" class="headerlink" title="在 C 中调用 C++ 代码的最小可运行代码样例"></a>在 C 中调用 C++ 代码的最小可运行代码样例</h2><p>在 C 中调用 C++ 代码稍微困难一点：我们需要手动管理所有暴露给 C 的函数接口，并且使它们在编译时不被修饰。</p>
+<p>代码如下：</p>
+<p>main.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cpp.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    assert(f_int(<span class="number">1</span>) == <span class="number">2</span>);</span><br><span class="line">    assert(f_float(<span class="number">1.0</span>) == <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>cpp.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> CPP_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CPP_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="comment">// 这两个重载的函数不能暴露给 C 的编译群，否则会报错</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="type">float</span> i)</span></span>;</span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f_int</span><span class="params">(<span class="type">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f_float</span><span class="params">(<span class="type">float</span> i)</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>cpp.cpp</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cpp.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(<span class="type">float</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f_int</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">f</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">f_float</span><span class="params">(<span class="type">float</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">f</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -c -o main.o -std=c89 -Wextra main.c</span><br><span class="line">g++ -c -o cpp.o -std=c++98 cpp.cpp</span><br><span class="line">g++ -o main.out main.o cpp.o</span><br><span class="line">./main.out</span><br></pre></td></tr></table></figure>
+
+<p>如果不加 <code>extern &quot;C&quot;</code> 的话，会报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.c:6: undefined reference to `f_int&#x27;</span><br><span class="line">main.c:7: undefined reference to `f_float&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>g++</code> 会生成修饰后的符号名，但 <code>gcc</code> 无法理解。</p>
+<h2 id="当我在-C-中包含标准库-C-头文件的时候，extern-“C”-在哪？"><a href="#当我在-C-中包含标准库-C-头文件的时候，extern-“C”-在哪？" class="headerlink" title="当我在 C++ 中包含标准库 C 头文件的时候，extern “C” 在哪？"></a>当我在 C++ 中包含标准库 C 头文件的时候，extern “C” 在哪？</h2><ul>
+<li>C++ 版本的 C 头文件，比如 <code>cstdio</code> 可能靠 <code>#pragma GCC system_header</code> 这个编译宏实现的，根据 <a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/cpp/System-Headers.html">https://gcc.gnu.org/onlinedocs/cpp/System-Headers.html</a> ：在某些平台，例如 RS/6000 AIX 上编译 C++ 代码时，GCC 会隐式地将所有系统头文件用 extern “C” 包含起来。但我并不完全确定。</li>
+<li>POSIX 标准的头文件，比如 <code>/usr/include/unistd.h</code> 会使用 <code>__BEGIN_DECLS</code> 宏，而 <code>__BEGIN_DECLS</code> 会定义为 <code>extern &quot;C&quot; &#123;</code>。详见 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8087438/do-i-need-an-extern-c-block-to-include-standard-posix-c-headers/8087539#8087539">https://stackoverflow.com/questions/8087438/do-i-need-an-extern-c-block-to-include-standard-posix-c-headers/8087539#8087539</a>。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+        
+            <div style="text-align: center;">
+                <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
+                    点击加载评论组件
+                    <br>
+                    请确保您的网络环境可以访问 Disqus
+                </button>
+            </div>
+        
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/vvzero">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.xml"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="/static/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        function loadDisqus() {
+            var elem = document.getElementById("loadDisqusButton");
+            elem.remove();
+
+            if( '' || '')
+            var disqus_config = function () {
+                this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://villivateur.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    </script>
+
+
+
+
+
+</html>
