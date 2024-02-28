@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>三帛的世界</title>
+  <title>嵌入式工程猫的博客</title>
   
-  <subtitle>三帛的世界</subtitle>
+  <subtitle>嵌入式工程猫的博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.vvzero.com/"/>
@@ -10,7 +10,7 @@
   <id>https://blog.vvzero.com/</id>
   
   <author>
-    <name>冯锦瑾</name>
+    <name>嵌入式工程猫</name>
     
   </author>
   
