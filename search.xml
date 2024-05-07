@@ -4,6 +4,141 @@
   
     
     <entry>
+      <title>把 vim 的缩进设为 4 个字符，并且 tab 自动转空格</title>
+      <link href="/2024/05/07/vim-set-auto-indent-to-4-spaces/"/>
+      <url>/2024/05/07/vim-set-auto-indent-to-4-spaces/</url>
+      
+        <content type="html"><![CDATA[<p>修改本用户的 <code>~/.vimrc</code> 文件，添加以下内容。如果要想 sudo vim 也生效，那 <code>/root/.vimrc</code> 也要改。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filetype plugin indent on</span><br><span class="line">&quot; show existing tab with 4 spaces width</span><br><span class="line">set tabstop=4</span><br><span class="line">&quot; when indenting with &#x27;&gt;&#x27;, use 4 spaces width</span><br><span class="line">set shiftwidth=4</span><br><span class="line">&quot; On pressing tab, insert 4 spaces</span><br><span class="line">set expandtab</span><br></pre></td></tr></table></figure><p>上面的注释已经解释了含义。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>不用 snap，在 Ubuntu 上安装 certbot</title>
+      <link href="/2024/05/07/Ubuntu-install-certbot-without-snap/"/>
+      <url>/2024/05/07/Ubuntu-install-certbot-without-snap/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Certbot 官网居然只提供 snap 方式安装，而 snap 是我在 Ubuntu 上最不喜欢的东西</p></blockquote><p>那就直接用 pip 安装吧~</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install certbot python3-certbot-nginx</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络安全 </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在 Ubuntu 中启用 swap</title>
+      <link href="/2024/05/07/Ubuntu-enable-swap-file/"/>
+      <url>/2024/05/07/Ubuntu-enable-swap-file/</url>
+      
+        <content type="html"><![CDATA[<p>首先，swap 多大比较好？如果你有一个 2G 内存的服务器，偶尔内存有点吃紧，那就再开 2G 的 swap 吧。其他的情况，随缘。如果内存不紧张，就不用开。</p><p>依次执行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 2G /swapfile <span class="comment"># 在根目录下创建一个 2G 大小的 swap 文件</span></span><br><span class="line">sudo <span class="built_in">chmod</span> 600 /swapfile <span class="comment"># 修改权限配置</span></span><br><span class="line">sudo mkswap /swapfile <span class="comment"># 把这个文件作为 swap</span></span><br><span class="line">sudo swapon /swapfile <span class="comment"># 启用 swap</span></span><br><span class="line"></span><br><span class="line">sudo vim /etc/fstab <span class="comment"># 编辑 fstab 以自动挂载 swap 文件</span></span><br><span class="line"><span class="comment"># 添加以下内容</span></span><br><span class="line">/swapfile swap swap defaults 0 0</span><br><span class="line"></span><br><span class="line">sudo swapon --show <span class="comment"># 查看 swap 是否已经开启成功</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>让 Nginx 反向代理的程序获取客户端真实 IP</title>
+      <link href="/2024/05/07/Nginx-get-real-ip/"/>
+      <url>/2024/05/07/Nginx-get-real-ip/</url>
+      
+        <content type="html"><![CDATA[<p>Nginx 配置添加以下内容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:8000;</span><br><span class="line">    proxy_set_header        X-Real-IP       $remote_addr;</span><br><span class="line">    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>其含义就是在反代时，在客户端发起的请求报文上添加 <code>X-Real-IP</code> 和 <code>X-Forwarded-For</code> 两个 HTTP 头。<code>X-Real-IP</code> 表示表观客户端地址，<code>X-Forwarded-For</code>，顾名思义，就是“为谁代理”的意思，这个可以用来嵌套式传输客户端真实地址。</p><p>被代理的服务，只要能正确解析这两个头，就能获得客户端真实地址。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在 Linux 中显示所有正在监听的 TCP 端口</title>
+      <link href="/2024/05/07/Linux-show-all-listening-ports/"/>
+      <url>/2024/05/07/Linux-show-all-listening-ports/</url>
+      
+        <content type="html"><![CDATA[<h2 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -tulpn | grep LISTEN</span><br></pre></td></tr></table></figure><p>其中 <code>-t</code> 表示显示 TCP，<code>-u</code> 表示显示 UDP，<code>-l</code> 表示显示监听的端口，<code>-p</code> 表示显示对应的程序名，<code>-n</code> 表示不去查询 IP 对应的主机名。</p><h2 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo lsof -i -P -n | grep LISTEN</span><br></pre></td></tr></table></figure><p>其中 <code>-i</code> 表示显示 IP 协议，<code>-P</code> 表示把端口号保留为数字形式，<code>-n</code> 表示不去查询 IP 对应的主机名。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 网络通信 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>再一次理解 C++ 中的 extern &quot;C&quot;</title>
       <link href="/2023/07/03/learn-extern-c-in-cpp-again/"/>
       <url>/2023/07/03/learn-extern-c-in-cpp-again/</url>
