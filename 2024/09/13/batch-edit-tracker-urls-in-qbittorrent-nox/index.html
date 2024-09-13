@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="嵌入式物联网全栈系统工程师">
+    <meta property="og:type" content="website">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keywords"  content="冯锦瑾, villivateur, 嵌入式工程猫">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+        批量修改 qbittorrent-nox 内种子的 tracker 地址 - 嵌入式工程猫的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    <!-- 
+<link rel="stylesheet" href="/css/gitment.css">
+ -->
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="/static/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 嵌入式工程猫的博客 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/static/me.png" />
+        </div>
+        <div class="name">
+            <i>嵌入式工程猫</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/sponsor/">
+                    <i class="iconfont icon-guidang"></i>
+                    <span><b>请赞助我</b></span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 嵌入式工程猫的博客 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        批量修改 qbittorrent-nox 内种子的 tracker 地址
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-09-13 20:40:18</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#qbittorrent" title="qbittorrent">qbittorrent</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#PT" title="PT">PT</a>
+        <span>/</span>
+        
+        
+        </span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>馒头 PT 站的默认 tracker 出了问题，我到现在都没搞懂是被墙了还是我自己设备的问题，反正就是无法访问默认的 .cc 域名，但 .io 的域名是可以的。</p>
+<p>但手动修改 .cc 倒 .io ，也太麻烦了，我有上百个种子。</p>
+<p>我是在一台 Ubuntu 服务器上运行的原版 qbittorrent-nox，用 webui 访问。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>qbittorrent-nox 会在当前用户的家目录中的 <code>~/.local/share/qBittorrent/BT_backup</code> 目录内存放所有正在使用的种子（虽然我也不清楚为啥名字里有 <code>backup</code>），vim 看了一眼，就是很正常的种子文件格式。</p>
+<p>所以，理论上，直接批量替换这些种子文件里面的 tracker URL，就能解决问题。</p>
+<p>说干就干，<strong>先停掉 qb 的服务，然后备份 <code>BT_backup</code>，再在 <code>BT_backup</code> 内执行 <code>find . -type f -exec sed -i &#39;s/example.cc/example.io/&#39; &#123;&#125; \;</code> ，最后重启 qb 服务</strong>，果然解决问题。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+        
+            <div style="text-align: center;">
+                <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
+                    点击加载评论组件
+                    <br>
+                    请确保您的网络环境可以访问 Disqus
+                </button>
+            </div>
+        
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/vvzero">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.xml"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="/static/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        function loadDisqus() {
+            var elem = document.getElementById("loadDisqusButton");
+            elem.remove();
+
+            if( '' || '')
+            var disqus_config = function () {
+                this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://villivateur.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    </script>
+
+
+
+
+
+</html>

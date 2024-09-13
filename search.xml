@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>批量修改 qbittorrent-nox 内种子的 tracker 地址</title>
+      <link href="/2024/09/13/batch-edit-tracker-urls-in-qbittorrent-nox/"/>
+      <url>/2024/09/13/batch-edit-tracker-urls-in-qbittorrent-nox/</url>
+      
+        <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>馒头 PT 站的默认 tracker 出了问题，我到现在都没搞懂是被墙了还是我自己设备的问题，反正就是无法访问默认的 .cc 域名，但 .io 的域名是可以的。</p><p>但手动修改 .cc 倒 .io ，也太麻烦了，我有上百个种子。</p><p>我是在一台 Ubuntu 服务器上运行的原版 qbittorrent-nox，用 webui 访问。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>qbittorrent-nox 会在当前用户的家目录中的 <code>~/.local/share/qBittorrent/BT_backup</code> 目录内存放所有正在使用的种子（虽然我也不清楚为啥名字里有 <code>backup</code>），vim 看了一眼，就是很正常的种子文件格式。</p><p>所以，理论上，直接批量替换这些种子文件里面的 tracker URL，就能解决问题。</p><p>说干就干，<strong>先停掉 qb 的服务，然后备份 <code>BT_backup</code>，再在 <code>BT_backup</code> 内执行 <code>find . -type f -exec sed -i &#39;s/example.cc/example.io/&#39; &#123;&#125; \;</code> ，最后重启 qb 服务</strong>，果然解决问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TECHNOLOGY </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> qbittorrent </tag>
+            
+            <tag> PT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>把 vim 的缩进设为 4 个字符，并且 tab 自动转空格</title>
       <link href="/2024/05/07/vim-set-auto-indent-to-4-spaces/"/>
       <url>/2024/05/07/vim-set-auto-indent-to-4-spaces/</url>
