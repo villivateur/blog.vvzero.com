@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.vvzero.com/"/>
-  <updated>2024-09-13T12:52:04.190Z</updated>
+  <updated>2024-10-06T14:44:05.667Z</updated>
   <id>https://blog.vvzero.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>维护 Nginx 时，什么时候应该用 reload，什么时候应该用 restart？</title>
+    <link href="https://blog.vvzero.com/2024/10/06/when-to-restart-and-not-reload-nginx/"/>
+    <id>https://blog.vvzero.com/2024/10/06/when-to-restart-and-not-reload-nginx/</id>
+    <published>2024-10-06T14:15:51.000Z</published>
+    <updated>2024-10-06T14:44:05.667Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文是“攻玉计划”的一部分，翻译自 <a href="https://stackoverflow.com/questions/13525465/when-to-restart-and-not-reload-nginx/20215497">https://stackoverflow.com/questions/13525465/when-to-restart-and-not-reload-nginx/20215497</a></p></blockquote><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 Nginx 时，什么情况下 reload 无法满足需求，而必须要使用 restart 命令呢？</p><p>如果 Nginx 进程占用了过多内存，是不是应该用 restart 来重启？如果修改了 Nginx 的核心配置，或者某些插件的配置，是不是也需要使用 restart 命令？</p><p>修改 Nginx 配置后，用户既可以使用 restart 也可以使用 reload 来使配置生效，见 Ubuntu 上 <code>/etc/init.d/nginx -h</code> 的输出。</p><p>那么，哪种方案更优呢？</p><h2 id="回答-1"><a href="#回答-1" class="headerlink" title="回答 1"></a>回答 1</h2><p>reload 比 restart 更安全，因为如果使用 reload 命令，在旧的进程终止之前，Nginx 会先解析配置文件，如果配置文件有问题，那么就会退出重启流程。</p><p>也就是说，如果你的配置文件有问题，比如存在语法错误，那么使用 restart 命令后，Nginx 会先停止，然后就无法再启动了。</p><p>reload 命令如果成功执行，同样会终止旧的进程，所以如果存在内存泄漏问题，也一样可以清除掉。</p><h2 id="回答-2-amp-3"><a href="#回答-2-amp-3" class="headerlink" title="回答 2 &amp; 3"></a>回答 2 &amp; 3</h2><p>我遇到过一种情形，如果我修改了监听的 IP 地址，也就是配置文件里的 listen 字段，那就必须使用 restart 命令。</p><p>从 1.6.x 版本开始，如果仅把监听的 IP 地址从一个改为另一个，那么 reload 可以生效，但如果把监听地址从 <code>listen *:80</code> 修改为 <code>listen x.x.x.x:80</code>，依然需要 restart。</p><p>我只验证了 IPv4 的场景，IPv6 应该类似。</p><blockquote><p>译者按：译者今天遇到过一样的问题，我修改了 <code>listen 80; </code> 到 <code>listen 172.0.0.1:80</code>，结果发现 reload 不生效，必须 restart。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文是“攻玉计划”的一部分，翻译自 &lt;a href=&quot;https://stackoverflow.com/questions/13525465/when-to-restart-and-not-reload-nginx/20215497&quot;&gt;https
+      
+    
+    </summary>
+    
+      <category term="攻玉计划" scheme="https://blog.vvzero.com/categories/%E6%94%BB%E7%8E%89%E8%AE%A1%E5%88%92/"/>
+    
+    
+      <category term="Nginx" scheme="https://blog.vvzero.com/tags/Nginx/"/>
+    
+      <category term="Linux" scheme="https://blog.vvzero.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>批量修改 qbittorrent-nox 内种子的 tracker 地址</title>
@@ -558,39 +586,6 @@
       <category term="IoT" scheme="https://blog.vvzero.com/tags/IoT/"/>
     
       <category term="Topuino" scheme="https://blog.vvzero.com/tags/Topuino/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>对 PlatformIO 有点失望</title>
-    <link href="https://blog.vvzero.com/2021/04/16/A-little-pitty-for-PlatformIO/"/>
-    <id>https://blog.vvzero.com/2021/04/16/A-little-pitty-for-PlatformIO/</id>
-    <published>2021-04-16T12:45:20.000Z</published>
-    <updated>2023-06-30T07:45:03.949Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>PlatformIO 目前只是玩具，单片机开发还得用 Keil</p></blockquote><p>好久不碰单片机，现在想搞个项目，选型 STM32xxxxxx，想找一套“现代化”的 IDE，于是找到了 PlatformIO。</p><p>刚开始很新奇很激动，VSCode 开发环境很友好，各种单片机型号、库很丰富，而且 STM32 可以直接用 Arduino 开发，各种一键式部署。最主要的是商用免费，差点就选用了。</p><p>但是问题很快就出现了，Arduino 框架对于底层的封装太完美，我甚至不能方便地修改 SPI 或者 I2C 的引脚，而且 GPIO 读写速度也相较使用 CMSIS 慢很多，STM32duino 虽然仍然在发展，但是，我认为还处在“玩具”的阶段。</p><p>如果抛弃 Arduino 框架，去使用 CMSIS ，那也太不方便了，而且 STM32 标准库在 PlatformIO 里面目前居然只支持很少几款芯片（F10x 系列全系不支持）。如果我要用 FreeRTOS，FreeRTOS 官方目前也没有适配 PlatformIO。</p><p>最终还是回到 Keil，花钱的才是最好的。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;PlatformIO 目前只是玩具，单片机开发还得用 Keil&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;好久不碰单片机，现在想搞个项目，选型 STM32xxxxxx，想找一套“现代化”的 IDE，于是找到了 PlatformIO。&lt;/p&gt;
-&lt;p&gt;
-      
-    
-    </summary>
-    
-      <category term="TECHNOLOGY" scheme="https://blog.vvzero.com/categories/TECHNOLOGY/"/>
-    
-    
-      <category term="Arduino" scheme="https://blog.vvzero.com/tags/Arduino/"/>
-    
-      <category term="PlatformIO" scheme="https://blog.vvzero.com/tags/PlatformIO/"/>
-    
-      <category term="STM32" scheme="https://blog.vvzero.com/tags/STM32/"/>
     
   </entry>
   

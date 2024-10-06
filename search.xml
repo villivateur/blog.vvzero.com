@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>维护 Nginx 时，什么时候应该用 reload，什么时候应该用 restart？</title>
+      <link href="/2024/10/06/when-to-restart-and-not-reload-nginx/"/>
+      <url>/2024/10/06/when-to-restart-and-not-reload-nginx/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文是“攻玉计划”的一部分，翻译自 <a href="https://stackoverflow.com/questions/13525465/when-to-restart-and-not-reload-nginx/20215497">https://stackoverflow.com/questions/13525465/when-to-restart-and-not-reload-nginx/20215497</a></p></blockquote><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 Nginx 时，什么情况下 reload 无法满足需求，而必须要使用 restart 命令呢？</p><p>如果 Nginx 进程占用了过多内存，是不是应该用 restart 来重启？如果修改了 Nginx 的核心配置，或者某些插件的配置，是不是也需要使用 restart 命令？</p><p>修改 Nginx 配置后，用户既可以使用 restart 也可以使用 reload 来使配置生效，见 Ubuntu 上 <code>/etc/init.d/nginx -h</code> 的输出。</p><p>那么，哪种方案更优呢？</p><h2 id="回答-1"><a href="#回答-1" class="headerlink" title="回答 1"></a>回答 1</h2><p>reload 比 restart 更安全，因为如果使用 reload 命令，在旧的进程终止之前，Nginx 会先解析配置文件，如果配置文件有问题，那么就会退出重启流程。</p><p>也就是说，如果你的配置文件有问题，比如存在语法错误，那么使用 restart 命令后，Nginx 会先停止，然后就无法再启动了。</p><p>reload 命令如果成功执行，同样会终止旧的进程，所以如果存在内存泄漏问题，也一样可以清除掉。</p><h2 id="回答-2-amp-3"><a href="#回答-2-amp-3" class="headerlink" title="回答 2 &amp; 3"></a>回答 2 &amp; 3</h2><p>我遇到过一种情形，如果我修改了监听的 IP 地址，也就是配置文件里的 listen 字段，那就必须使用 restart 命令。</p><p>从 1.6.x 版本开始，如果仅把监听的 IP 地址从一个改为另一个，那么 reload 可以生效，但如果把监听地址从 <code>listen *:80</code> 修改为 <code>listen x.x.x.x:80</code>，依然需要 restart。</p><p>我只验证了 IPv4 的场景，IPv6 应该类似。</p><blockquote><p>译者按：译者今天遇到过一样的问题，我修改了 <code>listen 80; </code> 到 <code>listen 172.0.0.1:80</code>，结果发现 reload 不生效，必须 restart。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 攻玉计划 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Nginx </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>批量修改 qbittorrent-nox 内种子的 tracker 地址</title>
       <link href="/2024/09/13/batch-edit-tracker-urls-in-qbittorrent-nox/"/>
       <url>/2024/09/13/batch-edit-tracker-urls-in-qbittorrent-nox/</url>
