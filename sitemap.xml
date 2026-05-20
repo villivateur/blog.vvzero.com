@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.vvzero.com/sponsor/index.html</loc>
+    
+    <lastmod>2026-05-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.vvzero.com/2026/05/20/The-best-practice-for-game-streaming-via-moonlight-raspberry-pi/</loc>
     
     <lastmod>2026-05-20</lastmod>
@@ -68,15 +77,6 @@
     <loc>https://blog.vvzero.com/2024/05/07/Ubuntu-enable-swap-file/</loc>
     
     <lastmod>2024-05-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.vvzero.com/sponsor/index.html</loc>
-    
-    <lastmod>2023-07-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
