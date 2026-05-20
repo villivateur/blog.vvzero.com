@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.vvzero.com/2026/05/20/The-best-practice-for-game-streaming-via-moonlight-raspberry-pi/</loc>
+    <lastmod>2026-05-20</lastmod>
+  </url>
+  <url>
     <loc>https://blog.vvzero.com/2024/10/06/when-to-restart-and-not-reload-nginx/</loc>
     <lastmod>2024-10-06</lastmod>
   </url>

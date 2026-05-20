@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="嵌入式物联网全栈系统工程师">
+    <meta property="og:type" content="website">
+    <meta name="description" content="嵌入式物联网全栈系统工程师">
+    <meta name="keywords"  content="冯锦瑾, villivateur, 嵌入式工程猫">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+        使用树莓派 4 和 Moonlight 串流游戏的实践 - 嵌入式工程猫的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    <!-- 
+<link rel="stylesheet" href="/css/gitment.css">
+ -->
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="/static/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 嵌入式工程猫的博客 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/static/me.png" />
+        </div>
+        <div class="name">
+            <i>嵌入式工程猫</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/sponsor/">
+                    <i class="iconfont icon-guidang"></i>
+                    <span><b>请赞助我</b></span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E6%B8%85%E5%8D%95"><span class="toc-text">设备清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-text">软件说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E8%A6%81%E9%80%89%E8%BF%99%E4%BA%9B%E8%BD%AF%E7%A1%AC%E4%BB%B6"><span class="toc-text">为什么我要选这些软硬件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88"><span class="toc-text">部署方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E4%BD%93%E9%AA%8C"><span class="toc-text">实际体验</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 嵌入式工程猫的博客 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        使用树莓派 4 和 Moonlight 串流游戏的实践
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2026-05-20 09:16:40</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#树莓派" title="树莓派">树莓派</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Moonlight" title="Moonlight">Moonlight</a>
+        <span>/</span>
+        
+        
+        </span>
+    </div>
+    <div class="post-content no-indent">
+        <blockquote>
+<p>家庭内网，串流打游戏是真需求，电脑放书房，在客厅电视玩，真的爽。</p>
+</blockquote>
+<h2 id="设备清单"><a href="#设备清单" class="headerlink" title="设备清单"></a>设备清单</h2><ul>
+<li>Windows 11 PC，显卡 RTX5070，安装 Sunshine</li>
+<li>树莓派 4B，2GB RAM，安装 Lineage OS TV，以及 Moonlight 安卓版</li>
+<li>XBOX 游戏手柄</li>
+<li>小米电视 ES55</li>
+<li>千兆以上的有线家庭内网</li>
+</ul>
+<h2 id="软件说明"><a href="#软件说明" class="headerlink" title="软件说明"></a>软件说明</h2><ul>
+<li>Sunshine 在 <a target="_blank" rel="noopener" href="https://github.com/LizardByte/Sunshine/releases">这里</a> 下载</li>
+<li>Moonlight 在 <a target="_blank" rel="noopener" href="https://github.com/moonlight-stream/moonlight-android/releases">这里</a> 下载</li>
+<li>Lineage OS TV 在 <a target="_blank" rel="noopener" href="https://konstakang.com/devices/rpi4/LineageOS22-ATV/">这里</a> 下载<blockquote>
+<p>小声 bb ，这个开发者很牛逼，但他不允许其他人给他的固件做镜像重分发，必须到他那个满是广告的网页下载</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="为什么我要选这些软硬件"><a href="#为什么我要选这些软硬件" class="headerlink" title="为什么我要选这些软硬件"></a>为什么我要选这些软硬件</h2><ul>
+<li>PC 不谈，显卡是中端显卡</li>
+<li>用树莓派和小米电视是因为，我家已经用这套设备很久了，基本上是完美的安卓电视体验，电视仅用作显示，不联网，所以就没有广告</li>
+<li>konstakang 给树莓派 4 适配的 Lineage OS，是目前能找到的最完美的树莓派安卓固件</li>
+<li>Sunshine 和 Moonlight，是当今做串流的不二之选</li>
+<li>XBOX 手柄，我只有这么一个手柄</li>
+</ul>
+<h2 id="部署方案"><a href="#部署方案" class="headerlink" title="部署方案"></a>部署方案</h2><p>Lineage OS 的刷写不难，上述下载站有介绍。Moonlight 和 Sunshine 的部署都非常简单，开箱即用。</p>
+<p>手柄是连接树莓派的，蓝牙连接即可，安卓系统很方便连接。</p>
+<p>核心的坑都在下面：</p>
+<ol>
+<li>电视的 HDMI 图像模式，一定要改成“游戏模式”，不然延迟爆表</li>
+<li>我的树莓派性能，只能支持到 1080P 60Hz 的串流，再高就卡顿了</li>
+<li>Moonlight 解码模式一定要选择 H.264 。默认的是 HEVC，解码要 90ms，改了之后只要 20ms。</li>
+</ol>
+<h2 id="实际体验"><a href="#实际体验" class="headerlink" title="实际体验"></a>实际体验</h2><p>1080P 画质，在 4K 电视上还是能接受的。另外幸好整体性能支持 60Hz，不然 30Hz 会瞎眼。</p>
+<p>总体的输入延迟（手柄按下到画面响应），大概 100ms，有很小抖动。抖动我觉得是蓝牙连接不稳定的原因，但基础延迟这么大，大概率还是电视显示延迟的原因。</p>
+<p>如果我没分析错的话，手柄到树莓派大概 10ms，树莓派到电脑 1ms，电脑处理 10ms，传回树莓派 1ms，树莓派解码 20ms，电视显示延迟可能得有 50ms 以上。</p>
+<p>虽然延迟可观，但已经能玩大多数游戏了。（音游是不可能的，我上面的 100ms 就是用 muse dash 测出来的。）</p>
+<p>试了下《地平线 5》，跟我在电脑上玩的区别不大。《欧卡 2》也能玩。其他的以后慢慢试。</p>
+<p>如果把电视换成大点的显示器（或者更高端的电视），应该可以再减 40ms 延迟，树莓派换成 x86 平台的小主机，还能再减 15ms。这样整体延迟就到 40ms 左右了，音游甚至都能拼一下。</p>
+<p>如果有相同需求的朋友，可以找我交流，或者我哪里做得不对的也欢迎指出。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+        
+            <div style="text-align: center;">
+                <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
+                    点击加载评论组件
+                    <br>
+                    请确保您的网络环境可以访问 Disqus
+                </button>
+            </div>
+        
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/vvzero">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/villivateur">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://www.suruifu.com/">苏瑞辅的个人网站</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.triplez.cn/">TripleZ&#39;s Blog</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://blog.qrzbing.cn/">迷茫中前行</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://milkice.me/">Milkice&#39;s IceBox 奶冰の冷藏室</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://muyun.work/">Muyun的杂谈</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        由 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 创建 | 主题 <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">苏ICP备17037222号</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.xml"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="/static/jquery-3.3.1.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        function loadDisqus() {
+            var elem = document.getElementById("loadDisqusButton");
+            elem.remove();
+
+            if( '' || '')
+            var disqus_config = function () {
+                this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://villivateur.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
+    </script>
+
+
+
+
+
+</html>

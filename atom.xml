@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.vvzero.com/"/>
-  <updated>2024-10-06T14:44:05.667Z</updated>
+  <updated>2026-05-20T06:58:31.016Z</updated>
   <id>https://blog.vvzero.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用树莓派 4 和 Moonlight 串流游戏的实践</title>
+    <link href="https://blog.vvzero.com/2026/05/20/The-best-practice-for-game-streaming-via-moonlight-raspberry-pi/"/>
+    <id>https://blog.vvzero.com/2026/05/20/The-best-practice-for-game-streaming-via-moonlight-raspberry-pi/</id>
+    <published>2026-05-20T01:16:40.000Z</published>
+    <updated>2026-05-20T06:58:31.016Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>家庭内网，串流打游戏是真需求，电脑放书房，在客厅电视玩，真的爽。</p></blockquote><h2 id="设备清单"><a href="#设备清单" class="headerlink" title="设备清单"></a>设备清单</h2><ul><li>Windows 11 PC，显卡 RTX5070，安装 Sunshine</li><li>树莓派 4B，2GB RAM，安装 Lineage OS TV，以及 Moonlight 安卓版</li><li>XBOX 游戏手柄</li><li>小米电视 ES55</li><li>千兆以上的有线家庭内网</li></ul><h2 id="软件说明"><a href="#软件说明" class="headerlink" title="软件说明"></a>软件说明</h2><ul><li>Sunshine 在 <a href="https://github.com/LizardByte/Sunshine/releases">这里</a> 下载</li><li>Moonlight 在 <a href="https://github.com/moonlight-stream/moonlight-android/releases">这里</a> 下载</li><li>Lineage OS TV 在 <a href="https://konstakang.com/devices/rpi4/LineageOS22-ATV/">这里</a> 下载<blockquote><p>小声 bb ，这个开发者很牛逼，但他不允许其他人给他的固件做镜像重分发，必须到他那个满是广告的网页下载</p></blockquote></li></ul><h2 id="为什么我要选这些软硬件"><a href="#为什么我要选这些软硬件" class="headerlink" title="为什么我要选这些软硬件"></a>为什么我要选这些软硬件</h2><ul><li>PC 不谈，显卡是中端显卡</li><li>用树莓派和小米电视是因为，我家已经用这套设备很久了，基本上是完美的安卓电视体验，电视仅用作显示，不联网，所以就没有广告</li><li>konstakang 给树莓派 4 适配的 Lineage OS，是目前能找到的最完美的树莓派安卓固件</li><li>Sunshine 和 Moonlight，是当今做串流的不二之选</li><li>XBOX 手柄，我只有这么一个手柄</li></ul><h2 id="部署方案"><a href="#部署方案" class="headerlink" title="部署方案"></a>部署方案</h2><p>Lineage OS 的刷写不难，上述下载站有介绍。Moonlight 和 Sunshine 的部署都非常简单，开箱即用。</p><p>手柄是连接树莓派的，蓝牙连接即可，安卓系统很方便连接。</p><p>核心的坑都在下面：</p><ol><li>电视的 HDMI 图像模式，一定要改成“游戏模式”，不然延迟爆表</li><li>我的树莓派性能，只能支持到 1080P 60Hz 的串流，再高就卡顿了</li><li>Moonlight 解码模式一定要选择 H.264 。默认的是 HEVC，解码要 90ms，改了之后只要 20ms。</li></ol><h2 id="实际体验"><a href="#实际体验" class="headerlink" title="实际体验"></a>实际体验</h2><p>1080P 画质，在 4K 电视上还是能接受的。另外幸好整体性能支持 60Hz，不然 30Hz 会瞎眼。</p><p>总体的输入延迟（手柄按下到画面响应），大概 100ms，有很小抖动。抖动我觉得是蓝牙连接不稳定的原因，但基础延迟这么大，大概率还是电视显示延迟的原因。</p><p>如果我没分析错的话，手柄到树莓派大概 10ms，树莓派到电脑 1ms，电脑处理 10ms，传回树莓派 1ms，树莓派解码 20ms，电视显示延迟可能得有 50ms 以上。</p><p>虽然延迟可观，但已经能玩大多数游戏了。（音游是不可能的，我上面的 100ms 就是用 muse dash 测出来的。）</p><p>试了下《地平线 5》，跟我在电脑上玩的区别不大。《欧卡 2》也能玩。其他的以后慢慢试。</p><p>如果把电视换成大点的显示器（或者更高端的电视），应该可以再减 40ms 延迟，树莓派换成 x86 平台的小主机，还能再减 15ms。这样整体延迟就到 40ms 左右了，音游甚至都能拼一下。</p><p>如果有相同需求的朋友，可以找我交流，或者我哪里做得不对的也欢迎指出。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;家庭内网，串流打游戏是真需求，电脑放书房，在客厅电视玩，真的爽。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;设备清单&quot;&gt;&lt;a href=&quot;#设备清单&quot; class=&quot;headerlink&quot; title=&quot;设备清单&quot;&gt;&lt;/a&gt;设备清单&lt;/h
+      
+    
+    </summary>
+    
+      <category term="TECHNOLOGY" scheme="https://blog.vvzero.com/categories/TECHNOLOGY/"/>
+    
+    
+      <category term="树莓派" scheme="https://blog.vvzero.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+      <category term="Moonlight" scheme="https://blog.vvzero.com/tags/Moonlight/"/>
+    
+  </entry>
   
   <entry>
     <title>维护 Nginx 时，什么时候应该用 reload，什么时候应该用 restart？</title>
@@ -554,38 +584,6 @@
       <category term="ESP8266" scheme="https://blog.vvzero.com/tags/ESP8266/"/>
     
       <category term="IoT" scheme="https://blog.vvzero.com/tags/IoT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Topuino - 你愿意在办公桌上放一个监控服务器的小摆件吗？</title>
-    <link href="https://blog.vvzero.com/2021/08/31/Topuino-the-wonderful-Knickknack-for-server-monitoring/"/>
-    <id>https://blog.vvzero.com/2021/08/31/Topuino-the-wonderful-Knickknack-for-server-monitoring/</id>
-    <published>2021-08-31T13:21:35.000Z</published>
-    <updated>2023-06-30T07:45:03.949Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>我做了一个用来监控服务器的桌面小摆件</p></blockquote><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/1.png"></p><h2 id="什么是-Topuino"><a href="#什么是-Topuino" class="headerlink" title="什么是 Topuino"></a>什么是 Topuino</h2><p>Topuino 是我 DIY 的一个桌面小摆件，可以实现通用服务器或计算机的数据监控，包括 CPU 占用、RAM 占用、两个硬盘的可用空间、硬盘读写速度、网络 IO 速率。</p><h2 id="为什么叫-Topuino"><a href="#为什么叫-Topuino" class="headerlink" title="为什么叫 Topuino"></a>为什么叫 Topuino</h2><p>在 Linux 系列服务器上，我们通常使用 top 命令查看 CPU 内存占用，我最初的设想也是将 top 命令实物化，这就是 Topuino 中 Top 的由来。</p><p>在选型的时候，为了兼顾开发效率和成本，我选用了大名鼎鼎的 ESP8266 单片机，配合了 Arduino 开发框架，Arduino 则是 Topuino 中 uino 的由来。</p><h2 id="Topuino-有哪些亮点"><a href="#Topuino-有哪些亮点" class="headerlink" title="Topuino 有哪些亮点"></a>Topuino 有哪些亮点</h2><p>先看图解：</p><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/2.png"></p><ol><li>我觉得它挺好看，哑光黑的 PCB 底板富有科技感，红绿蓝三色 LED 层次分明，指示性强；</li><li>显示的参数满足大部分的需求，刷新率为 1 秒，CPU、内存、磁盘占用以百分比表示在柱状图上，磁盘、网络 IO 各以四位数码管显示，配合 KB、MB 单位显示，可以表示 0KB - 9999MB /s 的速率；</li><li>配置、操作方便。在需要监控的服务器上只需要跑一个 python 脚本即可；Topuino 首次上电后支持用手机或任何支持 Wi-Fi 的设备连接，并通过浏览器配置。若需要重新配置，通过按键即可恢复；</li><li>使用了通用的 USB-TypeC 接口（后期会做带电池版本）；</li><li>成本不高，谁都可以承担。</li></ol><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/3.jpg"></p><h2 id="Topuino-的工作原理"><a href="#Topuino-的工作原理" class="headerlink" title="Topuino 的工作原理"></a>Topuino 的工作原理</h2><ul><li>服务器部分很简单，主站使用了 Flask，维护一个数据库，保存着从站（被监控服务器）UUID 与运行参数的映射关系（实际上现在是用 python 的字典简单实现的）。主站接收从站的运行数据，并向 Topuino 回传数据；</li><li>服务器从站采用 python 的 psutil 库，获取所有的运行数据；</li><li>Topuino 硬件部分使用了 ESP-12F 作为 MCU，显示采用 LED 整列和数码管，显示驱动是 TM1638 芯片。</li></ul><p>附上原理图：</p><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/4.png"></p><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/5.png"></p><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/6.png"></p><p>PCB 打样交给专门的厂家，回来自己焊。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>你愿意在办公桌上放一个监控服务器的小摆件吗？至少，我做出来之后，很喜欢，就像看着一只猫一样。</p><p><img src="/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring/7.png"></p><p>另：ESP8266 的代码初步开源在 <a href="https://github.com/Villivateur/Topuino">https://github.com/Villivateur/Topuino</a> ，供大家参考。服务器端代码因为太简单且写得太丑，以后再说吧~~</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;我做了一个用来监控服务器的桌面小摆件&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;/static/blog_images/Topuino-the-wonderful-Knickknack-for-server-monitoring
-      
-    
-    </summary>
-    
-      <category term="TECHNOLOGY" scheme="https://blog.vvzero.com/categories/TECHNOLOGY/"/>
-    
-    
-      <category term="Arduino" scheme="https://blog.vvzero.com/tags/Arduino/"/>
-    
-      <category term="IoT" scheme="https://blog.vvzero.com/tags/IoT/"/>
-    
-      <category term="Topuino" scheme="https://blog.vvzero.com/tags/Topuino/"/>
     
   </entry>
   
